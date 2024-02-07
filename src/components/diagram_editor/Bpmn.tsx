@@ -1,11 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BpmnModeler from "bpmn-js/lib/Modeler";
 import Modeling from "bpmn-js/lib/features/modeling/Modeling";
 import Palette from "diagram-js/lib/features/palette/Palette";
 import { DEFAULT_BPMN_XML } from "./default_xml";
 import "./bpmn.css";
 
-const BpmnComponent: React.FC = () => {
+interface Props {
+  diagramXml?: string;
+}
+
+const BpmnComponent = ({ diagramXml }: Props) => {
   const bpmnRef = useRef<HTMLDivElement>(null);
 
   const [modeler, setModeler] = useState<any>(null);
@@ -19,13 +23,15 @@ const BpmnComponent: React.FC = () => {
       additionalModules: [Modeling, Palette],
     });
 
-    modelerInstance.importXML(DEFAULT_BPMN_XML).then((err: any) => {
-      if (err.warnings.length) {
-        console.warn(err.warnings);
-      }
+    modelerInstance
+      .importXML(diagramXml ? diagramXml : DEFAULT_BPMN_XML)
+      .then((err: any) => {
+        if (err.warnings.length) {
+          console.warn(err.warnings);
+        }
 
-      modelerInstance.get("canvas").zoom("fit-viewport");
-    });
+        modelerInstance.get("canvas").zoom("fit-viewport");
+      });
 
     setModeler(modelerInstance);
   }, []);

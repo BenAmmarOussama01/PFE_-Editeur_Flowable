@@ -1,3 +1,7 @@
 .bjs-powered-by {
   display: none;
 }
+.bjs-container,
+.djs-container {
+  overflow: hidden;
+}
