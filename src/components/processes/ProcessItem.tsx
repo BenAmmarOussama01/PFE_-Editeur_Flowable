@@ -1,12 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
+import CreateIcon from "@mui/icons-material/Create";
 
-import "./App.css";
-import BpmnComponent from "./components/diagram_editor/Bpmn";
-import Login from "./pages/LoginMUI";
-import SignUp from "./pages/SignUp";
-import Processes from "./pages/Processes";
-import Modeler from "./pages/Modeler";
-import NewProcessModal from "./components/processes/NewProcessModal";
+import { useEffect, useRef, useState } from "react";
+import BpmnViewer from "bpmn-js/lib/Viewer";
+import "../diagram_editor/bpmn.css";
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
   <bpmn:process id="Process_1" isExecutable="false">
@@ -46,18 +43,48 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>`;
 
-function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/modeler" element={<Modeler />}>
-        <Route index element={<Processes />} />
-        <Route path="processes" element={<Processes />} />
-      </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-    </Routes>
-  );
+interface Props {
+  name: string;
+  user: string;
+  edited: string;
 }
 
-export default App;
+const ProcessItem = ({ name, user, edited }: Props) => {
+  const bpmnRef = useRef<HTMLDivElement>(null);
+  const [modeler, setModeler] = useState<any>(null);
+
+  let modelerInstance: any = null;
+  useEffect(() => {
+    if (modelerInstance) return;
+    modelerInstance = new BpmnViewer({
+      container: bpmnRef.current as HTMLElement,
+    });
+
+    modelerInstance.importXML(xml).then((err: any) => {
+      if (err.warnings.length) {
+        console.warn(err.warnings);
+      }
+      //to center diagram in the viewer
+      modelerInstance.get("canvas").zoom("fit-viewport", "auto");
+    });
+
+    setModeler(modelerInstance);
+  }, []);
+
+  return (
+    <div className="border-2 h-80 border-slate-200 hover:cursor-pointer relative">
+      <div ref={bpmnRef} style={{ height: "200px" }}></div>
+      <div className="bg-slate-100 p-3 hover:pb-10 absolute bottom-0 right-0 left-0 transition duration-300 ease-in-out">
+        <div>{name}</div>
+        <div className="flex items-center gap-2 mt-3">
+          <PersonIcon /> {user}
+        </div>
+        <div className="flex items-center gap-2 mt-3 ">
+          <CreateIcon /> {edited}{" "}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProcessItem;
