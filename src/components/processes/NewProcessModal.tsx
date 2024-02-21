@@ -17,12 +17,12 @@ const style = {
   outline: 'none',
 }
 
-interface Props {
+interface NewProcessModalProps {
   open: boolean
   handleClose: () => void
 }
 
-const NewProcessModal = ({ open, handleClose }: Props) => {
+const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
   return (
     <div>
       <Modal
