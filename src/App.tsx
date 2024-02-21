@@ -11,7 +11,6 @@ import Admin from './components/blocks/Admin'
 import Idm from './components/blocks/Idm'
 import Test from './components/blocks/Test'
 import BnaRetail from './components/blocks/BnaRetail'
-//
 function App() {
   return (
     <>
