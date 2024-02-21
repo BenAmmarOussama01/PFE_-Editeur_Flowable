@@ -38,6 +38,7 @@ const BpmnComponent = (/*{ diagramXml }: Props*/) => {
 
   const handleExport = () => {
     if (modeler) {
+      //console.log(modeler.getDefinitions());
       modeler.saveXML({ format: true }).then((res: any) => {
         if (res.error) {
           console.error(res.error)

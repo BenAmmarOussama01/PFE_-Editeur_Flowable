@@ -15,7 +15,7 @@ import { loginValidationSchema } from '../formSchemas/loginSchema'
 
 const defaultTheme = createTheme()
 
-export default function SignIn() {
+export default function Login() {
   const formik = useFormik({
     initialValues: {
       email: '',
