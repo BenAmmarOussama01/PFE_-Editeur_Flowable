@@ -1,5 +1,5 @@
 // src/defaultBpmnXml.ts
-export const DEFAULT_BPMN_XML = `
+export const DEFAULT_BPMN_XML =`
 <?xml version="1.0" standalone="yes"?>
 <semantic:definitions id="_1275940932088" targetNamespace="http://www.trisotech.com/definitions/_1275940932088" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:semantic="http://www.omg.org/spec/BPMN/20100524/MODEL">
     <semantic:message id="_1275940932310"/>
@@ -382,14 +382,10 @@ export const DEFAULT_BPMN_XML = `
             </bpmndi:BPMNEdge>
         </bpmndi:BPMNPlane>
     </bpmndi:BPMNDiagram>
-</semantic:definitions>
+</semantic:definitions>`
 
-`
-/*
-2222222222
-;
-11111111111111111111111111111111111111
-/*`<?xml version="1.0" encoding="UTF-8"?>
+
+/*{<?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
 <bpmn:process id="Process_1" isExecutable="false">
 </bpmn:process>
@@ -397,4 +393,4 @@ export const DEFAULT_BPMN_XML = `
   <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
   </bpmndi:BPMNPlane>
 </bpmndi:BPMNDiagram>
-</bpmn:definitions>`;*/
+</bpmn:definitions>`}*/

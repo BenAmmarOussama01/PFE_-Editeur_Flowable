@@ -22,7 +22,7 @@ const Footer = () => {
         backgroundColor: '#f2f2f2',
       }}
     >
-      Copyright {currentDay} | ©Proxym
+      Copyright {currentDay} | ©PFE
     </footer>
   )
 }

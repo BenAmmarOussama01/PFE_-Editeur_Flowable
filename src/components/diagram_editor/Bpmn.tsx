@@ -1,40 +1,37 @@
-/*import { useEffect, useRef, useState } from 'react'
-import BpmnModeler from 'bpmn-js/lib/Modeler'
-import Modeling from 'bpmn-js/lib/features/modeling/Modeling'
-import Palette from 'diagram-js/lib/features/palette/Palette'
-import Minimap from 'diagram-js-minimap'
-import 'diagram-js-minimap/assets/diagram-js-minimap.css' 
+
+import React, { useRef, useState, useEffect } from 'react'
+import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
+
+import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
 import { DEFAULT_BPMN_XML } from './default_xml'
-import './bpmn.css'*/
+import './bpmn.css'
 
-/*interface Props {
+interface Props {
   diagramXml?: string
-}*/
-
-const BpmnComponent = (/*{ diagramXml }: Props*/) => {
-  /*const bpmnRef = useRef<HTMLDivElement>(null)
+}
+const BpmnComponent = ({ diagramXml }: Props) => {
+  const bpmnRef = useRef<HTMLDivElement>(null)
+  const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
-
+  let modelerInstance: any  
   useEffect(() => {
-    if (!bpmnRef.current) return
-
-    const modelerInstance = new BpmnModeler({
+    if (modelerInstance) return
+    modelerInstance = new BpmnModeler({
       container: bpmnRef.current,
-      additionalModules: [Modeling, Palette, Minimap],
+      propertiesPanel: {
+        parent: propertiesPanelRef.current,
+      },
     })
-
     modelerInstance
       .importXML(diagramXml ? diagramXml : DEFAULT_BPMN_XML)
       .then((err: any) => {
         if (err.warnings.length) {
           console.warn(err.warnings)
         }
-
         modelerInstance.get('canvas').zoom('fit-viewport')
       })
-
     setModeler(modelerInstance)
-  }, [diagramXml])
+  }, [])
 
   const handleExport = () => {
     if (modeler) {
@@ -44,16 +41,39 @@ const BpmnComponent = (/*{ diagramXml }: Props*/) => {
           console.error(res.error)
           return
         }
-
         console.log('UPDATE XML:', res.xml)
       })
     }
-  }*/
+  }
 
+  useEffect(() => {
+    console.log('mdl : ', modeler)
+  }, [modeler])
+  const handleZoomIn = () => {
+    modeler.get('zoomScroll').stepZoom(1)
+  }
+  const handleZoomOut = () => {
+    modeler.get('zoomScroll').stepZoom(-1)
+  }
+  const handleReset = () => {
+    modeler.get('zoomScroll').reset()
+  }
   return (
     <>
-      {/*<button onClick={handleExport}>Save</button>
-      <div ref={bpmnRef} style={{ height: '600px' }}></div>*/}
+      <div className="flex h-full w-full relative">
+        <div ref={bpmnRef} style={{ height: '786px' }} className="w-full" />
+        
+        <div
+          ref={propertiesPanelRef}
+          style={{ width: '22rem', borderLeft: '5px #ccc solid' }}
+          
+        />
+        
+      </div>
+      <button onClick={handleExport}>Save</button>
+      <button onClick={handleZoomIn}>+</button>
+      <button onClick={handleZoomOut}>-</button>
+      <button onClick={handleReset}>Reset</button>
     </>
   )
 }

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Button from '@mui/material/Button'
-
 import ProcessList from '../components/processes/ProcessList'
 import NewProcessModal from '../components/processes/NewProcessModal'
 import ImportProcessModal from '../components/processes/ImportProcessModal'
