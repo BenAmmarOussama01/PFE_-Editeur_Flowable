@@ -25,19 +25,24 @@
     "lint-staged": "lint-staged"
   },
   "dependencies": {
+    "@bpmn-io/properties-panel": "^3.18.1",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.7",
     "@mui/material": "^5.15.7",
     "bpmn-js": "^13.0.4",
+    "bpmn-js-properties-panel": "^5.13.0",
     "bpmn-js-react": "^1.0.17",
+    "camunda-bpmn-js": "^4.2.0",
     "diagram-js-minimap": "^4.1.0",
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-drag-drop-files": "^2.3.10",
     "react-flow-renderer": "^10.3.17",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.3",
+    "xml-js": "^1.6.11",
     "yup": "^1.3.3"
   },
   "devDependencies": {
