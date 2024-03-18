@@ -4,6 +4,7 @@ import { FaListUl, FaUser, FaStarOfLife } from 'react-icons/fa' // Importer les 
 import { FaDiagramProject } from 'react-icons/fa6'
 import { FaWrench } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import NavbarWrapper from '../navbar/NavbarWrapper'
 
 // Définir le type des props pour StyledIcon
 interface StyledIconProps {
@@ -24,7 +25,7 @@ const StyledIcon = styled(({ icon: Icon, ...props }: StyledIconProps) => (
 const Blocks: React.FC = () => {
   const items = [
     { name: 'Task App', link: 'tasks' },
-    { name: 'Modeler App', link: 'modeler' },
+    { name: 'Modeler App', link: 'modeler/processes' },
     { name: 'Admin App', link: 'admin' },
     { name: 'IDM App', link: 'idm' },
     { name: 'Test App', link: 'test' },
@@ -69,20 +70,23 @@ const Blocks: React.FC = () => {
   })
 
   return (
-    <Grid container spacing={2} padding={2}>
-      {items.map(({ name, link }, index) => (
-        <Grid item xs={6} sm={3} key={index}>
-          <Link style={{ textDecoration: 'none' }} to={link}>
-            <StyledCard>
-              <CardContentWrapper backgroundColor={backgroundcolors[index]}>
-                <Typography variant="h5">{name}</Typography>
-                <StyledIcon icon={cardIcons[index]} />
-              </CardContentWrapper>
-            </StyledCard>
-          </Link>
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <NavbarWrapper />
+      <Grid container spacing={2} padding={2}>
+        {items.map(({ name, link }, index) => (
+          <Grid item xs={6} sm={3} key={index}>
+            <Link style={{ textDecoration: 'none' }} to={link}>
+              <StyledCard>
+                <CardContentWrapper backgroundColor={backgroundcolors[index]}>
+                  <Typography variant="h5">{name}</Typography>
+                  <StyledIcon icon={cardIcons[index]} />
+                </CardContentWrapper>
+              </StyledCard>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
+    </>
   )
 }
 

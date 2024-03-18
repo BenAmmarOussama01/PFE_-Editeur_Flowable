@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import ProcessItem from './ProcessItem'
 
-const arr = [
+/*const arr = [
   {
     id: 1,
     name: 'DIGITAL_ONBOARDING',
@@ -31,8 +32,11 @@ const arr = [
     user: 'admin',
     edited: 'Yesterday at 4:52 PM',
   },
-]
-const ProcessList = () => {
+]*/
+interface listProps {
+  arr: Array<any>
+}
+const ProcessList = ({ arr }: listProps) => {
   return (
     <div>
       {arr.length > 0 && <p>There are {arr.length} process models</p>}
