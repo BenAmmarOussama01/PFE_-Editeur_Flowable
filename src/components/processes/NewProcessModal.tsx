@@ -1,4 +1,4 @@
-/*import { useState } from "react";*/
+//import { useState } from "react";
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
@@ -20,9 +20,14 @@ const style = {
 interface NewProcessModalProps {
   open: boolean
   handleClose: () => void
+  setArr: (process: any) => void
 }
 
-const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
+const NewProcessModal = ({
+  open,
+  handleClose,
+  setArr,
+}: NewProcessModalProps) => {
   return (
     <div>
       <Modal
@@ -59,7 +64,24 @@ const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
               <Button variant="outlined" onClick={handleClose}>
                 Cancel
               </Button>
-              <Button variant="contained">Save</Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  let date = new Date()
+                  let minutes = date.getMinutes()
+                  let hour = date.getHours()
+
+                  setArr({
+                    id: 7,
+                    name: 'DIGITAL_ONBOARDING',
+                    user: 'admin',
+                    edited: `${hour} : ${minutes}`,
+                  })
+                  handleClose()
+                }}
+              >
+                Save
+              </Button>
             </div>
           </form>
           <CloseIcon
