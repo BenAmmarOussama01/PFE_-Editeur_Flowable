@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import BpmnViewer from 'bpmn-js/lib/Viewer'
 import '../diagram_editor/bpmn.css'
 import { Link } from 'react-router-dom'
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+/*const xml = `<?xml version="1.0" encoding="UTF-8"?>
  <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
    <bpmn:process id="Process_1" isExecutable="false">
     <bpmn:startEvent id="Event_1q76s97">
@@ -42,16 +42,23 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
        </bpmndi:BPMNEdge>
      </bpmndi:BPMNPlane>
    </bpmndi:BPMNDiagram>
- </bpmn:definitions>`
+ </bpmn:definitions>`*/
 
 interface ProcessProps {
   name: string
-  user: string
-  edited: string
+  createdBy: string
+  lastUpdated: number
   id: string
+  xml: string
 }
 
-const ProcessItem = ({ id, name, user, edited }: ProcessProps) => {
+const ProcessItem = ({
+  id,
+  name,
+  createdBy,
+  lastUpdated,
+  xml,
+}: ProcessProps) => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
 
@@ -73,17 +80,23 @@ const ProcessItem = ({ id, name, user, edited }: ProcessProps) => {
     setModeler(modelerInstance)
   }, [])
 
+  //convert milliseconds to normal date
+  const handleFormatDate = () => {
+    let date = new Date(lastUpdated)
+    return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
+  }
+
   return (
     <div className="border-2 h-80 border-slate-200 hover:cursor-pointer relative">
-      <Link to={`${id}`}>
+      <Link to={`${id}`} state={{ xml }}>
         <div ref={bpmnRef} style={{ height: '200px' }}></div>
         <div className="bg-slate-100 p-3 hover:pb-10 absolute bottom-0 right-0 left-0 transition duration-300 ease-in-out">
           <div>{name}</div>
           <div className="flex items-center gap-2 mt-3">
-            <PersonIcon /> {user}
+            <PersonIcon /> {createdBy}
           </div>
           <div className="flex items-center gap-2 mt-3 ">
-            <CreateIcon /> {edited}
+            <CreateIcon /> {handleFormatDate()}
           </div>
         </div>
       </Link>
