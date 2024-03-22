@@ -5,10 +5,16 @@ import { DEFAULT_BPMN_XML } from './default_xml'
 import './bpmn.css'
 import * as convert from 'xml-js'
 
+import { useLocation } from 'react-router-dom'
+
 interface Props {
   diagramXml?: string
 }
 const Bp = ({ diagramXml }: Props) => {
+  //url location
+  const location = useLocation()
+  const { xml } = location.state
+  console.log(xml)
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
@@ -23,14 +29,12 @@ const Bp = ({ diagramXml }: Props) => {
         },
       })
     }
-    modelerInstance
-      .importXML(diagramXml ? diagramXml : DEFAULT_BPMN_XML)
-      .then((err: any) => {
-        if (err.warnings.length) {
-          console.warn(err.warnings)
-        }
-        modelerInstance.get('canvas').zoom('fit-viewport')
-      })
+    modelerInstance.importXML(xml).then((err: any) => {
+      if (err.warnings.length) {
+        console.warn(err.warnings)
+      }
+      modelerInstance.get('canvas').zoom('fit-viewport')
+    })
     setModeler(modelerInstance)
   }, [])
 
