@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import BpmnViewer from 'bpmn-js/lib/Viewer'
 import '../diagram_editor/bpmn.css'
 import { Link } from 'react-router-dom'
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+const xml =[ `<?xml version="1.0" encoding="UTF-8"?>
  <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
    <bpmn:process id="Process_1" isExecutable="false">
     <bpmn:startEvent id="Event_1q76s97">
@@ -42,7 +42,7 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
        </bpmndi:BPMNEdge>
      </bpmndi:BPMNPlane>
    </bpmndi:BPMNDiagram>
- </bpmn:definitions>`
+ </bpmn:definitions>`]
 
 interface ProcessProps {
   name: string

@@ -31,11 +31,7 @@
     "@mui/icons-material": "^5.15.7",
     "@mui/material": "^5.15.7",
     "bpmn-js": "^13.0.4",
-<<<<<<< HEAD
-    "bpmn-js-properties-panel": "^5.12.0",
-=======
     "bpmn-js-properties-panel": "^5.13.0",
->>>>>>> 40bb04b88b7aaf2af9f108b3b76aa6412195dd1d
     "bpmn-js-react": "^1.0.17",
     "camunda-bpmn-js": "^4.2.0",
     "diagram-js-minimap": "^4.1.0",
