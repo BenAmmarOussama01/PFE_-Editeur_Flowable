@@ -20,14 +20,10 @@ const style = {
 interface NewProcessModalProps {
   open: boolean
   handleClose: () => void
-  setArr: (process: any) => void
+  //setArr?: (process: any) => void
 }
 
-const NewProcessModal = ({
-  open,
-  handleClose,
-  setArr,
-}: NewProcessModalProps) => {
+const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
   return (
     <div>
       <Modal
@@ -66,7 +62,7 @@ const NewProcessModal = ({
               </Button>
               <Button
                 variant="contained"
-                onClick={() => {
+                /*onClick={() => {
                   let date = new Date()
                   let minutes = date.getMinutes()
                   let hour = date.getHours()
@@ -78,7 +74,7 @@ const NewProcessModal = ({
                     edited: `${hour} : ${minutes}`,
                   })
                   handleClose()
-                }}
+                }}*/
               >
                 Save
               </Button>
