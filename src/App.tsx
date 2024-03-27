@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import BpmnComponent from './components/diagram_editor/Bpmn'
 import SignIn from './pages/LoginMUI'
 import Footer from './components/footer/Footer'
 import Blocks from './components/blocks/Blocks'
@@ -11,12 +10,16 @@ import Test from './components/blocks/Test'
 import BnaRetail from './components/blocks/BnaRetail'
 import Processes from './pages/Processes'
 import Bp from './components/diagram_editor/Bp'
+import Login from './modules/Login/Login'
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<SignIn />} />
-        <Route path="/login" element={<SignIn />} />
+        {/*To be removed*/}
+        <Route path="/login-old" element={<SignIn />} />
+
+        <Route path="/login" element={<Login />} />
         <Route path="/blocks" element={<Blocks />} />
         <Route path="/blocks/modeler" element={<Modeler />}>
           <Route index element={<Processes />} />
