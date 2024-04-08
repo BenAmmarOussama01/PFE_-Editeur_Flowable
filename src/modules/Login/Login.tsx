@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import './Login.scss'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
@@ -8,13 +8,14 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import { invokeWS, MethodHttp } from '../../setup/api-service'
+import { APP_BASE_URL } from '../../config/constants/app.constant'
 
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
   const login = () => {
     invokeWS({
-      url: `http://localhost:8070/authorization/`,
+      url: `${APP_BASE_URL}authorization/`,
       method: MethodHttp.get,
     }).then((response: any) => {
       console.log('response ', response)
@@ -23,6 +24,16 @@ const Login: FC<LoginProps> = () => {
       }
     })
   }
+
+  useEffect(() => {
+    invokeWS({
+      //url: `http://localhost:8070/configuration/users/me`,
+      url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc`,
+      method: MethodHttp.get,
+    }).then((response: any) => {
+      console.log('response ', response)
+    })
+  }, [])
 
   return (
     <Container component="main" maxWidth="xs">
