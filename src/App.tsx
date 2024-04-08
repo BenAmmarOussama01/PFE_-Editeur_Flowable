@@ -19,7 +19,7 @@ function App() {
         {/*To be removed*/}
         <Route path="/login-old" element={<SignIn />} />
 
-        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Login />} />
         <Route path="/blocks" element={<Blocks />} />
         <Route path="/blocks/modeler" element={<Modeler />}>
           <Route index element={<Processes />} />
