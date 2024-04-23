@@ -5,11 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import BpmnViewer from 'bpmn-js/lib/Viewer'
 import '../diagram_editor/bpmn.css'
 import { Link } from 'react-router-dom'
-<<<<<<< HEAD
-const xml =[ `<?xml version="1.0" encoding="UTF-8"?>
-=======
 /*const xml = `<?xml version="1.0" encoding="UTF-8"?>
->>>>>>> 04ccec9a20b2b098d5fd0130b0961847e61d33be
  <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
    <bpmn:process id="Process_1" isExecutable="false">
     <bpmn:startEvent id="Event_1q76s97">
@@ -46,13 +42,9 @@ const xml =[ `<?xml version="1.0" encoding="UTF-8"?>
        </bpmndi:BPMNEdge>
      </bpmndi:BPMNPlane>
    </bpmndi:BPMNDiagram>
-<<<<<<< HEAD
- </bpmn:definitions>`]
-=======
  </bpmn:definitions>`*/
->>>>>>> 04ccec9a20b2b098d5fd0130b0961847e61d33be
 
-interface ProcessProps {
+export interface ProcessProps {
   name: string
   createdBy: string
   lastUpdated: number
@@ -87,6 +79,8 @@ const ProcessItem = ({
 
     setModeler(modelerInstance)
   }, [])
+  //const process= useAppSelector((state)=>state.process.process)
+  //{bject.values(process).map((process)).............}
 
   //convert milliseconds to normal date
   const handleFormatDate = () => {
@@ -109,7 +103,6 @@ const ProcessItem = ({
         </div>
       </Link>
     </div>
-    
   )
 }
 

@@ -1,6 +1,20 @@
-import SearchIcon from '@mui/icons-material/Search'
-const SearchBar = () => {
-  return (
+import React, { useState } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+
+interface SearchBarProps {
+ onSearch: (value: string) => void;
+}
+
+const SearchBar = ({ onSearch }: SearchBarProps) => {
+ const [searchValue, setSearchValue] = useState('');
+
+ const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchValue(value);
+    onSearch(value); // Appel de la fonction de recherche avec la nouvelle valeur
+ };
+
+ return (
     <div
       style={{
         border: '1px solid black',
@@ -17,11 +31,13 @@ const SearchBar = () => {
             type="text"
             placeholder="Search"
             className="py-3 border-0 border-l-[1px]"
+            value={searchValue}
+            onChange={handleChange}
           />
         </div>
       </div>
     </div>
-  )
-}
+ );
+};
 
-export default SearchBar
+export default SearchBar;

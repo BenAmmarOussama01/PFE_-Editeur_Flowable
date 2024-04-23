@@ -10,12 +10,15 @@ import Test from './components/blocks/Test'
 import BnaRetail from './components/blocks/BnaRetail'
 import Processes from './pages/Processes'
 import Bp from './components/diagram_editor/Bp'
+import Login from './modules/Login/Login'
+import Form from './components/form_builder/Form'
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/login" element={<SignIn />} />
+      <Route path="/" element={<SignIn />} />
+
+       <Route path="/signin" element={<Login />} />
         <Route path="/blocks" element={<Blocks />} />
         <Route path="/blocks/modeler" element={<Modeler />}>
           <Route index element={<Processes />} />
@@ -26,6 +29,8 @@ function App() {
         <Route path="/blocks/idm" element={<Idm />} />
         <Route path="/blocks/test" element={<Test />} />
         <Route path="/blocks/bna-retail" element={<BnaRetail />} />
+        <Route path="/blocks/modeler/form" element={<Form />} />
+
       </Routes>
       <Footer />
     </>

@@ -5,46 +5,8 @@ import NewProcessModal from '../components/processes/NewProcessModal'
 import ImportProcessModal from '../components/processes/ImportProcessModal'
 import SearchBar from '../components/processes/SearchBar'
 import fakeData from '../fakeData.json'
-
-interface Process {
-  id: number
-  name: string
-  user: string
-  edited: string
-}
 const Processes = () => {
-  /*const [arr, setArr] = useState([
-    {
-      id: 1,
-      name: 'DIGITAL_ONBOARDING',
-      user: 'admin',
-      edited: 'Yesterday at 4:52 PM',
-    },
-    {
-      id: 2,
-      name: 'DIGITAL_ONBOARDING',
-      user: 'admin',
-      edited: 'Yesterday at 4:52 PM',
-    },
-    {
-      id: 3,
-      name: 'DIGITAL_ONBOARDING',
-      user: 'admin',
-      edited: 'Yesterday at 4:52 PM',
-    },
-    {
-      id: 4,
-      name: 'DIGITAL_ONBOARDING',
-      user: 'admin',
-      edited: 'Yesterday at 4:52 PM',
-    },
-    {
-      id: 5,
-      name: 'DIGITAL_ONBOARDING',
-      user: 'admin',
-      edited: 'Yesterday at 4:52 PM',
-    },
-  ])*/
+
   const [openNewProcess, setOpenNewProcess] = useState(false)
   const [importProcess, setOpenImportProcess] = useState(false)
   const handleOpenNewProcess = () => setOpenNewProcess(true)
@@ -67,7 +29,7 @@ const Processes = () => {
         </div>
       </div>
       <div className="flex gap-10">
-        <SearchBar />
+        <SearchBar onSearch={(value) => console.log(value)} />
         <ProcessList arr={fakeData} />
       </div>
 

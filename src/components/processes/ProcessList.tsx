@@ -1,37 +1,5 @@
 import ProcessItem from './ProcessItem'
 import { arrayOfXmlProcess } from '../../fakeXml'
-/*const arr = [
-  {
-    id: 1,
-    name: 'DIGITAL_ONBOARDING',
-    user: 'admin',
-    edited: 'Yesterday at 4:52 PM',
-  },
-  {
-    id: 2,
-    name: 'DIGITAL_ONBOARDING',
-    user: 'admin',
-    edited: 'Yesterday at 4:52 PM',
-  },
-  {
-    id: 3,
-    name: 'DIGITAL_ONBOARDING',
-    user: 'admin',
-    edited: 'Yesterday at 4:52 PM',
-  },
-  {
-    id: 4,
-    name: 'DIGITAL_ONBOARDING',
-    user: 'admin',
-    edited: 'Yesterday at 4:52 PM',
-  },
-  {
-    id: 5,
-    name: 'DIGITAL_ONBOARDING',
-    user: 'admin',
-    edited: 'Yesterday at 4:52 PM',
-  },
-]*/
 interface listProps {
   arr: Array<any>
 }

@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
-import { DEFAULT_BPMN_XML } from './default_xml'
 import './bpmn.css'
 import * as convert from 'xml-js'
 
