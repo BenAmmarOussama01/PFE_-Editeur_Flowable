@@ -5,3 +5,8 @@
 .djs-container {
   overflow: hidden;
 }
+* {
+  box-sizing: border-box;
+}
+
+
