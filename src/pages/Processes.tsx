@@ -5,7 +5,10 @@ import NewProcessModal from '../components/processes/NewProcessModal'
 import ImportProcessModal from '../components/processes/ImportProcessModal'
 import SearchBar from '../components/processes/SearchBar'
 import { useAppDispatch } from '../feature/hooks'
-import { getProcesses } from '../feature/processes/processSlice'
+import {
+  getProcessFetch,
+  getProcesses,
+} from '../feature/processes/processSlice'
 
 const Processes = () => {
   const [openNewProcess, setOpenNewProcess] = useState(false)
@@ -18,8 +21,9 @@ const Processes = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getProcesses())
-  }, [])
+    //dispatch(getProcesses())
+    dispatch(getProcessFetch())
+  }, [dispatch])
 
   return (
     <div>

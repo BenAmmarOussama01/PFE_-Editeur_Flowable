@@ -54,7 +54,19 @@ export const getProcesses = createAsyncThunk('process/get', async () => {
 const processSlice = createSlice({
   name: 'process',
   initialState,
-  reducers: {},
+  reducers: {
+    getProcessFetch: (state) => {
+      state.loading = true
+    },
+
+    getProcessSuccess: (state, action: PayloadAction<Returned>) => {
+      state.loading = false
+      state.items = action.payload.data
+    },
+    getProcessFailure: (state) => {
+      state.loading = false
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       getProcesses.fulfilled,
@@ -72,5 +84,6 @@ const processSlice = createSlice({
   },
 })
 
-//export const { receivedProducts } = processSlice.actions
+export const { getProcessFetch, getProcessFailure, getProcessSuccess } =
+  processSlice.actions
 export default processSlice.reducer
