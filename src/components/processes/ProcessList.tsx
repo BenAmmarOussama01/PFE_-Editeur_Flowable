@@ -1,16 +1,16 @@
 import ProcessItem from './ProcessItem'
 import { arrayOfXmlProcess } from '../../fakeXml'
-interface listProps {
-  arr: Array<any>
-}
-const ProcessList = ({ arr }: listProps) => {
-  console.log(arr)
+import { useAppSelector } from '../../feature/hooks'
+const ProcessList = () => {
+  const processes = useAppSelector((state) => state.process.items)
   return (
     <div>
-      {arr.length > 0 && <p>There are {arr.length} process models</p>}
-      <div className="grid grid-cols-4 gap-4">
-        {arr.map((item, index) => (
-          <ProcessItem key={item.id} {...item} xml={arrayOfXmlProcess[index]} />
+      {processes.length > 0 && (
+        <p>There are {processes.length} process models</p>
+      )}
+      <div className="grid grid-cols-4 gap-4 mr-4">
+        {processes.map((item, index) => (
+          <ProcessItem {...item} xml={arrayOfXmlProcess[index]} />
         ))}
       </div>
     </div>
