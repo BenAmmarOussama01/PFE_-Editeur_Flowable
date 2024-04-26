@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { invokeWS, MethodHttp } from '../../setup/api-service'
 
-//Process type
-
 interface Returned {
   data: Process[]
   size: number
   start: number
   total: number
 }
+
+//Process type
 
 interface Process {
   id: string
@@ -47,8 +47,7 @@ export const getProcesses = createAsyncThunk('process/get', async () => {
     //url: `http://localhost:8070/configuration/users/me`,
     url: `http://localhost:8070/configuration/modeler/rest/models?sort=modifiedDesc`,
     method: MethodHttp.get,
-  })
-*/
+  })*/
 })
 
 const processSlice = createSlice({

@@ -20,6 +20,7 @@ const Bp = ({ diagramXml }: Props) => {
   let modelerInstance: any = null
   useEffect(() => {
     if (modelerInstance) return
+
     if (bpmnRef.current) {
       modelerInstance = new BpmnModeler({
         container: bpmnRef.current,
@@ -39,14 +40,14 @@ const Bp = ({ diagramXml }: Props) => {
 
   const handleExport = () => {
     if (modeler) {
-      //console.log(modeler.getDefinitions());
       modeler.saveXML({ format: true }).then((res: any) => {
         if (res.error) {
           console.error(res.error)
           return
         }
-        let result = convert.xml2json(res.xml, { compact: true, spaces: 4 })
-        console.log('UPDATE XML TO JSON:', result)
+
+        const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
+        console.log('APDATE THE JSON TO XML', j2X)
       })
     }
   }

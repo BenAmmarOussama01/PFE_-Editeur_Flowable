@@ -1,3 +1,4 @@
+import { APP_BASE_URL } from '../../config/app.constant'
 import { invokeWS, MethodHttp } from '../../setup/api-service'
 import {
   getProcessFetch,
@@ -9,8 +10,9 @@ import { put, all, takeEvery, take } from 'redux-saga/effects'
 function* fetchProcessHandlerSaga(): Generator<any, void, any> {
   try {
     const result = yield invokeWS({
-      //url: `http://localhost:8070/configuration/users/me`,
-      url: `http://localhost:8070/configuration/modeler/rest/models?sort=modifiedDesc`,
+      //url: 'http://localhost:8070/configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc',
+
+      url: `${APP_BASE_URL}configuration/modeler/rest/models?sort=modifiedDesc`,
       method: MethodHttp.get,
     })
     yield put(getProcessSuccess(result?.data)) // Dispatch success action
