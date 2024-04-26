@@ -1,12 +1,12 @@
 /* eslint-disable */
-import Processes from './Processes';
+import Processes from './Processes'
 
 export default {
-  title: "Processes",
-};
+  title: 'Processes',
+}
 
-export const Default = () => <Processes />;
+export const Default = () => <Processes />
 
 Default.story = {
   name: 'default',
-};
+}
