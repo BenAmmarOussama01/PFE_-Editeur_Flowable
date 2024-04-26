@@ -8,7 +8,6 @@ import SearchBar from '../../components/processes/SearchBar'
 import ProcessList from '../../components/processes/ProcessList'
 import NewProcessModal from '../../components/processes/NewProcessModal'
 import ImportProcessModal from '../../components/processes/ImportProcessModal'
-import { fetchXml } from '../../config/utils/converToImage'
 
 interface ProcessesProps {}
 
@@ -19,7 +18,6 @@ const Processes: FC<ProcessesProps> = () => {
   const [importProcess, setOpenImportProcess] = useState(false)
 
   useEffect(() => {
-    fetchXml()
     //dispatch(getProcesses())
     dispatch(getProcessFetch())
   }, [])

@@ -1,4 +1,4 @@
-import ProcessItem from './ProcessItem'
+import ProcessItem from './process_item/ProcessItem'
 import { arrayOfXmlProcess } from '../../fakeXml'
 import { useAppSelector } from '../../feature/hooks'
 const ProcessList = () => {
