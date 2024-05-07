@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { fetchThumbnailImage } from '../../../config/utils/converToImage'
 import Loader from '../../loader/Loader'
 
-export interface ProcessProps {
+export interface FormProps {
   name: string
   createdBy: string
   lastUpdated: number
@@ -15,13 +15,13 @@ export interface ProcessProps {
 }
 
 
-const ProcessItem = ({
+const FormItem = ({
   id,
   name,
   createdBy,
   lastUpdated,
   xml,
-}: ProcessProps) => {
+}: FormProps) => {
   const [imageSrc, setImageSrc] = useState('')
   const [isLoading, setIsLoading] = useState(true);
 
@@ -77,4 +77,4 @@ const ProcessItem = ({
   );
 }
   
-export default ProcessItem
+export default FormItem

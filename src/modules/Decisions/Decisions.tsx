@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../feature/hooks'
 import { getDecisionFetch } from '../../feature/decisions/decisionTableSlice'
 import { formatDate } from '../../config/utils/formatDate'
 import { Button } from '@mui/material'
-import SearchBar from '../../components/decision_model/SearchBar'
+import DecisionSearchBar from '../../components/decision_model/DecisionSearchbar'
 import DecisionTableList  from '../../components/decision_model/DecisionTableList'
 import DecisionServiceList  from '../../components/decision_model/DecisionSerciceList'
 import NewDecisionModal from '../../components/decision_model/NewDecisionModal'
@@ -40,9 +40,10 @@ const Decisions: FC<DecisionesProps> = () => {
         </div>
       </div>
       <div className="flex gap-10">
-        <SearchBar onSearch={(value) => console.log(value)} />
-        <DecisionTableList  />
-        {/*<DecisionServiceList/>*/}
+      <DecisionSearchBar handleSearch={(value: string) => console.log(value)} arr={[]} />
+         <DecisionTableList  />
+         <DecisionServiceList/>
+        
       </div>
 
       {openNewDecision && (
