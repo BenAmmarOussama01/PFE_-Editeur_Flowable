@@ -12,6 +12,7 @@ import Processes from './modules/Processes/Processes'
 import Bp from './components/diagram_editor/Bp'
 import Login from './modules/Login/Login'
 import Form from './components/form_builder/Form'
+import CaseModels from './modules/CaseModels/CaseModels'
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
           <Route index element={<Processes />} />
           <Route path="processes" element={<Processes />} />
           <Route path="processes/:id" element={<Bp />} />
+          <Route path="caseModels" element={<CaseModels />} />
         </Route>
         <Route path="/blocks/admin" element={<Admin />} />
         <Route path="/blocks/idm" element={<Idm />} />

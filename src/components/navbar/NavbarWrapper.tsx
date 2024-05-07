@@ -7,7 +7,7 @@ interface childrenProps {
 
 const NavbarWrapper = ({ children }: childrenProps) => {
   return (
-    <div className="bg-[#1F3245]   h-14 px-12 flex items-center">
+    <div className="bg-[#1F3245]   h-14 px-12 flex">
       <Link to="/" className="h-full">
         <img
           src={FlowableLogo}

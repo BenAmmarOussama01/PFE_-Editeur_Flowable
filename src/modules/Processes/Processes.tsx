@@ -1,13 +1,13 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import './Processes.scss'
 import { useAppDispatch } from '../../feature/hooks'
-import { getProcessFetch } from '../../feature/processes/processSlice'
-import { formatDate } from '../../config/utils/formatDate'
+import { getProcess } from '../../feature/processes/processSlice'
 import { Button } from '@mui/material'
 import SearchBar from '../../components/processes/SearchBar'
 import ProcessList from '../../components/processes/ProcessList'
 import NewProcessModal from '../../components/processes/NewProcessModal'
 import ImportProcessModal from '../../components/processes/ImportProcessModal'
+import NewModal from '../../components/modals/NewModal'
 
 interface ProcessesProps {}
 
@@ -19,7 +19,7 @@ const Processes: FC<ProcessesProps> = () => {
 
   useEffect(() => {
     //dispatch(getProcesses())
-    dispatch(getProcessFetch())
+    dispatch(getProcess())
   }, [])
   return (
     <div>
@@ -37,13 +37,13 @@ const Processes: FC<ProcessesProps> = () => {
           </Button>
         </div>
       </div>
-      <div className="flex gap-10">
+      <div className="flex gap-10 ">
         <SearchBar onSearch={(value) => console.log(value)} />
         <ProcessList />
       </div>
 
       {openNewProcess && (
-        <NewProcessModal
+        <NewModal
           open={openNewProcess}
           handleClose={() => setOpenNewProcess(false)}
         />

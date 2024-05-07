@@ -40,6 +40,7 @@
     "bpmn-js-react": "^1.0.17",
     "bpmn-moddle": "^9.0.1",
     "camunda-bpmn-js": "^4.2.0",
+    "camunda-dmn-js": "^2.2.0",
     "dayjs": "^1.11.10",
     "diagram-js-minimap": "^4.1.0",
     "formik": "^2.4.5",

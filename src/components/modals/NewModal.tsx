@@ -1,4 +1,3 @@
-//import { useState } from "react";
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
@@ -7,6 +6,9 @@ import CloseIcon from '@mui/icons-material/Close'
 import { useState } from 'react'
 import axios from 'axios'
 import { APP_BASE_URL } from '../../config/app.constant'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -20,18 +22,33 @@ const style = {
   outline: 'none',
 }
 
-interface NewProcessModalProps {
+const loginValidationSchema = Yup.object({
+  name: Yup.string().required('name is required'),
+  key: Yup.string().required('key is required'),
+  description: Yup.string(),
+})
+
+interface NewModalProps {
   open: boolean
   handleClose: () => void
+  modelType?: number
   //setArr?: (process: any) => void
 }
 
-const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [key, setKey] = useState('')
+const NewModal = ({ open, handleClose }: NewModalProps) => {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      key: '',
+      description: '',
+    },
+    validationSchema: loginValidationSchema,
+    onSubmit: (values) => {
+      console.log(values)
+    },
+  })
 
-  const handleCreateProcess = () => {
+  const handleCreate = () => {
     /*axios
       .post(`${APP_BASE_URL}configuration/modeler/rest/models`, {
         name,
@@ -42,6 +59,7 @@ const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err))*/
   }
+
   return (
     <Modal
       open={open}
@@ -53,14 +71,20 @@ const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
         <div className="w-full bg-slate-100 py-5 mb-6">
           <p className="text-2xl ml-10">Create a new Process model</p>
         </div>
-        <form action="" className="mx-10">
+        <form action="" className="mx-10" onSubmit={formik.handleSubmit}>
           <div>
             <label className="text-xl">Model name*</label>
             <TextField
               variant="outlined"
               className="w-full"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id="name"
+              name="name"
+              autoComplete="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              helperText={formik.touched.name && formik.errors.name}
             />
           </div>
 
@@ -69,8 +93,14 @@ const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
             <TextField
               variant="outlined"
               className="w-full"
-              value={key}
-              onChange={(e) => setKey(e.target.value)}
+              id="key"
+              name="key"
+              autoComplete="key"
+              value={formik.values.key}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.key && Boolean(formik.errors.key)}
+              helperText={formik.touched.key && formik.errors.key}
             />
           </div>
 
@@ -81,15 +111,25 @@ const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
               className="w-full"
               multiline
               rows={5}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              id="description"
+              name="description"
+              autoComplete="description"
+              value={formik.values.description}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={
+                formik.touched.description && Boolean(formik.errors.description)
+              }
+              helperText={
+                formik.touched.description && formik.errors.description
+              }
             />
           </div>
           <div className="mt-10 flex gap-4 float-end">
             <Button variant="outlined" onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant="contained" onClick={handleCreateProcess}>
+            <Button variant="contained" type="submit">
               Save
             </Button>
           </div>
@@ -105,4 +145,4 @@ const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
   )
 }
 
-export default NewProcessModal
+export default NewModal

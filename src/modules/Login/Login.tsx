@@ -17,22 +17,15 @@ const Login: FC<LoginProps> = () => {
     invokeWS({
       url: `${APP_BASE_URL}authorization/`,
       method: MethodHttp.get,
-    }).then((response: any) => {
-      console.log('response ', response)
-      if (response.redirectUrl) {
-        document.location.href = response.redirectUrl
-      }
     })
+      .then((response: any) => {
+        console.log('response ', response)
+        if (response.redirectUrl) {
+          document.location.href = response.redirectUrl
+        }
+      })
+      .catch((err) => console.log(err))
   }
-  useEffect(() => {
-    invokeWS({
-     //url: `http://localhost:8070/configuration/users/me`,
-      url: `http://localhost:8070/configuration/modeler/rest/models?sort=modifiedDesc`,
-      method: MethodHttp.get,
-    }).then((response: any) => {
-      console.log('response ', response)
-    })
-  }, [])
 
   return (
     <Container component="main" maxWidth="xs">

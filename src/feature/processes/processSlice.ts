@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { invokeWS, MethodHttp } from '../../setup/api-service'
 
 interface Returned {
   data: Process[]
@@ -54,7 +53,7 @@ const processSlice = createSlice({
   name: 'process',
   initialState,
   reducers: {
-    getProcessFetch: (state) => {
+    getProcess: (state) => {
       state.loading = true
     },
 
@@ -83,6 +82,6 @@ const processSlice = createSlice({
   },
 })
 
-export const { getProcessFetch, getProcessFailure, getProcessSuccess } =
+export const { getProcess, getProcessFailure, getProcessSuccess } =
   processSlice.actions
 export default processSlice.reducer

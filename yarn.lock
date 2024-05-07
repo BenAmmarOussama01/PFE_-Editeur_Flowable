@@ -253,13 +253,18 @@
     "@codemirror/view" "^6.5.1"
     "@lezer/highlight" "^1.1.4"
 
-"@bpmn-io/diagram-js-ui@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.npmjs.org/@bpmn-io/diagram-js-ui/-/diagram-js-ui-0.2.2.tgz"
-  integrity sha512-IgOIxOwoqsFB2mMPdXtcbPVPjdYkZ3huW7ipowYLhg5jdRGHlBronQ+LER+lfWro6sPtzEsw7qX8D8Yq9M2S5g==
+"@bpmn-io/diagram-js-ui@^0.2.2", "@bpmn-io/diagram-js-ui@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.npmjs.org/@bpmn-io/diagram-js-ui/-/diagram-js-ui-0.2.3.tgz"
+  integrity sha512-OGyjZKvGK8tHSZ0l7RfeKhilGoOGtFDcoqSGYkX0uhFlo99OVZ9Jn1K7TJGzcE9BdKwvA5Y5kGqHEhdTxHvFfw==
   dependencies:
     htm "^3.1.1"
     preact "^10.11.2"
+
+"@bpmn-io/dmn-variable-resolver@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/@bpmn-io/dmn-variable-resolver/-/dmn-variable-resolver-0.4.0.tgz"
+  integrity sha512-8dnFajGAxCg4z4Mz3sxuQSHwAk6iLJSvVwTKEtcxPy0lJLxNR6wB1DDm2+FT2c2Tboff8P7Ne4nTNqqWjD+4WA==
 
 "@bpmn-io/draggle@^4.0.0":
   version "4.1.0"
@@ -298,10 +303,10 @@
   dependencies:
     min-dash "^4.0.0"
 
-"@bpmn-io/feel-editor@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@bpmn-io/feel-editor/-/feel-editor-1.2.0.tgz"
-  integrity sha512-402yrNL+a58d9AiNE48IScTiWDGmB+8Fpiq9eqg/sKCzhdHahl5fZyl+cksfcyJjzJF1byUOhYy3UxL3/tbLmQ==
+"@bpmn-io/feel-editor@^1.2.0", "@bpmn-io/feel-editor@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/@bpmn-io/feel-editor/-/feel-editor-1.3.0.tgz"
+  integrity sha512-FuNEICeLuRHFWM7OQ0iBMXhd/iuzitbdSQlOfr0DqswVDsVUq24vV/ZTM1UnjdPp4J2gwhMuYi6a2LaiVNzRKQ==
   dependencies:
     "@bpmn-io/feel-lint" "^1.2.0"
     "@codemirror/autocomplete" "^6.12.0"
@@ -404,7 +409,7 @@
   dependencies:
     min-dash "^4.1.1"
 
-"@bpmn-io/properties-panel@*", "@bpmn-io/properties-panel@^3.18.1", "@bpmn-io/properties-panel@>= 2.2", "@bpmn-io/properties-panel@>= 3.7":
+"@bpmn-io/properties-panel@*", "@bpmn-io/properties-panel@^3.18.1", "@bpmn-io/properties-panel@>= 2.2", "@bpmn-io/properties-panel@>= 3.7", "@bpmn-io/properties-panel@>=3.7":
   version "3.18.1"
   resolved "https://registry.npmjs.org/@bpmn-io/properties-panel/-/properties-panel-3.18.1.tgz"
   integrity sha512-ygBhVH99IFG1VbMlbvInXQUeqHwQH4uaajFaUi3OsjELpM1WcmHQ72fXPd1tC/OtJJhZoQajHiTI8SdL38t9ug==
@@ -2245,6 +2250,26 @@ camunda-bpmn-moddle@^7.0.1, "camunda-bpmn-moddle@>= 7":
   resolved "https://registry.npmjs.org/camunda-bpmn-moddle/-/camunda-bpmn-moddle-7.0.1.tgz"
   integrity sha512-Br8Diu6roMpziHdpl66Dhnm0DTnCFMrSD9zwLV08LpD52QA0UsXxU87XfHf08HjuB7ly0Hd1bvajZRpf9hbmYQ==
 
+camunda-dmn-js@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/camunda-dmn-js/-/camunda-dmn-js-2.2.0.tgz"
+  integrity sha512-3rgept+mDX2Is/XhPfr4Qykhc823Qk6YyjPZD4UVrs2gRNoND0XPSVkc5bnfe7sq/S2pw39MkOMXd387CoZjLQ==
+  dependencies:
+    "@bpmn-io/align-to-origin" "^0.7.0"
+    camunda-dmn-moddle "^1.3.0"
+    diagram-js "^14.3.1"
+    diagram-js-grid "^1.0.0"
+    diagram-js-origin "^1.3.4"
+    dmn-js-drd "^16.1.0"
+    min-dash "^4.1.1"
+
+camunda-dmn-moddle@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/camunda-dmn-moddle/-/camunda-dmn-moddle-1.3.0.tgz"
+  integrity sha512-03vKFXJzzvZ6XICXUp1ATZY6gGlKny2cclG5Vpf422P3WX4yp7c50KNrd3SEORrIbAfKASPBxjnkSpdUK0VscA==
+  dependencies:
+    min-dash "^4.1.1"
+
 caniuse-lite@^1.0.30001578, caniuse-lite@^1.0.30001580:
   version "1.0.30001580"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001580.tgz"
@@ -2477,6 +2502,16 @@ component-event@^0.2.1:
   resolved "https://registry.npmjs.org/component-event/-/component-event-0.2.1.tgz"
   integrity sha512-wGA++isMqiDq1jPYeyv2as/Bt/u+3iLW0rEa+8NQ82jAv3TgqMiCM+B2SaBdn2DfLilLjjq736YcezihRYhfxw==
 
+component-props@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/component-props/-/component-props-1.1.1.tgz"
+  integrity sha512-69pIRJs9fCCHRqCz3390YF2LV1Lu6iEMZ5zuVqqUn+G20V9BNXlMs0cWawWeW9g4Ynmg29JmkG6R7/lUJoGd1Q==
+
+component-xor@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/component-xor/-/component-xor-0.0.4.tgz"
+  integrity sha512-ZIt6sla8gfo+AFVRZoZOertcnD5LJaY2T9CKE2j13NJxQt/mUafD69Bl7/Y4AnpI2LGjiXH7cOfJDx/n2G9edA==
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
@@ -2567,6 +2602,11 @@ css-to-react-native@^3.0.0:
     camelize "^1.0.0"
     css-color-keywords "^1.0.0"
     postcss-value-parser "^4.0.2"
+
+css.escape@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/css.escape/-/css.escape-1.5.1.tgz"
+  integrity sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==
 
 cssesc@^3.0.0:
   version "3.0.0"
@@ -2718,7 +2758,7 @@ detect-node-es@^1.1.0:
   resolved "https://registry.npmjs.org/detect-node-es/-/detect-node-es-1.1.0.tgz"
   integrity sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==
 
-diagram-js-direct-editing@^2.0.0, diagram-js-direct-editing@^2.1.1:
+diagram-js-direct-editing@^2.0.0, diagram-js-direct-editing@^2.1.1, diagram-js-direct-editing@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/diagram-js-direct-editing/-/diagram-js-direct-editing-2.1.2.tgz"
   integrity sha512-VpccLAnLqLF1cp3fk363QUbRVTd/qTcj2oOb+IqgcmOiWszJp7J9Ta6y5GjUvw48hDZpzCatlmWwA4CJ3MaYGQ==
@@ -2744,14 +2784,14 @@ diagram-js-minimap@^4.1.0:
     min-dom "^4.1.0"
     tiny-svg "^3.0.0"
 
-diagram-js-origin@^1.4.0:
+diagram-js-origin@^1.3.4, diagram-js-origin@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/diagram-js-origin/-/diagram-js-origin-1.4.0.tgz"
   integrity sha512-qMX6jWsn26DJ4JMTXb+mIcuryosSZEsDaX2BrOk3roZ9peHLITOt4kg467/I6zVQZRWnQDq1PEuf1lIXCMDLkg==
   dependencies:
     tiny-svg "^3.0.0"
 
-diagram-js@*, diagram-js@^12.2.0, "diagram-js@>= 11.3.0", "diagram-js@>= 11.9", "diagram-js@>= 7":
+diagram-js@*, "diagram-js@^11.3.0 || ^12 || ^13.0.0 || ^14.0.0", diagram-js@^12.2.0, "diagram-js@>= 11.3.0", "diagram-js@>= 11.9", "diagram-js@>= 7":
   version "12.8.1"
   resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-12.8.1.tgz"
   integrity sha512-LF9BiwjbOPpZd0ez5VSlYRbdbEA59YQX43bWvNDp1rLMv0xwZ5yIg4oaYDK82nIQ0kH1tjvoQRpNevMTCgQVyw==
@@ -2782,15 +2822,40 @@ diagram-js@^14.0.0, diagram-js@^14.1.0:
     path-intersection "^3.0.0"
     tiny-svg "^3.0.1"
 
+diagram-js@^14.3.1:
+  version "14.4.1"
+  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-14.4.1.tgz"
+  integrity sha512-JnAdzUB6Crp+BjzPM/mYpeUqZhTpM9IAdMJ8l/1aIpSVw+m1a25RoYWQGEVZQ4Dx/W95cHg/oOKUYAg+ESIOcQ==
+  dependencies:
+    "@bpmn-io/diagram-js-ui" "^0.2.3"
+    clsx "^2.1.0"
+    didi "^10.2.2"
+    inherits-browser "^0.1.0"
+    min-dash "^4.1.0"
+    min-dom "^4.1.0"
+    object-refs "^0.4.0"
+    path-intersection "^3.0.0"
+    tiny-svg "^3.0.1"
+
 dialog-polyfill@^0.5.6:
   version "0.5.6"
   resolved "https://registry.npmjs.org/dialog-polyfill/-/dialog-polyfill-0.5.6.tgz"
   integrity sha512-ZbVDJI9uvxPAKze6z146rmfUZjBqNEwcnFTVamQzXH+svluiV7swmVIGr7miwADgfgt1G2JQIytypM9fbyhX4w==
 
+didi@^10.0.0:
+  version "10.2.2"
+  resolved "https://registry.npmjs.org/didi/-/didi-10.2.2.tgz"
+  integrity sha512-l8NYkYFXV1izHI65EyT8EXOjUZtKmQkHLTT89cSP7HU5J/G7AOj0dXKtLc04EXYlga99PBY18IPjOeZ+c3DI4w==
+
 didi@^10.0.1:
   version "10.2.0"
   resolved "https://registry.npmjs.org/didi/-/didi-10.2.0.tgz"
   integrity sha512-HqlQimiIImFz8amKDomklW8pZ/7JhiGtgru8yOUlN/VE2X9WQ4sMj2pdsuk8IhWQjGVHTmvKXEmmYQaOKLrr5Q==
+
+didi@^10.2.2:
+  version "10.2.2"
+  resolved "https://registry.npmjs.org/didi/-/didi-10.2.2.tgz"
+  integrity sha512-l8NYkYFXV1izHI65EyT8EXOjUZtKmQkHLTT89cSP7HU5J/G7AOj0dXKtLc04EXYlga99PBY18IPjOeZ+c3DI4w==
 
 didi@^9.0.2:
   version "9.0.2"
@@ -2813,6 +2878,95 @@ dlv@^1.1.3:
   version "1.1.3"
   resolved "https://registry.npmjs.org/dlv/-/dlv-1.1.3.tgz"
   integrity sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==
+
+dmn-js-decision-table@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.npmjs.org/dmn-js-decision-table/-/dmn-js-decision-table-16.1.0.tgz"
+  integrity sha512-f22u0giG1SUJqE7UKZYRJXfkafroFzVC+KuG8FukZZ9UipAVyrUppSDZ49YR+9Y0uBM6Q9xtzrKr7ySOCTUnqA==
+  dependencies:
+    "@bpmn-io/dmn-variable-resolver" "^0.4.0"
+    css.escape "^1.5.1"
+    diagram-js "^14.3.1"
+    dmn-js-shared "^16.1.0"
+    escape-html "^1.0.3"
+    inferno "~5.6.2"
+    min-dash "^4.0.0"
+    min-dom "^4.0.3"
+    selection-ranges "^3.0.2"
+    table-js "^9.1.0"
+
+dmn-js-drd@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.npmjs.org/dmn-js-drd/-/dmn-js-drd-16.1.0.tgz"
+  integrity sha512-8DHknqe0xm5Fg1b1hwEoGPanRRT7zHIgywgUQnqN518J1fEztL0fBycaApfBqqa+H7xozrkeg5Wl/3XRzpsXjQ==
+  dependencies:
+    diagram-js "^14.3.1"
+    diagram-js-direct-editing "^2.1.2"
+    dmn-js-shared "^16.1.0"
+    inherits-browser "^0.1.0"
+    min-dash "^4.0.0"
+    min-dom "^4.0.3"
+    object-refs "^0.4.0"
+    tiny-svg "^3.0.0"
+
+dmn-js-literal-expression@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.npmjs.org/dmn-js-literal-expression/-/dmn-js-literal-expression-16.1.0.tgz"
+  integrity sha512-R4k8JIYDSclviqybMniNt04q3XjjrnYS99cfHpUIyECtkrQvmwDvPQY4dto9Z+j9hxyyuQcFjlTi7/vV/DCBfw==
+  dependencies:
+    "@bpmn-io/dmn-variable-resolver" "^0.4.0"
+    diagram-js "^14.3.1"
+    dmn-js-shared "^16.1.0"
+    escape-html "^1.0.3"
+    inferno "~5.6.2"
+    min-dash "^4.0.0"
+    min-dom "^4.0.3"
+    table-js "^9.1.0"
+
+dmn-js-properties-panel@^3.2.1:
+  version "3.3.0"
+  resolved "https://registry.npmjs.org/dmn-js-properties-panel/-/dmn-js-properties-panel-3.3.0.tgz"
+  integrity sha512-dyYN8b2AjMT0FIk95JhGWrbGW6O0aufVUJOjTq03spmxjtUwQnqRYZzjB5lUa1qK/9txq+z/woblLk8sx5kJmQ==
+  dependencies:
+    diagram-js "^14.0.0"
+    min-dash "^4.1.1"
+    min-dom "^4.1.0"
+
+dmn-js-shared@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.npmjs.org/dmn-js-shared/-/dmn-js-shared-16.1.0.tgz"
+  integrity sha512-bZnTJfOpfOIcvw7X5NhLiKbZsChM4YojeJuNh98DrhTvtAIOQuuf6mp28eNStr8Sq+lAPEti0EAWUK8uEuhk1Q==
+  dependencies:
+    "@bpmn-io/feel-editor" "^1.3.0"
+    diagram-js "^14.3.1"
+    didi "^10.2.2"
+    dmn-moddle "^10.0.0"
+    ids "^1.0.5"
+    inferno "~5.6.2"
+    min-dash "^4.0.0"
+    min-dom "^4.0.3"
+    selection-ranges "^3.0.2"
+    selection-update "^0.1.2"
+    table-js "^9.1.0"
+
+dmn-js@^16.1.0, dmn-js@>=13:
+  version "16.1.0"
+  resolved "https://registry.npmjs.org/dmn-js/-/dmn-js-16.1.0.tgz"
+  integrity sha512-N76XHGDmIihVRbtBvmGIkaO1WIbTcaSFEUyWvC7RN6trIfUbbNN1auvTa7GZwwXVvRkM5WnTbvKwkKE84TmDAA==
+  dependencies:
+    dmn-js-decision-table "^16.1.0"
+    dmn-js-drd "^16.1.0"
+    dmn-js-literal-expression "^16.1.0"
+    dmn-js-shared "^16.1.0"
+
+dmn-moddle@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/dmn-moddle/-/dmn-moddle-10.0.0.tgz"
+  integrity sha512-JD08qH2VqA7O54qCQFrGruwGyVovow+9g2O5/ww0KpC/n0mvuua117dz2CONiUWexJxq/dOAaMjrQwkWnK+oEA==
+  dependencies:
+    min-dash "^3.0.0"
+    moddle "^5.0.1"
+    moddle-xml "^9.0.5"
 
 doctrine@^3.0.0:
   version "3.0.0"
@@ -2840,6 +2994,14 @@ dom-helpers@^5.0.1:
   dependencies:
     "@babel/runtime" "^7.8.7"
     csstype "^3.0.2"
+
+dom-iterator@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/dom-iterator/-/dom-iterator-1.0.0.tgz"
+  integrity sha512-7dsMOQI07EMU98gQM8NSB3GsAiIeBYIPKpnxR3c9xOvdvBjChAcOM0iJ222I3p5xyiZO9e5oggkNaCusuTdYig==
+  dependencies:
+    component-props "1.1.1"
+    component-xor "0.0.4"
 
 dom-mousemove-dispatcher@^1.0.1:
   version "1.0.1"
@@ -2967,6 +3129,11 @@ escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz"
   integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
+
+escape-html@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz"
+  integrity sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==
 
 escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -3653,6 +3820,25 @@ indexof@0.0.1:
   resolved "https://registry.npmjs.org/indexof/-/indexof-0.0.1.tgz"
   integrity sha512-i0G7hLJ1z0DE8dsqJa2rycj9dBmNKgXBvotXtZYXakU9oivfB9Uj2ZBC27qqef2U58/ZLwalxa1X/RDCdkHtVg==
 
+inferno-shared@5.6.1:
+  version "5.6.1"
+  resolved "https://registry.npmjs.org/inferno-shared/-/inferno-shared-5.6.1.tgz"
+  integrity sha512-OoRargelGtMFpiyKiOv66Ihmkpt6LLlzw7jOkJr97QqBRIjQWVvtDSriwJIy6pER6EEz9KzRUbZBaEWdPvf5kA==
+
+inferno-vnode-flags@5.6.1:
+  version "5.6.1"
+  resolved "https://registry.npmjs.org/inferno-vnode-flags/-/inferno-vnode-flags-5.6.1.tgz"
+  integrity sha512-DDb6R17FX0Fs1SH+7SSVfHEFiYcN2U/DlPHB6qk2HOP149qtYgeRi5h0AAJswJCzBkV/QcBSyRirn0SAzl1NAQ==
+
+inferno@^5.0.5, inferno@~5.6.2, inferno@5.6.x:
+  version "5.6.2"
+  resolved "https://registry.npmjs.org/inferno/-/inferno-5.6.2.tgz"
+  integrity sha512-+blJ5pI0+5tmxhDDF2VuAPvOO3LPN/jp2eYkGzkXq/nptp1iH1crOsbhp8be1nnAtrGcNSWLbziulkOnejOTyQ==
+  dependencies:
+    inferno-shared "5.6.1"
+    inferno-vnode-flags "5.6.1"
+    opencollective-postinstall "^2.0.3"
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz"
@@ -4119,6 +4305,11 @@ mimic-fn@^4.0.0:
   resolved "https://registry.npmjs.org/mimic-fn/-/mimic-fn-4.0.0.tgz"
   integrity sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw==
 
+min-dash@^3.0.0, min-dash@^3.5.2:
+  version "3.8.1"
+  resolved "https://registry.npmjs.org/min-dash/-/min-dash-3.8.1.tgz"
+  integrity sha512-evumdlmIlg9mbRVPbC4F5FuRhNmcMS5pvuBUbqb1G9v09Ro0ImPEgz5n3khir83lFok1inKqVDjnKEg3GpDxQg==
+
 min-dash@^3.8.1:
   version "3.8.1"
   resolved "https://registry.npmjs.org/min-dash/-/min-dash-3.8.1.tgz"
@@ -4210,6 +4401,22 @@ moddle-xml@^11.0.0:
   dependencies:
     min-dash "^4.0.0"
     saxen "^10.0.0"
+
+moddle-xml@^9.0.5:
+  version "9.0.6"
+  resolved "https://registry.npmjs.org/moddle-xml/-/moddle-xml-9.0.6.tgz"
+  integrity sha512-tl0reHpsY/aKlLGhXeFlQWlYAQHFxTkFqC8tq8jXRYpQSnLVw13T6swMaourLd7EXqHdWsc+5ggsB+fEep6xZQ==
+  dependencies:
+    min-dash "^3.5.2"
+    moddle "^5.0.2"
+    saxen "^8.1.2"
+
+moddle@^5.0.1, moddle@^5.0.2:
+  version "5.0.4"
+  resolved "https://registry.npmjs.org/moddle/-/moddle-5.0.4.tgz"
+  integrity sha512-Kjb+hjuzO+YlojNGxEUXvdhLYTHTtAABDlDcJTtTcn5MbJF9Zkv4I1Fyvp3Ypmfgg1EfHDZ3PsCQTuML9JD6wg==
+  dependencies:
+    min-dash "^3.0.0"
 
 moddle@^6.0.0, moddle@^6.2.3:
   version "6.2.3"
@@ -4345,6 +4552,11 @@ onetime@^6.0.0:
   integrity sha512-1FlR+gjXK7X+AsAHso35MnyN5KqGwJRi/31ft6x0M194ht7S+rWAvd7PHss9xSKMzE0asv1pyIHaJYq+BbacAQ==
   dependencies:
     mimic-fn "^4.0.0"
+
+opencollective-postinstall@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz"
+  integrity sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==
 
 optionator@^0.9.3:
   version "0.9.3"
@@ -4991,6 +5203,18 @@ scheduler@^0.23.0:
   dependencies:
     loose-envify "^1.1.0"
 
+selection-ranges@^3.0.2, selection-ranges@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/selection-ranges/-/selection-ranges-3.0.3.tgz"
+  integrity sha512-60Oqc07j16YCrp96uITgBFu7oT81JKMmL+cOOcxe3jvuGSiFSwsLpOSXNBAlITV9hGhEl1H6P/+g1bKnpfXoSw==
+  dependencies:
+    dom-iterator "^1.0.0"
+
+selection-update@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/selection-update/-/selection-update-0.1.2.tgz"
+  integrity sha512-4jzoJNh7VT2s2tvm/kUSskSw7pD0BVcrrGccbfOMK+3AXLBPz6nIy1yo+pbXgvNoTNII96Pq92+sAY+rF0LUAA==
+
 semver-compare@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/semver-compare/-/semver-compare-1.0.0.tgz"
@@ -5253,6 +5477,17 @@ tabbable@^6.0.1, tabbable@^6.2.0:
   version "6.2.0"
   resolved "https://registry.npmjs.org/tabbable/-/tabbable-6.2.0.tgz"
   integrity sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==
+
+table-js@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.npmjs.org/table-js/-/table-js-9.1.0.tgz"
+  integrity sha512-yxzIBXZe5pFHXBng8+Rz3dDGiO4anWptlWQXP4Pm1oIetgdG4nq+DkZkRG4Lq5L1HFu1OVif4h3YMI7rxudvPw==
+  dependencies:
+    didi "^10.0.0"
+    ids "^1.0.0"
+    min-dash "^4.0.0"
+    min-dom "^4.0.3"
+    selection-ranges "^3.0.3"
 
 tailwindcss@^3.4.1:
   version "3.4.1"
