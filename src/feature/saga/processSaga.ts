@@ -12,7 +12,7 @@ function* fetchProcessHandlerSaga(): Generator<any, void, any> {
     const result = yield invokeWS({
       //url: 'http://localhost:8070/configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc',
 
-      url: `${APP_BASE_URL}configuration/modeler/rest/models?sort=modifiedDesc`,
+      url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc`,
       method: MethodHttp.get,
     })
     yield put(getProcessSuccess(result?.data)) // Dispatch success action

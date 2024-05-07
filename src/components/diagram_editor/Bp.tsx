@@ -5,10 +5,12 @@ import './bpmn.css'
 import * as convert from 'xml-js'
 
 import { useLocation } from 'react-router-dom'
+import {DEFAULT_BPMN_XML}from './default_xml'
 
 interface Props {
   diagramXml?: string
 }
+
 const Bp = ({ diagramXml }: Props) => {
   //url location
   const location = useLocation()
@@ -29,7 +31,8 @@ const Bp = ({ diagramXml }: Props) => {
         },
       })
     }
-    modelerInstance.importXML(xml).then((err: any) => {
+    modelerInstance.importXML(DEFAULT_BPMN_XML).then((err: any) => {
+      //debugger
       if (err.warnings.length) {
         console.warn(err.warnings)
       }
@@ -41,13 +44,14 @@ const Bp = ({ diagramXml }: Props) => {
   const handleExport = () => {
     if (modeler) {
       modeler.saveXML({ format: true }).then((res: any) => {
+        console.log(res)
         if (res.error) {
           console.error(res.error)
           return
         }
 
-        const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
-        console.log('APDATE THE JSON TO XML', j2X)
+        /*const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
+        console.log('APDATE THE JSON TO XML', j2X)*/
       })
     }
   }

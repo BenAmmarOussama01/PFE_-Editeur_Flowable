@@ -21,6 +21,7 @@ const Processes: FC<ProcessesProps> = () => {
     //dispatch(getProcesses())
     dispatch(getProcessFetch())
   }, [])
+
   return (
     <div>
       <div className="flex justify-between items-center p-5 bg-slate-100 border-b border-slate-400">
@@ -31,8 +32,7 @@ const Processes: FC<ProcessesProps> = () => {
           </Button>
           <Button
             variant="contained"
-            onClick={() => setOpenImportProcess(true)}
-          >
+            onClick={() => setOpenImportProcess(true)}>
             Import Process
           </Button>
         </div>

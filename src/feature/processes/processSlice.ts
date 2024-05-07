@@ -28,59 +28,32 @@ interface Process {
 
 export interface ProcessState {
   items: Process[]
-  loading: boolean
+  isLoading: boolean;
 }
 
 const initialState: ProcessState = {
   items: [],
-  loading: false,
+  isLoading: false,
 }
 
-export const getProcesses = createAsyncThunk('process/get', async () => {
-  const response = await fetch(
-    //'http://localhost:8070/configuration/modeler/rest/models?sort=modifiedDesc',
-    'http://localhost:8070/configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc',
-  )
-  return (await response.json()) as Returned
 
-  /*const response = await invokeWS({
-    //url: `http://localhost:8070/configuration/users/me`,
-    url: `http://localhost:8070/configuration/modeler/rest/models?sort=modifiedDesc`,
-    method: MethodHttp.get,
-  })*/
-})
 
 const processSlice = createSlice({
   name: 'process',
   initialState,
   reducers: {
     getProcessFetch: (state) => {
-      state.loading = true
+      state.isLoading = true
     },
 
     getProcessSuccess: (state, action: PayloadAction<Returned>) => {
-      state.loading = false
+      state.isLoading = false
       state.items = action.payload.data
     },
     getProcessFailure: (state) => {
-      state.loading = false
+      state.isLoading = false
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(
-      getProcesses.fulfilled,
-      (state, action: PayloadAction<Returned>) => {
-        console.log(action.payload.data)
-        state.items = action.payload.data
-      },
-    )
-    builder.addCase(getProcesses.pending, (state, action) => {
-      console.log('pending')
-    })
-    builder.addCase(getProcesses.rejected, (state, action) => {
-      console.log('rejected')
-    })
-  },
+  }
 })
 
 export const { getProcessFetch, getProcessFailure, getProcessSuccess } =

@@ -1,5 +1,5 @@
 import { APP_BASE_URL } from '../app.constant'
-import BpmnModdle from 'bpmn-moddle'
+//import BpmnModdle from 'bpmn-moddle'
 
 export const fetchThumbnailImage = (id: string): Promise<string> => {
   return fetch(
@@ -7,7 +7,6 @@ export const fetchThumbnailImage = (id: string): Promise<string> => {
   )
     .then((response) => response.blob())
     .then((blob) => {
-      const imageUrl = URL.createObjectURL(blob)
-      return imageUrl
+      return URL.createObjectURL(blob)
     })
 }

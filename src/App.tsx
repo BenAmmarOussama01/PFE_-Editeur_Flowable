@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import SignIn from './pages/LoginMUI'
 import Footer from './components/footer/Footer'
 import Blocks from './components/blocks/Blocks'
 import Modeler from './pages/Modeler'
@@ -12,24 +11,42 @@ import Processes from './modules/Processes/Processes'
 import Bp from './components/diagram_editor/Bp'
 import Login from './modules/Login/Login'
 import Form from './components/form_builder/Form'
+import Decisions from './modules/Decisions/Decisions'
+import Dmn from './components/decision_model/decision_editor/Dmn'
+import { useEffect } from 'react'
+
 function App() {
+  useEffect(() => {
+    // Vérifier si l'URL actuelle contient "front?login_success"
+    if (window.location.href.includes("front?login_success")) {
+      // Rediriger vers "/blocks"
+      window.location.href = "/blocks";
+    }
+  }, []);
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/signin" element={<Login/>} />
 
-        <Route path="/signin" element={<Login />} />
-        <Route path="/blocks" element={<Blocks />} />
-        <Route path="/blocks/modeler" element={<Modeler />}>
-          <Route index element={<Processes />} />
-          <Route path="processes" element={<Processes />} />
+        <Route path="/signin" element={<Login/>} />
+        <Route path="/blocks" element={<Blocks/>} />
+        <Route path="/blocks/modeler" element={<Modeler/>}>
+        
+        {/*<Route path="/blocks/modeler/processes" element={<Bp/>} />*/}
+          <Route index element={<Processes />}/>
+          <Route path="processes" element={<Processes/>} />
           <Route path="processes/:id" element={<Bp />} />
+        {/*<Route path="/blocks/modeler/decisions" element={<Dmn />} />*/}
+          <Route path="decisions" element={<Decisions/>} />
+          <Route path="decisions/:id" element={<Dmn />} />
+          <Route path="/blocks/modeler/form" element={<Form />} />
+         
         </Route>
         <Route path="/blocks/admin" element={<Admin />} />
         <Route path="/blocks/idm" element={<Idm />} />
         <Route path="/blocks/test" element={<Test />} />
         <Route path="/blocks/bna-retail" element={<BnaRetail />} />
-        <Route path="/blocks/modeler/form" element={<Form />} />
+        
       </Routes>
       <Footer />
     </>
