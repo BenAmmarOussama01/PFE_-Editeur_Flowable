@@ -1,6 +1,9 @@
 import { APP_BASE_URL } from '../../config/app.constant'
 import { invokeWS, MethodHttp } from '../../setup/api-service'
 import {
+  createProcess,
+  createProcessFailure,
+  createProcessSuccess,
   getProcess,
   getProcessFailure,
   getProcessSuccess,
@@ -10,8 +13,6 @@ import { put, all, takeEvery, take } from 'redux-saga/effects'
 function* fetchProcessHandlerSaga(): Generator<any, void, any> {
   try {
     const result = yield invokeWS({
-      //url: 'http://localhost:8070/configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc',
-
       url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc`,
       method: MethodHttp.get,
     })
@@ -21,8 +22,25 @@ function* fetchProcessHandlerSaga(): Generator<any, void, any> {
   }
 }
 
+function* createProcessSaga(action: any): Generator<any, void, any> {
+  const processData = action.payload
+  try {
+    const result = yield invokeWS(
+      {
+        url: `${APP_BASE_URL}configuration/modeler/rest/models`,
+        method: MethodHttp.post,
+      },
+      processData,
+    )
+    yield put(createProcessSuccess(result?.data)) // Dispatch success action
+  } catch (error) {
+    yield put(createProcessFailure(error)) // Dispatch failure action
+  }
+}
+
 function* watchFetchProcessSaga() {
   yield takeEvery(getProcess, fetchProcessHandlerSaga)
+  yield takeEvery(createProcess, createProcessSaga)
 }
 
 export default watchFetchProcessSaga

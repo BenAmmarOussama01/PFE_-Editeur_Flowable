@@ -3,11 +3,13 @@ import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
-import { useState } from 'react'
 import axios from 'axios'
 import { APP_BASE_URL } from '../../config/app.constant'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../feature/hooks'
+import { createProcess } from '../../feature/processes/processSlice'
 
 const style = {
   position: 'absolute',
@@ -18,7 +20,6 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   pb: 4,
-
   outline: 'none',
 }
 
@@ -31,11 +32,13 @@ const loginValidationSchema = Yup.object({
 interface NewModalProps {
   open: boolean
   handleClose: () => void
-  modelType?: number
+  modelType: number
   //setArr?: (process: any) => void
 }
 
-const NewModal = ({ open, handleClose }: NewModalProps) => {
+const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -44,21 +47,14 @@ const NewModal = ({ open, handleClose }: NewModalProps) => {
     },
     validationSchema: loginValidationSchema,
     onSubmit: (values) => {
-      console.log(values)
+      dispatch(
+        createProcess({
+          ...values,
+          modelType,
+        }),
+      )
     },
   })
-
-  const handleCreate = () => {
-    /*axios
-      .post(`${APP_BASE_URL}configuration/modeler/rest/models`, {
-        name,
-        key,
-        description,
-        modelType: 0,
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))*/
-  }
 
   return (
     <Modal

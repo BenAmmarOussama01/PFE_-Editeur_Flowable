@@ -159,7 +159,7 @@ const Bp = ({ diagramXml }: Props) => {
           console.error(res.error)
           return
         }
-        console.log(res)
+        console.log(res.xml)
       })
     }
   }

@@ -14,7 +14,7 @@ interface ProcessesProps {}
 const Processes: FC<ProcessesProps> = () => {
   const dispatch = useAppDispatch()
 
-  const [openNewProcess, setOpenNewProcess] = useState(false)
+  const [openNewProcessModal, setOpenNewProcessModal] = useState(false)
   const [importProcess, setOpenImportProcess] = useState(false)
 
   useEffect(() => {
@@ -26,7 +26,10 @@ const Processes: FC<ProcessesProps> = () => {
       <div className="flex justify-between items-center p-5 bg-slate-100 border-b border-slate-400">
         <p className="text-2xl">Business Process Models</p>
         <div className="flex gap-2 h-10">
-          <Button variant="contained" onClick={() => setOpenNewProcess(true)}>
+          <Button
+            variant="contained"
+            onClick={() => setOpenNewProcessModal(true)}
+          >
             Create Process
           </Button>
           <Button
@@ -42,10 +45,11 @@ const Processes: FC<ProcessesProps> = () => {
         <ProcessList />
       </div>
 
-      {openNewProcess && (
+      {openNewProcessModal && (
         <NewModal
-          open={openNewProcess}
-          handleClose={() => setOpenNewProcess(false)}
+          open={openNewProcessModal}
+          handleClose={() => setOpenNewProcessModal(false)}
+          modelType={0}
         />
       )}
       {importProcess && (
