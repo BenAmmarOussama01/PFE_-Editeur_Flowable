@@ -49,7 +49,7 @@ const Login: FC<LoginProps> = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+         Login
         </Typography>
         <Button
           type="submit"
@@ -58,7 +58,7 @@ const Login: FC<LoginProps> = () => {
           sx={{ mt: 3, mb: 2 }}
           onClick={login}
         >
-          Sign In
+         Login
         </Button>
       </Box>
     </Container>

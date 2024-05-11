@@ -4,6 +4,11 @@ import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../feature/hooks'
+import { createProcess } from '../../feature/processes/processSlice'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -16,14 +21,36 @@ const style = {
 
   outline: 'none',
 }
-
+const loginValidationSchema = Yup.object({
+  name: Yup.string().required('name is required'),
+  key: Yup.string().required('key is required'),
+  description: Yup.string(),
+})
 interface NewProcessModalProps {
   open: boolean
   handleClose: () => void
-  //setArr?: (process: any) => void
+  modelType: number
 }
-
-const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
+  //setArr?: (process: any) => void
+const NewProcessModal = ({ open, handleClose, modelType }: NewProcessModalProps) => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      key: '',
+      description: '',
+    },
+    validationSchema: loginValidationSchema,
+    onSubmit: (values) => {
+      dispatch(
+        createProcess({
+          ...values,
+          modelType,
+        }),
+      )
+    },
+  })
   return (
     <div>
       <Modal

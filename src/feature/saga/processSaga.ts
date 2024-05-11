@@ -1,7 +1,10 @@
 import { APP_BASE_URL } from '../../config/app.constant'
 import { invokeWS, MethodHttp } from '../../setup/api-service'
 import {
-  getProcessFetch,
+  createProcess,
+  createProcessFailure,
+  createProcessSuccess,
+  getProcess,
   getProcessFailure,
   getProcessSuccess,
 } from '../processes/processSlice'
@@ -20,9 +23,26 @@ function* fetchProcessHandlerSaga(): Generator<any, void, any> {
     yield put(getProcessFailure()) // Dispatch failure action
   }
 }
-
-function* fetchProcessSaga() {
-  yield all([takeEvery(getProcessFetch, fetchProcessHandlerSaga)])
+function* createProcessSaga(action: any): Generator<any, void, any> {
+  console.log("test create process")
+  const processData = action.payload
+  try {
+    const result = yield invokeWS(
+      {
+        url: `${APP_BASE_URL}configuration/modeler/rest/models`,
+        method: MethodHttp.post,
+      },
+      processData,
+    )
+    yield put(createProcessSuccess(result?.data)) // Dispatch success action
+  } catch (error) {
+    yield put(createProcessFailure(error)) // Dispatch failure action
+  }
+}
+ 
+function* watchFetchProcessSaga() {
+  yield takeEvery(getProcess, fetchProcessHandlerSaga)
+  yield takeEvery(createProcess, createProcessSaga)
 }
 
-export default fetchProcessSaga
+export default watchFetchProcessSaga

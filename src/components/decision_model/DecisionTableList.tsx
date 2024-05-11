@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 import Loader from '../loader/Loader'
 import { Grid, Box } from '@mui/material'
 const DecisionTableList = () => {
-  const decisions = useAppSelector((state) => state.decission.items)
-  const isLoading = useAppSelector((state) => state.decission.loading)
+  const decisions = useAppSelector((state) => state.decision.items)
+  const isLoading = useAppSelector((state) => state.decision.loading)
   useEffect(()=>{
 console.log("is loading .....",isLoading)
   },[isLoading])

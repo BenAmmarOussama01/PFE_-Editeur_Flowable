@@ -25,15 +25,14 @@ interface Process {
   tenantId: string
   appDefinition?: any
 }
-
 export interface ProcessState {
   items: Process[]
-  isLoading: boolean;
+  loading: boolean;
 }
 
 const initialState: ProcessState = {
   items: [],
-  isLoading: false,
+  loading: false,
 }
 
 
@@ -42,20 +41,42 @@ const processSlice = createSlice({
   name: 'process',
   initialState,
   reducers: {
-    getProcessFetch: (state) => {
-      state.isLoading = true
+    /*fetch process reducer*/
+    getProcess: (state) => {
+      state.loading = true
     },
 
     getProcessSuccess: (state, action: PayloadAction<Returned>) => {
-      state.isLoading = false
+      state.loading = false
       state.items = action.payload.data
     },
     getProcessFailure: (state) => {
-      state.isLoading = false
+      state.loading = false
+    },
+    /* create new process reducers */
+
+    createProcess: (state, action) => {
+      state.loading = true
+    },
+
+    createProcessSuccess: (state, action) => {
+      console.log('slice: ', action)
+      state.loading = false
+      //state.items = action.payload.data
+    },
+    createProcessFailure: (state, action) => {
+      state.loading = false
+      console.log('slice err : ', action)
     },
   }
 })
 
-export const { getProcessFetch, getProcessFailure, getProcessSuccess } =
-  processSlice.actions
+export const {
+  getProcess,
+  getProcessFailure,
+  getProcessSuccess,
+  createProcess,
+  createProcessSuccess,
+  createProcessFailure,
+} = processSlice.actions
 export default processSlice.reducer

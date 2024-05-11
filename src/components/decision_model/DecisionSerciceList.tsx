@@ -4,7 +4,7 @@ import { useAppSelector } from '../../feature/hooks'
 import Loader from '../loader/Loader'
 const DecisionServiceList = () => {
   const decisions = useAppSelector((state) => state.decisionService.items)
-  const isLoading = useAppSelector((state) => state.decission.loading)
+  const isLoading = useAppSelector((state) => state.decision.loading)
   
   return (
     <div>
