@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react'
 import './CaseModels.scss'
 import { useAppDispatch } from '../../feature/hooks'
 import CaseList from '../../components/caseModels/case_list/CaseList'
-import { getCase } from '../../feature/cases/caseSlice'
+import { getCase } from '../../feature/slices/cases/caseSlice'
 import { Button } from '@mui/material'
 
 interface CaseModelsProps {}

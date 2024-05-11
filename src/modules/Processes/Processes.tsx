@@ -1,11 +1,10 @@
 import { FC, useEffect, useState } from 'react'
 import './Processes.scss'
 import { useAppDispatch } from '../../feature/hooks'
-import { getProcess } from '../../feature/processes/processSlice'
+import { getProcess } from '../../feature/slices/processes/processSlice'
 import { Button } from '@mui/material'
 import SearchBar from '../../components/processes/SearchBar'
 import ProcessList from '../../components/processes/ProcessList'
-import NewProcessModal from '../../components/processes/NewProcessModal'
 import ImportProcessModal from '../../components/processes/ImportProcessModal'
 import NewModal from '../../components/modals/NewModal'
 

@@ -24,7 +24,6 @@ interface Process {
   tenantId: string
   appDefinition?: any
 }
-
 export interface ProcessState {
   items: Process[]
   loading: boolean

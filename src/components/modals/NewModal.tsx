@@ -9,7 +9,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../feature/hooks'
-import { createProcess } from '../../feature/processes/processSlice'
+import { createProcess } from '../../feature/slices/processes/processSlice'
 
 const style = {
   position: 'absolute',

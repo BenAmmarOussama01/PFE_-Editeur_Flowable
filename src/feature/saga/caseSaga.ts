@@ -1,8 +1,12 @@
 import { APP_BASE_URL } from '../../config/app.constant'
 import { invokeWS, MethodHttp } from '../../setup/api-service'
 
-import { getCase, getCaseSuccess, getCaseFailure } from '../cases/caseSlice'
-import { put, all, takeEvery, take } from 'redux-saga/effects'
+import {
+  getCase,
+  getCaseSuccess,
+  getCaseFailure,
+} from '../slices/cases/caseSlice'
+import { put, takeEvery } from 'redux-saga/effects'
 
 function* fetchCaseHandlerSaga(): Generator<any, void, any> {
   console.log('hellllo')

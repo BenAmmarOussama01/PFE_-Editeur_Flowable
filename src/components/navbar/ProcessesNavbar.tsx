@@ -5,7 +5,7 @@ const navItems = [
   { id: 1, text: 'Processes', link: '/blocks/modeler/processes' },
   { id: 2, text: 'Case models', link: 'caseModels' },
   { id: 3, text: 'Forms', link: '/blocks/modeler/form' },
-  { id: 4, text: 'Decisions', link: '/modeler' },
+  { id: 4, text: 'Decisions', link: '/blocks/modeler/decisions' },
   { id: 5, text: 'Apps', link: '/modeler' },
 ]
 

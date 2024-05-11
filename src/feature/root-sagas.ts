@@ -1,9 +1,18 @@
 import watchFetchCaseSaga from './saga/caseSaga'
 import { all, fork } from 'redux-saga/effects'
 import watchFetchProcessSaga from './saga/processSaga'
+import watchDecisionSaga from './saga/decisionSaga'
+import watchFormSaga from './saga/formSaga'
+import watchDecisionServiceSaga from './saga/decisionServiceSaga'
 
 const rootSaga = function* () {
-  yield all([fork(watchFetchCaseSaga), fork(watchFetchProcessSaga)])
+  yield all([
+    fork(watchFetchCaseSaga),
+    fork(watchFetchProcessSaga),
+    fork(watchDecisionSaga),
+    fork(watchFormSaga),
+    fork(watchDecisionServiceSaga),
+  ])
 }
 
 export default rootSaga

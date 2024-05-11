@@ -1,9 +1,6 @@
 import ProcessItem from './process_item/ProcessItem'
 import { arrayOfXmlProcess } from '../../fakeXml'
 import React, { useState } from 'react'
-import SearchBar from './SearchBar'
-import fakeData from '../fakeData.json'
-
 interface searchProps {
   arr: Array<any>
 }

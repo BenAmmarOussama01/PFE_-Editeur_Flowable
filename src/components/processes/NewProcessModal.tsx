@@ -4,9 +4,11 @@ import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
-import { useState } from 'react'
-import axios from 'axios'
-import { APP_BASE_URL } from '../../config/app.constant'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../feature/hooks'
+import { createProcess } from '../../feature/processes/processSlice'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -19,29 +21,40 @@ const style = {
 
   outline: 'none',
 }
-
+const loginValidationSchema = Yup.object({
+  name: Yup.string().required('name is required'),
+  key: Yup.string().required('key is required'),
+  description: Yup.string(),
+})
 interface NewProcessModalProps {
   open: boolean
   handleClose: () => void
-  //setArr?: (process: any) => void
+  modelType: number
 }
-
-const NewProcessModal = ({ open, handleClose }: NewProcessModalProps) => {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [key, setKey] = useState('')
-
-  const handleCreateProcess = () => {
-    /*axios
-      .post(`${APP_BASE_URL}configuration/modeler/rest/models`, {
-        name,
-        key,
-        description,
-        modelType: 0,
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))*/
-  }
+//setArr?: (process: any) => void
+const NewProcessModal = ({
+  open,
+  handleClose,
+  modelType,
+}: NewProcessModalProps) => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      key: '',
+      description: '',
+    },
+    validationSchema: loginValidationSchema,
+    onSubmit: (values) => {
+      dispatch(
+        createProcess({
+          ...values,
+          modelType,
+        }),
+      )
+    },
+  })
   return (
     <Modal
       open={open}

@@ -1,6 +1,6 @@
 import { FormBuilder } from '@formio/react';
 
-const Form = () => {
+const Fm = () => {
       return (
             <>
               <FormBuilder form={[]}/>
@@ -9,4 +9,4 @@ const Form = () => {
   
 }
 
-export default Form
+export default Fm

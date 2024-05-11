@@ -7,8 +7,8 @@ import {
   getProcess,
   getProcessFailure,
   getProcessSuccess,
-} from '../processes/processSlice'
-import { put, all, takeEvery, take } from 'redux-saga/effects'
+} from '../slices/processes/processSlice'
+import { put, takeEvery } from 'redux-saga/effects'
 
 function* fetchProcessHandlerSaga(): Generator<any, void, any> {
   try {
@@ -23,6 +23,7 @@ function* fetchProcessHandlerSaga(): Generator<any, void, any> {
 }
 
 function* createProcessSaga(action: any): Generator<any, void, any> {
+  console.log('process saga')
   const processData = action.payload
   try {
     const result = yield invokeWS(

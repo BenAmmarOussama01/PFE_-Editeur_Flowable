@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Grid, Card, CardContent, Typography, styled } from '@mui/material'
-import { FaListUl, FaUser, FaStarOfLife } from 'react-icons/fa' 
+import { FaListUl, FaUser, FaStarOfLife } from 'react-icons/fa'
 import { FaDiagramProject } from 'react-icons/fa6'
 import { FaWrench } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -8,7 +8,7 @@ import NavbarWrapper from '../navbar/NavbarWrapper'
 
 // Définir le type des props pour StyledIcon
 interface StyledIconProps {
-  icon: React.ElementType 
+  icon: React.ElementType
 }
 
 // Styled component pour les icônes
@@ -58,7 +58,7 @@ const Blocks: React.FC = () => {
       height: '100%',
       backgroundColor,
       '&:hover': {
-        backgroundColor: 'lightgray',
+        backgroundcolor: 'lightgray',
       },
     }),
   )
