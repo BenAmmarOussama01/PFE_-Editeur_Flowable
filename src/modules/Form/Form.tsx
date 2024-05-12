@@ -4,11 +4,12 @@ import { useAppDispatch } from '../../feature/hooks'
 
 import { Button } from '@mui/material'
 import FormSearchBar from '../../components/forms_model/FormSearchBar'
-import NewFormModal from '../../components/forms_model/NewFormModal'
+import NewModal from '../../components/modals/NewModal'
 import ImportFormModal from '../../components/forms_model/ImportFormModal'
 import FormList from '../../components/forms_model/FormList'
 import SearchBar from '../../components/processes/SearchBar'
 import { getFormFetch } from '../../feature/slices/form/formSlice'
+import { ModelType } from '../../config/modelType'
 
 interface FormesProps {}
 
@@ -42,9 +43,10 @@ const Form: FC<FormesProps> = () => {
       </div>
 
       {openNewForm && (
-        <NewFormModal
+        <NewModal
           open={openNewForm}
           handleClose={() => setOpenNewForm(false)}
+          modelType={ModelType.form}
         />
       )}
       {importForm && (

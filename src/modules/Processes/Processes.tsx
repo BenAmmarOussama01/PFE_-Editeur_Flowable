@@ -7,6 +7,7 @@ import SearchBar from '../../components/processes/SearchBar'
 import ProcessList from '../../components/processes/ProcessList'
 import ImportProcessModal from '../../components/processes/ImportProcessModal'
 import NewModal from '../../components/modals/NewModal'
+import { ModelType } from '../../config/modelType'
 
 interface ProcessesProps {}
 
@@ -48,7 +49,7 @@ const Processes: FC<ProcessesProps> = () => {
         <NewModal
           open={openNewProcessModal}
           handleClose={() => setOpenNewProcessModal(false)}
-          modelType={0}
+          modelType={ModelType.process}
         />
       )}
       {importProcess && (

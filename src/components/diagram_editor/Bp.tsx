@@ -2,12 +2,10 @@ import { useRef, useState, useEffect } from 'react'
 import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
 import './bpmn.css'
-import * as convert from 'xml-js'
 
 import { useLocation } from 'react-router-dom'
+import { DEFAULT_BPMN_XML } from './default_xml'
 
-import axios from 'axios'
-import { APP_BASE_URL } from '../../config/app.constant'
 import { useParams } from 'react-router-dom'
 
 interface Props {
