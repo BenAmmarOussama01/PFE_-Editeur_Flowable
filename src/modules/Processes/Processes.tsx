@@ -13,28 +13,21 @@ interface ProcessesProps {}
 const Processes: FC<ProcessesProps> = () => {
   const dispatch = useAppDispatch()
 
-  const [openNewProcessModal, setOpenNewProcessModal] = useState(false)
-  const [importProcess, setOpenImportProcess] = useState(false)
+  const [openModal, setOpenModal] = useState(0)
 
   useEffect(() => {
-    //dispatch(getProcesses())
     dispatch(getProcess())
   }, [])
+
   return (
     <div>
       <div className="flex justify-between items-center p-5 bg-slate-100 border-b border-slate-400">
         <p className="text-2xl">Business Process Models</p>
         <div className="flex gap-2 h-10">
-          <Button
-            variant="contained"
-            onClick={() => setOpenNewProcessModal(true)}
-          >
+          <Button variant="contained" onClick={() => setOpenModal(1)}>
             Create Process
           </Button>
-          <Button
-            variant="contained"
-            onClick={() => setOpenImportProcess(true)}
-          >
+          <Button variant="contained" onClick={() => setOpenModal(2)}>
             Import Process
           </Button>
         </div>
@@ -44,19 +37,16 @@ const Processes: FC<ProcessesProps> = () => {
         <ProcessList />
       </div>
 
-      {openNewProcessModal && (
-        <NewProcessModal
-          open={openNewProcessModal}
-          handleClose={() => setOpenNewProcessModal(false)}
-          modelType={0}
-        />
-      )}
-      {importProcess && (
-        <ImportProcessModal
-          open={importProcess}
-          handleClose={() => setOpenImportProcess(false)}
-        />
-      )}
+      <NewProcessModal
+        open={openModal === 1}
+        handleClose={() => setOpenModal(0)}
+        modelType={0}
+      />
+
+      <ImportProcessModal
+        open={openModal === 2}
+        handleClose={() => setOpenModal(0)}
+      />
     </div>
   )
 }
