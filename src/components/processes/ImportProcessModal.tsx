@@ -1,8 +1,6 @@
-// import { useState } from "react";
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
-// import TextField from "@mui/material/TextField";
-// import Button from "@mui/material/Button";
+
 import CloseIcon from '@mui/icons-material/Close'
 import FilePicker from './FilePicker'
 const style = {
@@ -14,7 +12,6 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   pb: 4,
-
   outline: 'none',
 }
 

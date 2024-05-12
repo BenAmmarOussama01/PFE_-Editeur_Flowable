@@ -1,24 +1,32 @@
+import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
-const SearchBar = () => {
+
+interface SearchBarProps {
+  onSearch: (value: string) => void
+}
+
+const SearchBar = ({ onSearch }: SearchBarProps) => {
+  const [searchValue, setSearchValue] = useState('')
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setSearchValue(value)
+    onSearch(value) // Appel de la fonction de recherche avec la nouvelle valeur
+  }
+
   return (
-    <div
-      style={{
-        border: '1px solid black',
-        height: '100%',
-        margin: '1rem 0 0 1rem',
-      }}
-    >
-      <div className="flex">
-        <div>
+    <div>
+      <div className="flex items-center ml-3">
+        <div className="border ">
           <SearchIcon fontSize="large" />
         </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Search"
-            className="py-3 border-0 border-l-[1px]"
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Search "
+          className="p-1 border"
+          value={searchValue}
+          onChange={handleChange}
+        />
       </div>
     </div>
   )

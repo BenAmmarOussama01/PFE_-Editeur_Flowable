@@ -112,7 +112,6 @@ const formatOptions = (options: InvokeOptions): InvokeOptions => {
 }
 
 const formatPathParams = (options: InvokeOptions): string => {
-  console.log('options ', options)
   // url = url/{reqPathParam}
   // if (path(['reqPathParam'], options)) {
   //     return `/${options.reqPathParam}`;

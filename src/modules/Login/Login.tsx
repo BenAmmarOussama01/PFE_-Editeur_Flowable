@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import { invokeWS, MethodHttp } from '../../setup/api-service'
-import { APP_BASE_URL } from '../../config/constants/app.constant'
+import { APP_BASE_URL } from '../../config/app.constant'
 
 interface LoginProps {}
 
@@ -17,12 +17,14 @@ const Login: FC<LoginProps> = () => {
     invokeWS({
       url: `${APP_BASE_URL}authorization/`,
       method: MethodHttp.get,
-    }).then((response: any) => {
-      console.log('response ', response)
-      if (response.redirectUrl) {
-        document.location.href = response.redirectUrl
-      }
     })
+      .then((response: any) => {
+        console.log('response ', response)
+        if (response.redirectUrl) {
+          document.location.href = response.redirectUrl
+        }
+      })
+      .catch((err) => console.log(err))
   }
 
   useEffect(() => {
@@ -50,7 +52,7 @@ const Login: FC<LoginProps> = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+         Login
         </Typography>
         <Button
           type="submit"
@@ -59,7 +61,7 @@ const Login: FC<LoginProps> = () => {
           sx={{ mt: 3, mb: 2 }}
           onClick={login}
         >
-          Sign In
+         Login
         </Button>
       </Box>
     </Container>

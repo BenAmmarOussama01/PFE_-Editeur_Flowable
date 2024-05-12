@@ -1,26 +1,19 @@
 import { useRef, useState, useEffect } from 'react'
 import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
-import { DEFAULT_BPMN_XML } from './default_xml'
 import './bpmn.css'
-import * as convert from 'xml-js'
 
-import { useLocation } from 'react-router-dom'
+import { DEFAULT_BPMN_XML } from './default_xml'
 
-interface Props {
-  diagramXml?: string
-}
-const Bp = ({ diagramXml }: Props) => {
-  //url location
-  const location = useLocation()
-  const { xml } = location.state
-  console.log(xml)
+const Bp = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
   let modelerInstance: any = null
+
   useEffect(() => {
     if (modelerInstance) return
+
     if (bpmnRef.current) {
       modelerInstance = new BpmnModeler({
         container: bpmnRef.current,
@@ -29,7 +22,9 @@ const Bp = ({ diagramXml }: Props) => {
         },
       })
     }
-    modelerInstance.importXML(xml).then((err: any) => {
+
+    modelerInstance.importXML(DEFAULT_BPMN_XML).then((err: any) => {
+      //debugger
       if (err.warnings.length) {
         console.warn(err.warnings)
       }
@@ -37,17 +32,26 @@ const Bp = ({ diagramXml }: Props) => {
     })
     setModeler(modelerInstance)
   }, [])
+  /*useEffect(() => {
+    axios
+      .post(
+        `${APP_BASE_URL}configuration/modeler/rest/converter/convert-to-xml/${id}`,
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }, [])*/
 
   const handleExport = () => {
     if (modeler) {
-      //console.log(modeler.getDefinitions());
       modeler.saveXML({ format: true }).then((res: any) => {
+        console.log(res)
         if (res.error) {
           console.error(res.error)
           return
         }
-        let result = convert.xml2json(res.xml, { compact: true, spaces: 4 })
-        console.log('UPDATE XML TO JSON:', result)
+
+        /*const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
+        console.log('APDATE THE JSON TO XML', j2X)*/
       })
     }
   }
