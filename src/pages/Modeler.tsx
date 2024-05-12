@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import ProcessesNavbar from '../components/navbar/ProcessesNavbar'
+import ProcessesNavbar from '../layout/navbar/ProcessesNavbar'
 
 const Modeler = () => {
   return (

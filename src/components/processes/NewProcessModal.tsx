@@ -9,11 +9,6 @@ import { useAppDispatch } from '../../feature/hooks'
 import { createProcess } from '../../feature/processes/processSlice'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
-import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../../feature/hooks'
-import { createProcess } from '../../feature/processes/processSlice'
-import * as Yup from 'yup'
-import { useFormik } from 'formik'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -26,11 +21,6 @@ const style = {
 
   outline: 'none',
 }
-const loginValidationSchema = Yup.object({
-  name: Yup.string().required('name is required'),
-  key: Yup.string().required('key is required'),
-  description: Yup.string(),
-})
 const loginValidationSchema = Yup.object({
   name: Yup.string().required('name is required'),
   key: Yup.string().required('key is required'),

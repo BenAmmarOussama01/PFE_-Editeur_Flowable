@@ -25,13 +25,13 @@ interface Process {
   appDefinition?: any
 }
 export interface ProcessState {
-  items: Process[]
-  loading: boolean
+  processes: Process[]
+  isLoading: boolean
 }
 
 const initialState: ProcessState = {
-  items: [],
-  loading: false,
+  processes: [],
+  isLoading: false,
 }
 
 const processSlice = createSlice({
@@ -41,30 +41,30 @@ const processSlice = createSlice({
     /* fetch processes reducers */
 
     getProcess: (state) => {
-      state.loading = true
+      state.isLoading = true
     },
 
     getProcessSuccess: (state, action: PayloadAction<Returned>) => {
-      state.loading = false
-      state.items = action.payload.data
+      state.isLoading = false
+      state.processes = action.payload.data
     },
     getProcessFailure: (state) => {
-      state.loading = false
+      state.isLoading = false
     },
 
     /* create new process reducers */
 
     createProcess: (state, action) => {
-      state.loading = true
+      state.isLoading = true
     },
 
     createProcessSuccess: (state, action) => {
       console.log('slice: ', action)
-      state.loading = false
-      //state.items = action.payload.data
+      state.isLoading = false
+      //state.processes = action.payload.data
     },
     createProcessFailure: (state, action) => {
-      state.loading = false
+      state.isLoading = false
       console.log('slice err : ', action)
     },
   },

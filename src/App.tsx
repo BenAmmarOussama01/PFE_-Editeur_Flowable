@@ -1,6 +1,6 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
-import Footer from './components/footer/Footer'
+import Footer from './layout/footer/Footer'
 import Blocks from './components/blocks/Blocks'
 import Modeler from './pages/Modeler'
 import Admin from './components/blocks/Admin'
@@ -17,13 +17,18 @@ import Fm from './components/form_builder/Form'
 import Form from './modules/Form/Form'
 import CaseModels from './modules/CaseModels/CaseModels'
 function App() {
+  const location = useLocation()
+
   useEffect(() => {
-    // Vérifier si l'URL actuelle contient "front?login_success"
-    if (window.location.href.includes('front?login_success')) {
-      // Rediriger vers "/blocks"
+    if (
+      location &&
+      location?.pathname === '/front' &&
+      location?.search === '?login_success'
+    ) {
       window.location.href = '/blocks'
     }
-  }, [])
+  }, [location])
+
   return (
     <>
       <Routes>
@@ -32,6 +37,7 @@ function App() {
         <Route path="/signin" element={<Login />} />
         <Route path="/blocks" element={<Blocks />} />
         <Route path="/blocks/modeler" element={<Modeler />}>
+          {/*<Route path="/blocks/modeler/processes" element={<Bp/>} />*/}
           {/*<Route path="/blocks/modeler/processes" element={<Bp/>} />*/}
           <Route index element={<Processes />} />
           <Route path="processes" element={<Processes />} />

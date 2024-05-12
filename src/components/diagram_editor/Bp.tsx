@@ -3,27 +3,14 @@ import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
 import './bpmn.css'
 
-import { useLocation } from 'react-router-dom'
 import { DEFAULT_BPMN_XML } from './default_xml'
 
-import { useParams } from 'react-router-dom'
-
-interface Props {
-  diagramXml?: string
-}
-
-const Bp = ({ diagramXml }: Props) => {
-  const [xmlBp, setXmlBp] = useState({})
-
-  //url location
-  const location = useLocation()
-  const { id } = useParams()
-  ////const { xml } = location.state
-  //console.log(xml)
+const Bp = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
   let modelerInstance: any = null
+
   useEffect(() => {
     if (modelerInstance) return
 
@@ -35,6 +22,7 @@ const Bp = ({ diagramXml }: Props) => {
         },
       })
     }
+
     modelerInstance.importXML(DEFAULT_BPMN_XML).then((err: any) => {
       //debugger
       if (err.warnings.length) {
@@ -61,7 +49,9 @@ const Bp = ({ diagramXml }: Props) => {
           console.error(res.error)
           return
         }
-        console.log(res.xml)
+
+        /*const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
+        console.log('APDATE THE JSON TO XML', j2X)*/
       })
     }
   }

@@ -2,11 +2,9 @@ import ProcessItem from './process_item/ProcessItem'
 import { arrayOfXmlProcess } from '../../fakeXml'
 import { useAppSelector } from '../../feature/hooks'
 import Loader from '../loader/Loader'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
+import { Grid, Box } from '@mui/material'
 const ProcessList = () => {
-  const isLoading = useAppSelector((state) => state.process.loading)
-  const processes = useAppSelector((state) => state.process.items)
+  const { processes, isLoading } = useAppSelector((state) => state.process)
   return isLoading ? (
     <Loader />
   ) : (

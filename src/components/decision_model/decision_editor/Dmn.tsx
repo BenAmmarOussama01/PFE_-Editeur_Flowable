@@ -261,84 +261,86 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   </dmndi:DMNDI>
 </definitions>`
 const Dmn = () => {
-     
-      //const Bp = ({ diagramXml }: Props) => {
-        //url location
-        //const location = useLocation()
-        //const { xml } = location.state
-        //console.log(xml)
-        const bpmnRef = useRef<HTMLDivElement>(null)
-        const propertiesPanelRef = useRef<HTMLDivElement>(null)
-        const [modeler, setModeler] = useState<any>(null)
-        let modelerInstance: any = null
-        useEffect(() => {
-            if (modelerInstance) return; // Ensure we don't reinitialize if already set
-           
-            if (bpmnRef.current) {
-               modelerInstance = new DmnModeler({
-                 container: bpmnRef.current,
-                 propertiesPanel: {
-                   parent: propertiesPanelRef.current,
-                 },
-               });
-           
-               modelerInstance.importXML(xml).then((err: any) => {
-                 if (err.warnings.length) {
-                   console.warn(err.warnings);
-                 }
-                 // Ensure modelerInstance is ready before using get
-                 if (modelerInstance && typeof modelerInstance.get === 'function') {
-                   modelerInstance.get('canvas').zoom('fit-viewport');
-                 }
-               }).catch((error: unknown) => {
-                 console.error('Error importing XML:', error);
-               });
-            }
-           
-            setModeler(modelerInstance);
-           }, []);
-        const handleExport = () => {
-          if (modeler) {
-            modeler.saveXML({ format: true }).then((res: any) => {
-              if (res.error) {
-                console.error(res.error)
-                return
-              }
-      
-              const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
-              console.log('APDATE THE JSON TO XML', j2X)
-            })
+  //const Bp = ({ diagramXml }: Props) => {
+  //url location
+  //const location = useLocation()
+  //const { xml } = location.state
+  //console.log(xml)
+  const bpmnRef = useRef<HTMLDivElement>(null)
+  const propertiesPanelRef = useRef<HTMLDivElement>(null)
+  const [modeler, setModeler] = useState<any>(null)
+  let modelerInstance: any = null
+  useEffect(() => {
+    if (modelerInstance) return // Ensure we don't reinitialize if already set
+
+    if (bpmnRef.current) {
+      modelerInstance = new DmnModeler({
+        container: bpmnRef.current,
+        propertiesPanel: {
+          parent: propertiesPanelRef.current,
+        },
+      })
+
+      modelerInstance
+        .importXML(xml)
+        .then((err: any) => {
+          if (err.warnings.length) {
+            console.warn(err.warnings)
           }
+          // Ensure modelerInstance is ready before using get
+          if (modelerInstance && typeof modelerInstance.get === 'function') {
+            modelerInstance.get('canvas').zoom('fit-viewport')
+          }
+        })
+        .catch((error: unknown) => {
+          console.error('Error importing XML:', error)
+        })
+    }
+
+    setModeler(modelerInstance)
+  }, [])
+  const handleExport = () => {
+    if (modeler) {
+      modeler.saveXML({ format: true }).then((res: any) => {
+        if (res.error) {
+          console.error(res.error)
+          return
         }
-      
-        const handleZoomIn = () => {
-          modeler.get('zoomScroll').stepZoom(1)
-        }
-        const handleZoomOut = () => {
-          modeler.get('zoomScroll').stepZoom(-1)
-        }
-        const handleReset = () => {
-          modeler.get('zoomScroll').reset()
-        }
-        return (
-          <>
-            <div className="flex h-full w-full relative">
-              <div ref={bpmnRef} className="w-full h-screen" />
-              <div
-                ref={propertiesPanelRef}
-                style={{ width: '25rem', borderLeft: '1px #ccc solid' }}
-              />
-            </div>
-            <div className=" fixed bottom-28 right-80">
-              <button onClick={handleZoomIn}>+</button>
-              <button onClick={handleZoomOut}>-</button>
-              <button onClick={handleReset}>Reset</button>
-            </div>
-            <button onClick={handleExport} className="fixed left-0  bottom-28 ">
-              Save
-            </button>
-          </>
-        )
-      }
+
+        const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
+        console.log('APDATE THE JSON TO XML', j2X)
+      })
+    }
+  }
+
+  const handleZoomIn = () => {
+    modeler.get('zoomScroll').stepZoom(1)
+  }
+  const handleZoomOut = () => {
+    modeler.get('zoomScroll').stepZoom(-1)
+  }
+  const handleReset = () => {
+    modeler.get('zoomScroll').reset()
+  }
+  return (
+    <>
+      <div className="flex h-full w-full relative">
+        <div ref={bpmnRef} className="w-full h-screen" />
+        <div
+          ref={propertiesPanelRef}
+          style={{ width: '25rem', borderLeft: '1px #ccc solid' }}
+        />
+      </div>
+      <div className=" fixed bottom-28 right-80">
+        <button onClick={handleZoomIn}>+</button>
+        <button onClick={handleZoomOut}>-</button>
+        <button onClick={handleReset}>Reset</button>
+      </div>
+      <button onClick={handleExport} className="fixed left-0  bottom-28 ">
+        Save
+      </button>
+    </>
+  )
+}
 
 export default Dmn
