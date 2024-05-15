@@ -3,13 +3,12 @@ import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
-import axios from 'axios'
-import { APP_BASE_URL } from '../../config/app.constant'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../../feature/hooks'
+import { useAppDispatch, useAppSelector } from '../../feature/hooks'
 import { createProcess } from '../../feature/slices/processes/processSlice'
+import { Typography } from '@mui/material'
 
 const style = {
   position: 'absolute',
@@ -19,7 +18,7 @@ const style = {
   width: 600,
   bgcolor: 'background.paper',
   boxShadow: 24,
-  pb: 4,
+  pb: 2,
   outline: 'none',
 }
 
@@ -38,6 +37,7 @@ interface NewModalProps {
 
 const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
   const dispatch = useAppDispatch()
+  const { isLoading } = useAppSelector((state) => state.process)
   const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
@@ -46,13 +46,20 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
       description: '',
     },
     validationSchema: loginValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      console.log('submit values')
       dispatch(
         createProcess({
           ...values,
+          onComplit: (res: any) => {
+            navigate(`${res.id}`)
+          },
           modelType,
         }),
       )
+      if (!isLoading) {
+        console.log('not loading anymore')
+      }
     },
   })
 
@@ -84,7 +91,7 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
             />
           </div>
 
-          <div className="mt-5">
+          <div className="mt-3">
             <label className="text-xl">Key*</label>
             <TextField
               variant="outlined"
@@ -100,13 +107,13 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
             />
           </div>
 
-          <div className="mt-5">
-            <label className="text-xl">Description</label>
+          <div className="mt-3">
+            <Typography>Description</Typography>
             <TextField
               variant="outlined"
               className="w-full"
               multiline
-              rows={5}
+              rows={3}
               id="description"
               name="description"
               autoComplete="description"

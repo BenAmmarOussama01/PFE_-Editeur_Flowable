@@ -3,7 +3,8 @@ import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
 import './bpmn.css'
 
-import { DEFAULT_BPMN_XML } from './default_xml'
+import { useParams } from 'react-router-dom'
+import useFetchXml from '../../hooks/useFetchXml'
 
 const Bp = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
@@ -11,47 +12,39 @@ const Bp = () => {
   const [modeler, setModeler] = useState<any>(null)
   let modelerInstance: any = null
 
+  let { id } = useParams()
+  const { xml } = useFetchXml(id!)
   useEffect(() => {
     if (modelerInstance) return
+    if (xml) {
+      if (bpmnRef.current) {
+        modelerInstance = new BpmnModeler({
+          container: bpmnRef.current,
+          propertiesPanel: {
+            parent: propertiesPanelRef.current,
+          },
+        })
 
-    if (bpmnRef.current) {
-      modelerInstance = new BpmnModeler({
-        container: bpmnRef.current,
-        propertiesPanel: {
-          parent: propertiesPanelRef.current,
-        },
-      })
-    }
+        modelerInstance.importXML(xml).then((err: any) => {
+          if (err.warnings.length) {
+            console.warn(err.warnings)
+          }
+          modelerInstance.get('canvas').zoom('fit-viewport', 'auto')
+        })
 
-    modelerInstance.importXML(DEFAULT_BPMN_XML).then((err: any) => {
-      //debugger
-      if (err.warnings.length) {
-        console.warn(err.warnings)
+        setModeler(modelerInstance)
       }
-      modelerInstance.get('canvas').zoom('fit-viewport')
-    })
-    setModeler(modelerInstance)
-  }, [])
-  /*useEffect(() => {
-    axios
-      .post(
-        `${APP_BASE_URL}configuration/modeler/rest/converter/convert-to-xml/${id}`,
-      )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
-  }, [])*/
+    }
+  }, [xml])
 
   const handleExport = () => {
     if (modeler) {
       modeler.saveXML({ format: true }).then((res: any) => {
-        console.log(res)
+        console.log(res.xml)
         if (res.error) {
           console.error(res.error)
           return
         }
-
-        /*const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
-        console.log('APDATE THE JSON TO XML', j2X)*/
       })
     }
   }

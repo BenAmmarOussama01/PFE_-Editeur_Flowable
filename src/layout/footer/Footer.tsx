@@ -20,6 +20,7 @@ const Footer = () => {
         marginTop: 'auto',
         marginBottom: 'auto',
         backgroundColor: '#f2f2f2',
+        zIndex: 999,
       }}
     >
       Copyright {currentDay} | ©PFE

@@ -1,33 +1,43 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import NavbarWrapper from './NavbarWrapper'
+import Button from '@mui/material/Button'
 
 const navItems = [
   { id: 1, text: 'Processes', link: '/blocks/modeler/processes' },
   { id: 2, text: 'Case models', link: 'caseModels' },
   { id: 3, text: 'Forms', link: '/blocks/modeler/form' },
   { id: 4, text: 'Decisions', link: '/blocks/modeler/decisions' },
-  { id: 5, text: 'Apps', link: '/modeler' },
+  { id: 5, text: 'Apps', link: 'test' },
 ]
 
 const ProcessesNavbar = () => {
+  const { pathname } = useLocation()
+  console.log(pathname)
   return (
     <NavbarWrapper>
-      <ul className=" ml-20 flex items-stretch h-full list-none ">
-        {navItems.map((item) => (
-          <Link
-            to={item.link}
-            style={{ textDecoration: 'none', color: 'inherit' }}
+      {navItems.map((item) => (
+        <Link
+          to={item.link}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+          key={item.id}
+        >
+          <Button
             key={item.id}
+            sx={{
+              p: 2.5,
+              color: 'white',
+              display: 'block',
+              bgcolor: `${pathname.includes(item.link) ? '#000' : 'none'}`,
+              fontSize: 15,
+              ':hover': {
+                bgcolor: '#000',
+              },
+            }}
           >
-            <li
-              key={item.id}
-              className="text-xl h-full  text-slate-300 px-6 hover:bg-black "
-            >
-              {item.text}
-            </li>
-          </Link>
-        ))}
-      </ul>
+            {item.text}
+          </Button>
+        </Link>
+      ))}
     </NavbarWrapper>
   )
 }

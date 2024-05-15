@@ -1,4 +1,4 @@
-import ProcessItem from './process_item/ProcessItem'
+import ProcessItem from './ProcessItem'
 import { arrayOfXmlProcess } from '../../fakeXml'
 import React, { useState } from 'react'
 interface searchProps {
