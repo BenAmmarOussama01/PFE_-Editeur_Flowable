@@ -23,8 +23,11 @@ function* fetchProcessHandlerSaga(): Generator<any, void, any> {
 }
 
 function* createProcessSaga(action: any): Generator<any, void, any> {
-  console.log('process saga')
   const processData = action.payload
+  const { onComplit } = processData
+  console.log('process data  :', processData)
+  delete processData.onComplit
+  console.log('process data  :', processData)
   try {
     const result = yield invokeWS(
       {
@@ -33,6 +36,7 @@ function* createProcessSaga(action: any): Generator<any, void, any> {
       },
       processData,
     )
+    onComplit(result?.data)
     yield put(createProcessSuccess(result?.data)) // Dispatch success action
   } catch (error) {
     yield put(createProcessFailure(error)) // Dispatch failure action

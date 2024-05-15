@@ -69,7 +69,6 @@ const callWS = (
     axios.request(invokeParams).then(
       (response: any) => {
         document.body.classList.remove('loading-indicator')
-
         showNotification(true, response)
         resolve(response)
       },

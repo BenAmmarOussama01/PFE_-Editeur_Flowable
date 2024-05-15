@@ -20,11 +20,12 @@ const Login: FC<LoginProps> = () => {
     })
       .then((response: any) => {
         console.log('response ', response)
+
         if (response.redirectUrl) {
           document.location.href = response.redirectUrl
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {})
   }
 
   return (
@@ -42,16 +43,18 @@ const Login: FC<LoginProps> = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-         Login
+          Login
         </Typography>
+
         <Button
           type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
+          //href="http://localhost:8070/authorization/"
           onClick={login}
         >
-         Login
+          Login
         </Button>
       </Box>
     </Container>

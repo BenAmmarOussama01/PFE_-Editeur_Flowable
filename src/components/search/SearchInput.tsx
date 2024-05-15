@@ -13,13 +13,15 @@ const SearchInput = () => {
         mt: 2,
         display: 'flex',
         alignItems: 'center',
-        width: 200,
+        width: 250,
+        borderColor: '#111',
+        borderWidth: '2px',
       }}
     >
       <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />
       </IconButton>
-      <Divider sx={{ height: 40, m: 0.5 }} orientation="vertical" />
+      <Divider orientation="vertical" flexItem />{' '}
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="search"

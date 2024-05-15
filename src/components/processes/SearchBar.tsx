@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
+import SearchInput from '../search/SearchInput'
 
 interface SearchBarProps {
   onSearch: (value: string) => void
@@ -17,16 +18,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   return (
     <div>
       <div className="flex items-center ml-3">
-        <div className="border ">
-          <SearchIcon fontSize="large" />
-        </div>
-        <input
-          type="text"
-          placeholder="Search "
-          className="p-1 border"
-          value={searchValue}
-          onChange={handleChange}
-        />
+        <SearchInput />
       </div>
     </div>
   )

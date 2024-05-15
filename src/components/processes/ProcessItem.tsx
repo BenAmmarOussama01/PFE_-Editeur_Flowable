@@ -1,9 +1,9 @@
 import PersonIcon from '@mui/icons-material/Person'
 import CreateIcon from '@mui/icons-material/Create'
 import { Link } from 'react-router-dom'
-import { formatDate } from '../../../config/utils/formatDate'
-import Loader from '../../loader/Loader'
-import useFetchThumbnail from '../../../hooks/useFetchThumbnail'
+import { formatDate } from '../../config/utils/formatDate'
+import Loader from '../loader/Loader'
+import useFetchThumbnail from '../../hooks/useFetchThumbnail'
 
 export interface ProcessProps {
   name: string
@@ -26,7 +26,7 @@ const ProcessItem = ({
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="border-2 h-80 border-slate-200 hover:cursor-pointer relative w-80">
+        <div className="border-2 h-80 border-slate-200 hover:cursor-pointer relative w-[268px]">
           <Link to={`${id}`} state={{ xml }}>
             <div
               style={{
