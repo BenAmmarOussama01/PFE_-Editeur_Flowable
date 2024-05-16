@@ -16,6 +16,7 @@ import { useEffect } from 'react'
 import Fm from './components/form_builder/Form'
 import Form from './modules/Form/Form'
 import CaseModels from './modules/CaseModels/CaseModels'
+import Apps from './modules/Apps/Apps'
 function App() {
   const location = useLocation()
 
@@ -48,6 +49,10 @@ function App() {
           {/*<Route path="/blocks/modeler/form" element={<Form />} />*/}
           <Route path="form" element={<Form />} />
           <Route path="form/:id" element={<Fm />} />
+
+          <Route path="Apps" element={<Apps />} />
+          {/*</Routes>Route path="Apps/:id" element={<Fm />} />*/}
+
 
           <Route path="caseModels" element={<CaseModels />} />
         </Route>

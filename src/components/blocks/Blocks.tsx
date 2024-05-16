@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Grid, Card, CardContent, Typography, styled } from '@mui/material'
 import { FaListUl, FaUser, FaStarOfLife } from 'react-icons/fa'
 import { FaDiagramProject } from 'react-icons/fa6'
@@ -6,12 +6,9 @@ import { FaWrench } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import NavbarWrapper from '../../layout/navbar/NavbarWrapper'
 
-// Définir le type des props pour StyledIcon
 interface StyledIconProps {
   icon: React.ElementType
 }
-
-// Styled component pour les icônes
 const StyledIcon = styled(({ icon: Icon, ...props }: StyledIconProps) => (
   <Icon {...props} />
 ))(({ theme }) => ({
@@ -21,7 +18,6 @@ const StyledIcon = styled(({ icon: Icon, ...props }: StyledIconProps) => (
   marginLeft: '50%',
   opacity: 0.5,
 }))
-
 const items = [
   { name: 'Task App', link: 'tasks' },
   { name: 'Modeler App', link: 'modeler/processes' },
@@ -50,25 +46,21 @@ const backgroundcolors = [
 ]
 
 const Blocks: React.FC = () => {
-  const CardContentWrapper = styled(CardContent)(
-    ({ backgroundColor }: { backgroundColor: string }) => ({
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      height: '100%',
-      backgroundColor,
-      '&:hover': {
-        backgroundcolor: 'lightgray',
-      },
-    }),
-  )
-
   const StyledCard = styled(Card)({
     '&:hover': {
       boxShadow: '0 0 10px rgba(0, 0, 0, 2)',
     },
   })
-
+  const CardContentWrapper = styled(CardContent)(({ theme, bg }: { theme: any, bg: string }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    height: '100%',
+    backgroundColor: bg,
+    '&:hover': {
+      backgroundColor: 'lightgray',
+    },
+  }))
   return (
     <>
       <NavbarWrapper />
@@ -77,7 +69,7 @@ const Blocks: React.FC = () => {
           <Grid item xs={6} sm={3} key={index}>
             <Link style={{ textDecoration: 'none' }} to={link}>
               <StyledCard>
-                <CardContentWrapper backgroundColor={backgroundcolors[index]}>
+                <CardContentWrapper bg={backgroundcolors[index]} theme={undefined}>
                   <Typography variant="h5">{name}</Typography>
                   <StyledIcon icon={cardIcons[index]} />
                 </CardContentWrapper>
