@@ -21,7 +21,7 @@ const Form: FC<FormesProps> = () => {
   }
   useEffect(() => {
     //dispatch(getFormes())
-    dispatch(getFormFetch(searchText))
+    dispatch(getFormFetch({ searchText }))
   }, [searchText])
   return (
     <div>

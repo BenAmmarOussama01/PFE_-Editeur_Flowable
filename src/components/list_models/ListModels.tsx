@@ -5,7 +5,7 @@ import ListItem from './ListItem'
 
 interface IListModelsProps {
   isLoading: boolean
-  items: IProcess[]
+  items: any[]
 }
 
 const ListModels = ({ isLoading, items }: IListModelsProps) => {

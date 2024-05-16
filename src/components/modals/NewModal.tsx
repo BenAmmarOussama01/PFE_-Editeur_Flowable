@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../feature/hooks'
 import { createProcess } from '../../feature/slices/processes/processSlice'
 import { Typography } from '@mui/material'
+import { getModalDescription } from '../../config/modelType'
+import { useEffect } from 'react'
 
 const style = {
   position: 'absolute',
@@ -59,6 +61,9 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
     },
   })
 
+  useEffect(() => {
+    console.log('modelType modal : ', modelType)
+  }, [])
   return (
     <Modal
       open={open}
@@ -68,11 +73,13 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
     >
       <Box sx={style}>
         <div className="w-full bg-slate-100 py-5 mb-6">
-          <p className="text-2xl ml-10">Create a new Process model</p>
+          <p className="text-2xl ml-10">
+            Create a new {getModalDescription(modelType)}
+          </p>
         </div>
         <form action="" className="mx-10" onSubmit={formik.handleSubmit}>
           <div>
-            <label className="text-xl">Model name*</label>
+            <Typography> {getModalDescription(modelType)} name*</Typography>
             <TextField
               variant="outlined"
               className="w-full"
@@ -88,7 +95,7 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
           </div>
 
           <div className="mt-3">
-            <label className="text-xl">Key*</label>
+            <Typography> {getModalDescription(modelType)} Key*</Typography>
             <TextField
               variant="outlined"
               className="w-full"

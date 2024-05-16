@@ -21,7 +21,7 @@ const DecisionTable: FC<DecisionTableProps> = () => {
   }
 
   useEffect(() => {
-    dispatch(getDecisionFetch(searchText))
+    dispatch(getDecisionFetch({ searchText }))
   }, [searchText])
 
   return (

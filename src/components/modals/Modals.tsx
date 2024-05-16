@@ -43,7 +43,7 @@ const Modals = ({ modelType }: ModalsProps) => {
       <NewModal
         open={openModal === 1}
         handleClose={() => setOpenModal(0)}
-        modelType={ModelType.process}
+        modelType={modelType}
       />
 
       <ImportModal open={openModal === 2} handleClose={() => setOpenModal(0)} />

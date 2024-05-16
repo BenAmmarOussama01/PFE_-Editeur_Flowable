@@ -14,9 +14,9 @@ import Decisions from './modules/Decisions/Decisions'
 import Dmn from './components/decision_model/decision_editor/Dmn'
 import { useEffect } from 'react'
 import Fm from './components/form_builder/Form'
-import Form from './modules/Form/Form'
 import CaseModels from './modules/CaseModels/CaseModels'
 import DecisionTable from './modules/DecisionTable/DecisionTable'
+import Form from './modules/Form/Form'
 function App() {
   const location = useLocation()
 
