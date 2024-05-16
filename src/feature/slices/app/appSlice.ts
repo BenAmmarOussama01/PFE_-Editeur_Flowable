@@ -33,7 +33,7 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    getAppFetch: (state) => {
+    getAppFetch: (state, action) => {
       state.loading = true
     },
     getAppSuccess: (state, action: PayloadAction<Returned>) => {
@@ -48,3 +48,4 @@ const appSlice = createSlice({
 export const { getAppFetch, getAppFailure, getAppSuccess } =
   appSlice.actions
 export default appSlice.reducer
+ 

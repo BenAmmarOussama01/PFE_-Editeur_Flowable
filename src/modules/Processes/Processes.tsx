@@ -25,9 +25,9 @@ const Processes = () => {
   return (
     <div>
       <Modals modelType={ModelType.process} />
-      <Box sx={{ display: 'flex', gap: 5 }}>
+      <Box sx={{ display: 'flex', gap: 5 ,alignItems: 'flex-start'}}>
         <SearchInput handleSearchText={handleSearchText} />
-        <ListModels isLoading={isLoading} items={processes} />
+        <ListModels isLoading={isLoading} items={processes} modelType={0} />
       </Box>
     </div>
   )

@@ -1,32 +1,39 @@
-import { FC, useEffect } from 'react'
-import { useAppDispatch } from '../../feature/hooks'
+import { FC, useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../feature/hooks'
 import Modals from '../../components/modals/Modals'
 import { ModelType } from '../../config/modelType'
 import { getAppFetch } from '../../feature/slices/app/appSlice'
-import AppList from '../../components/apps/AppList'
-import AppSearchBar from '../../components/apps/AppSearchbar'
+import ListModels from '../../components/list_models/ListModels'
+import SearchInput from '../../components/search/SearchInput'
+import { Box } from '@mui/material'
 
-interface AppesProps {}
 
-const App: FC<AppesProps> = () => {
+interface AppProps {}
+
+
+const Apps: FC<AppProps> = () => {
   const dispatch = useAppDispatch()
+  const { loading, items } = useAppSelector((state) => state.app)
 
+  const [searchText, setSearchText] = useState('')
+
+  const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value)
+  }
   useEffect(() => {
-    dispatch(getAppFetch())
-  }, [])
+    //dispatch(getApps())
+    dispatch(getAppFetch({searchText}))
+  }, [searchText])
   return (
     <div>
       <Modals modelType={ModelType.app} />
-      <div className="flex gap-10">
-        <AppSearchBar
-          handleSearch={(value: string) => console.log(value)}
-          arr={[]}
-        />
-        <AppList />
-
-      </div>
+      <Box sx={{ display: 'flex', gap: 5 ,alignItems: 'flex-start'}}>
+        <SearchInput handleSearchText={handleSearchText} />
+        <ListModels isLoading={loading} items={items} modelType={3} />
+      </Box>
     </div>
   )
 }
 
-export default App
+
+export default Apps

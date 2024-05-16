@@ -21,14 +21,14 @@ const Form: FC<FormesProps> = () => {
   }
   useEffect(() => {
     //dispatch(getFormes())
-    dispatch(getFormFetch(searchText))
+    dispatch(getFormFetch({searchText}))
   }, [searchText])
   return (
     <div>
       <Modals modelType={ModelType.form} />
-      <Box sx={{ display: 'flex', gap: 5 }}>
+      <Box sx={{ display: 'flex', gap: 5 ,alignItems: 'flex-start'}}>
         <SearchInput handleSearchText={handleSearchText} />
-        <ListModels isLoading={isLoading} items={forms} />
+        <ListModels isLoading={isLoading} items={forms} modelType={2} />
       </Box>
     </div>
   )

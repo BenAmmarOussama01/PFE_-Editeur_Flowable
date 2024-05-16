@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { APP_BASE_URL } from '../../config/app.constant'
 import { MethodHttp, invokeWS } from '../../setup/api-service'
+import { modalNameByModelType } from '../../config/modelType'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -22,9 +23,10 @@ const style = {
 interface Props {
   open: boolean
   handleClose: () => void
+  modelType: number
 }
 
-const ImportModal = ({ open, handleClose }: Props) => {
+const ImportModal = ({ open, handleClose, modelType }: Props) => {
   const [file, setFile] = useState<File | null>(null)
 
   useEffect(() => {
@@ -59,7 +61,7 @@ const ImportModal = ({ open, handleClose }: Props) => {
       >
         <Box sx={style}>
           <div className="w-full bg-slate-100 py-5 mb-6">
-            <p className="text-2xl ml-10">Import a Process model</p>
+            <p className="text-2xl ml-10">Import a {modalNameByModelType(modelType)}</p>
           </div>
           <FilePicker file={file} setFile={setFile} />
 

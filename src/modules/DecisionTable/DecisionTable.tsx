@@ -21,7 +21,7 @@ const DecisionTable: FC<DecisionTableProps> = () => {
   }
 
   useEffect(() => {
-    dispatch(getDecisionFetch(searchText))
+    dispatch(getDecisionFetch({ searchText }))
   }, [searchText])
 
   return (
@@ -29,7 +29,7 @@ const DecisionTable: FC<DecisionTableProps> = () => {
       <Modals modelType={ModelType.decisionTable} />
       <Box sx={{ display: 'flex', gap: 5 }}>
         <SearchInput handleSearchText={handleSearchText} />
-        <ListModels isLoading={isLoading} items={items} />
+        <ListModels isLoading={isLoading} items={items} modelType={6} />
       </Box>
     </div>
   )
