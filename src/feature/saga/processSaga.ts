@@ -10,10 +10,17 @@ import {
 } from '../slices/processes/processSlice'
 import { put, takeEvery } from 'redux-saga/effects'
 
-function* fetchProcessHandlerSaga(): Generator<any, void, any> {
+function* fetchProcessHandlerSaga(action: any): Generator<any, void, any> {
+  const searchText = action.payload.searchText
+  /* let { filterText } = action.payload
+  let url = ''
+  if (filterText.length > 0) {
+    url = `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&filterText=${filterText}&modelType=0&sort=modifiedDesc`
+  } else
+    url = `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc`*/
   try {
     const result = yield invokeWS({
-      url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc`,
+      url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&filterText=${searchText}&modelType=0&sort=modifiedDesc`,
       method: MethodHttp.get,
     })
     yield put(getProcessSuccess(result?.data)) // Dispatch success action
@@ -25,9 +32,8 @@ function* fetchProcessHandlerSaga(): Generator<any, void, any> {
 function* createProcessSaga(action: any): Generator<any, void, any> {
   const processData = action.payload
   const { onComplit } = processData
-  console.log('process data  :', processData)
   delete processData.onComplit
-  console.log('process data  :', processData)
+
   try {
     const result = yield invokeWS(
       {

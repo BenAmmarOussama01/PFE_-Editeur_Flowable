@@ -17,6 +17,7 @@ import Fm from './components/form_builder/Form'
 import Form from './modules/Form/Form'
 import CaseModels from './modules/CaseModels/CaseModels'
 import Apps from './modules/Apps/Apps'
+import DecisionTable from './modules/DecisionTable/DecisionTable'
 function App() {
   const location = useLocation()
 
@@ -44,7 +45,7 @@ function App() {
           <Route path="processes" element={<Processes />} />
           <Route path="processes/:id" element={<Bp />} />
           {/*<Route path="/blocks/modeler/decisions" element={<Dmn />} />*/}
-          <Route path="decisions" element={<Decisions />} />
+          <Route path="decisions" element={<DecisionTable />} />
           <Route path="decisions/:id" element={<Dmn />} />
           {/*<Route path="/blocks/modeler/form" element={<Form />} />*/}
           <Route path="form" element={<Form />} />

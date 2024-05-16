@@ -47,7 +47,6 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
     },
     validationSchema: loginValidationSchema,
     onSubmit: async (values) => {
-      console.log('submit values')
       dispatch(
         createProcess({
           ...values,
@@ -57,9 +56,6 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
           modelType,
         }),
       )
-      if (!isLoading) {
-        console.log('not loading anymore')
-      }
     },
   })
 
