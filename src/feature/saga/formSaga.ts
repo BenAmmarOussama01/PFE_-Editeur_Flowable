@@ -7,10 +7,12 @@ import {
 } from '../slices/form/formSlice'
 import { put, all, takeEvery, take } from 'redux-saga/effects'
 
-function* fetchFormHandlerSaga(): Generator<any, void, any> {
+function* fetchFormHandlerSaga(action: any): Generator<any, void, any> {
+  const searchText = action.payload.searchText
+
   try {
     const result = yield invokeWS({
-      url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=forms&modelType=2&sort=modifiedDesc`,
+      url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=forms&filterText=${searchText}&modelType=2&sort=modifiedDesc`,
       method: MethodHttp.get,
     })
     yield put(getFormSuccess(result?.data)) // Dispatch success action

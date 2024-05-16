@@ -13,7 +13,7 @@ const Decisions: FC<DecisionesProps> = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getDecisionFetch())
+    dispatch(getDecisionFetch({}))
   }, [])
   return (
     <div>

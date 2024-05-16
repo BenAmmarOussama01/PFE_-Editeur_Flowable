@@ -2,9 +2,9 @@ import { useRef, useState, useEffect } from 'react'
 import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
 import './bpmn.css'
-
 import { useParams } from 'react-router-dom'
 import useFetchXml from '../../hooks/useFetchXml'
+import { DEFAULT_BPMN_XML } from './default_xml'
 
 const Bp = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
@@ -14,8 +14,32 @@ const Bp = () => {
 
   let { id } = useParams()
   const { xml } = useFetchXml(id!)
+  /*useEffect(() => {
+    if (modelerInstance) return
+    if (xml) {
+      if (bpmnRef.current) {
+        modelerInstance = new BpmnModeler({
+          container: bpmnRef.current,
+          propertiesPanel: {
+            parent: propertiesPanelRef.current,
+          },
+        })
+
+        modelerInstance.importXML(DEFAULT_BPMN_XML).then((err: any) => {
+          if (err.warnings.length) {
+            console.warn(err.warnings)
+          }
+          modelerInstance.get('canvas').zoom('fit-viewport', 'auto')
+        })
+
+        setModeler(modelerInstance)
+      }
+    }
+  }, [xml])*/
+
   useEffect(() => {
     if (modelerInstance) return
+
     if (xml) {
       if (bpmnRef.current) {
         modelerInstance = new BpmnModeler({
@@ -35,7 +59,7 @@ const Bp = () => {
         setModeler(modelerInstance)
       }
     }
-  }, [xml])
+  }, [])
 
   const handleExport = () => {
     if (modeler) {

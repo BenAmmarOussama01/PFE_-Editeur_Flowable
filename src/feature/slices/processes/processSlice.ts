@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface Returned {
-  data: Process[]
+  data: IProcess[]
   size: number
   start: number
   total: number
@@ -9,7 +9,7 @@ interface Returned {
 
 //Process type
 
-interface Process {
+export interface IProcess {
   id: string
   name: string
   key: string
@@ -25,7 +25,7 @@ interface Process {
   appDefinition?: any
 }
 export interface ProcessState {
-  processes: Process[]
+  processes: IProcess[]
   isLoading: boolean
 }
 
@@ -40,7 +40,7 @@ const processSlice = createSlice({
   reducers: {
     /* fetch processes reducers */
 
-    getProcess: (state) => {
+    getProcess: (state, action) => {
       state.isLoading = true
     },
 

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 interface Returned {
   data: Form[]
   size: number
@@ -22,26 +22,26 @@ interface Form {
   appDefinition?: any
 }
 export interface FormState {
-  items: Form[]
-  loading: boolean
+  forms: Form[]
+  isLoading: boolean
 }
 const initialState: FormState = {
-  items: [],
-  loading: false,
+  forms: [],
+  isLoading: false,
 }
 const formSlice = createSlice({
   name: 'form',
   initialState,
   reducers: {
-    getFormFetch: (state) => {
-      state.loading = true
+    getFormFetch: (state, action) => {
+      state.isLoading = true
     },
     getFormSuccess: (state, action: PayloadAction<Returned>) => {
-      state.loading = false
-      state.items = action.payload.data
+      state.isLoading = false
+      state.forms = action.payload.data
     },
     getFormFailure: (state) => {
-      state.loading = false
+      state.isLoading = false
     },
   },
 })

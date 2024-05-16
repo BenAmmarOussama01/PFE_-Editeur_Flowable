@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 interface Returned {
   data: Decision[]
   size: number
@@ -23,25 +23,25 @@ interface Decision {
 }
 export interface DecisionState {
   items: Decision[]
-  loading: boolean
+  isLoading: boolean
 }
 const initialState: DecisionState = {
   items: [],
-  loading: false,
+  isLoading: false,
 }
 const decisionSlice = createSlice({
   name: 'decision',
   initialState,
   reducers: {
-    getDecisionFetch: (state) => {
-      state.loading = true
+    getDecisionFetch: (state, action) => {
+      state.isLoading = true
     },
     getDecisionSuccess: (state, action: PayloadAction<Returned>) => {
-      state.loading = false
+      state.isLoading = false
       state.items = action.payload.data
     },
     getDecisionFailure: (state) => {
-      state.loading = false
+      state.isLoading = false
     },
   },
 })
