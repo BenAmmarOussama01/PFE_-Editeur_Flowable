@@ -6,6 +6,7 @@ import { getAppFetch } from '../../feature/slices/app/appSlice'
 import ListModels from '../../components/list_models/ListModels'
 import SearchInput from '../../components/search/SearchInput'
 import { Box } from '@mui/material'
+import AppList from '../../components/apps/AppList'
 
 
 interface AppProps {}
@@ -13,7 +14,6 @@ interface AppProps {}
 
 const Apps: FC<AppProps> = () => {
   const dispatch = useAppDispatch()
-  const { loading, items } = useAppSelector((state) => state.app)
 
   const [searchText, setSearchText] = useState('')
 
@@ -29,7 +29,7 @@ const Apps: FC<AppProps> = () => {
       <Modals modelType={ModelType.app} />
       <Box sx={{ display: 'flex', gap: 5 ,alignItems: 'flex-start'}}>
         <SearchInput handleSearchText={handleSearchText} />
-        <ListModels isLoading={loading} items={items} modelType={3} />
+        <AppList/>
       </Box>
     </div>
   )
