@@ -4,7 +4,7 @@ import watchFetchProcessSaga from './saga/processSaga'
 import watchDecisionSaga from './saga/decisionSaga'
 import watchFormSaga from './saga/formSaga'
 import watchDecisionServiceSaga from './saga/decisionServiceSaga'
-
+import watchAppSaga from './saga/appSaga'
 const rootSaga = function* () {
   yield all([
     fork(watchFetchCaseSaga),
@@ -12,6 +12,7 @@ const rootSaga = function* () {
     fork(watchDecisionSaga),
     fork(watchFormSaga),
     fork(watchDecisionServiceSaga),
+    fork(watchAppSaga),
   ])
 }
 

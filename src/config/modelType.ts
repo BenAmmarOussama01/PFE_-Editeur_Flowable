@@ -4,6 +4,7 @@ export enum ModelType {
   decisionTable = 4,
   case = 5,
   decisionService = 6,
+  app = 3,
 }
 
 export const modalNameByModelType = (modelType: number) => {
@@ -12,8 +13,8 @@ export const modalNameByModelType = (modelType: number) => {
       return 'process'
     case 2:
       return 'form'
-    /*case 3 : 
-      return 'app'*/
+    case 3:
+      return 'app'
     case 4:
       return 'decision table'
     case 5:

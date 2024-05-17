@@ -11,6 +11,7 @@ import ZoomInIcon from '@mui/icons-material/ZoomIn'
 import ZoomOutIcon from '@mui/icons-material/ZoomOut'
 import UndoIcon from '@mui/icons-material/Undo'
 import RedoIcon from '@mui/icons-material/Redo'
+import SaveIcon from '@mui/icons-material/Save'
 
 const buttonStyle = {
   backgroundColor: 'white',
@@ -109,12 +110,18 @@ const Bp = () => {
       <Box
         sx={{
           height: 50,
+
           display: 'flex',
           gap: '50px',
           alignItems: 'center',
           borderBottom: '	#bdbdbd  1px solid',
         }}
       >
+        <Box sx={{ display: 'flex', ml: '100px' }}>
+          <button onClick={handleReset} style={buttonStyle}>
+            <SaveIcon />
+          </button>
+        </Box>
         <Box sx={{ display: 'flex' }}>
           <button onClick={handleReset} style={buttonStyle}>
             <ZoomInIcon />
@@ -144,11 +151,7 @@ const Bp = () => {
           style={{ width: '25rem', borderLeft: '1px #ccc solid' }}
         />
       </div>
-      <div className=" fixed bottom-28 right-80">
-        <button onClick={handleZoomIn}>+</button>
-        <button onClick={handleZoomOut}>-</button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
+
       <button onClick={handleExport} className="fixed left-0  bottom-28 ">
         Save
       </button>

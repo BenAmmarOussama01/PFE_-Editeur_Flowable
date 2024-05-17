@@ -28,6 +28,16 @@ const Login: FC<LoginProps> = () => {
       .catch((err) => {})
   }
 
+  useEffect(() => {
+    invokeWS({
+      //url: `http://localhost:8070/configuration/users/me`,
+      url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc`,
+      method: MethodHttp.get,
+    }).then((response: any) => {
+      console.log('response ', response)
+    })
+  }, [])
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
