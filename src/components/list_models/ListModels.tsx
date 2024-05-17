@@ -2,20 +2,22 @@ import { IProcess } from '../../feature/slices/processes/processSlice'
 import Loader from '../loader/Loader'
 import { Grid, Box } from '@mui/material'
 import ListItem from './ListItem'
+import { modalDescriptionByModelType } from '../../config/modelType'
 
 interface IListModelsProps {
   isLoading: boolean
   items: any[]
+  modelType: number
 }
 
-const ListModels = ({ isLoading, items }: IListModelsProps) => {
+const ListModels = ({ isLoading, items, modelType }: IListModelsProps) => {
   return isLoading ? (
     <Loader />
   ) : (
     <div>
       {items.length > 0 && (
         <p style={{ marginTop: '2rem' }}>
-          Il y a {items.length} modèles de processus
+          There are {items.length} {modalDescriptionByModelType(modelType)}
         </p>
       )}
       <Grid container spacing={2} sx={{ mb: 13 }}>

@@ -35,7 +35,10 @@ const NavbarWrapper = ({ children }: childrenProps) => {
   }
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: '#1F3245' }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: '#1F3245', boxShadow: 'none' }}
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Link to="/blocks">

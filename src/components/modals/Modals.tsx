@@ -46,7 +46,11 @@ const Modals = ({ modelType }: ModalsProps) => {
         modelType={modelType}
       />
 
-      <ImportModal open={openModal === 2} handleClose={() => setOpenModal(0)} />
+      <ImportModal
+        open={openModal === 2}
+        handleClose={() => setOpenModal(0)}
+        modelType={modelType}
+      />
     </div>
   )
 }

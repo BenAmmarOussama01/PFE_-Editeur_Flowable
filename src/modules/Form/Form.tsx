@@ -28,7 +28,11 @@ const Form: FC<FormesProps> = () => {
       <Modals modelType={ModelType.form} />
       <Box sx={{ display: 'flex', gap: 5 }}>
         <SearchInput handleSearchText={handleSearchText} />
-        <ListModels isLoading={isLoading} items={forms} />
+        <ListModels
+          isLoading={isLoading}
+          items={forms}
+          modelType={ModelType.form}
+        />
       </Box>
     </div>
   )

@@ -7,7 +7,6 @@ import { ModelType } from '../../config/modelType'
 import Modals from '../../components/modals/Modals'
 import ListModels from '../../components/list_models/ListModels'
 import SearchInput from '../../components/search/SearchInput'
-import fakeData from '../../fakeData.json'
 
 const Processes = () => {
   const dispatch = useAppDispatch()
@@ -35,7 +34,11 @@ const Processes = () => {
         }}
       >
         <SearchInput handleSearchText={handleSearchText} />
-        <ListModels isLoading={isLoading} items={fakeData} />
+        <ListModels
+          isLoading={isLoading}
+          items={processes}
+          modelType={ModelType.process}
+        />
       </Box>
     </div>
   )
