@@ -12,6 +12,7 @@ import ZoomOutIcon from '@mui/icons-material/ZoomOut'
 import UndoIcon from '@mui/icons-material/Undo'
 import RedoIcon from '@mui/icons-material/Redo'
 import SaveIcon from '@mui/icons-material/Save'
+import * as convert from 'xml-js'
 
 const buttonStyle = {
   backgroundColor: 'white',
@@ -25,32 +26,15 @@ const Bp = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
+  const escapeQuotes = (xmlString: string): string => {
+    return xmlString
+    .replace(/"/g, '\\"') // Remplace les guillemets doubles par \" 
+  };
   let modelerInstance: any = null
 
   let { id } = useParams()
   const { xml } = useFetchXml(id!)
-  /*useEffect(() => {
-    if (modelerInstance) return
-    if (xml) {
-      if (bpmnRef.current) {
-        modelerInstance = new BpmnModeler({
-          container: bpmnRef.current,
-          propertiesPanel: {
-            parent: propertiesPanelRef.current,
-          },
-        })
 
-        modelerInstance.importXML(DEFAULT_BPMN_XML).then((err: any) => {
-          if (err.warnings.length) {
-            console.warn(err.warnings)
-          }
-          modelerInstance.get('canvas').zoom('fit-viewport', 'auto')
-        })
-
-        setModeler(modelerInstance)
-      }
-    }
-  }, [xml])*/
 
   useEffect(() => {
     if (modelerInstance) return
@@ -84,6 +68,8 @@ const Bp = () => {
           console.error(res.error)
           return
         }
+        const escapedXml = escapeQuotes(res.xml);
+        console.log(escapedXml);
       })
     }
   }
@@ -118,27 +104,27 @@ const Bp = () => {
         }}
       >
         <Box sx={{ display: 'flex', ml: '100px' }}>
-          <button onClick={handleReset} style={buttonStyle}>
+          <button onClick={handleExport} style={buttonStyle}>
             <SaveIcon />
           </button>
         </Box>
         <Box sx={{ display: 'flex' }}>
-          <button onClick={handleReset} style={buttonStyle}>
+          <button onClick={handleZoomIn} style={buttonStyle}>
             <ZoomInIcon />
           </button>
           <button onClick={handleReset} style={buttonStyle}>
             100%
           </button>
-          <button onClick={handleReset} style={buttonStyle}>
+          <button onClick={handleZoomOut} style={buttonStyle}>
             <ZoomOutIcon />
           </button>
         </Box>
         <Box sx={{ display: 'flex' }}>
-          <button onClick={handleReset} style={buttonStyle}>
+          <button onClick={handleUndo} style={buttonStyle}>
             <UndoIcon />
           </button>
 
-          <button onClick={handleReset} style={buttonStyle}>
+          <button onClick={handleRedo} style={buttonStyle}>
             <RedoIcon />
           </button>
         </Box>

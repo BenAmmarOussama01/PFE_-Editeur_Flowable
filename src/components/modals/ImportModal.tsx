@@ -1,14 +1,14 @@
-import Box from '@mui/material/Box'
-import Modal from '@mui/material/Modal'
+import React, { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import CloseIcon from '@mui/icons-material/Close';
+import FilePicker from '../modals/FilePicker';
+import Button from '@mui/material/Button';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Importer useNavigate
+import { APP_BASE_URL } from '../../config/app.constant';
+import { getModalDescription } from '../../config/modelType';
 
-import CloseIcon from '@mui/icons-material/Close'
-import FilePicker from '../modals/FilePicker'
-import Button from '@mui/material/Button'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { APP_BASE_URL } from '../../config/app.constant'
-import { MethodHttp, invokeWS } from '../../setup/api-service'
-import { getModalDescription } from '../../config/modelType'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -19,37 +19,55 @@ const style = {
   boxShadow: 24,
   pb: 4,
   outline: 'none',
-}
+};
+
 interface Props {
-  open: boolean
-  handleClose: () => void
-  modelType: number
+  open: boolean;
+  handleClose: () => void;
+  modelType: number;
 }
 
 const ImportModal = ({ open, handleClose, modelType }: Props) => {
-  const [file, setFile] = useState<File | null>(null)
+  const [file, setFile] = useState<File | null>(null);
+  const navigate = useNavigate(); // Initialiser useNavigate
 
   useEffect(() => {
-    console.log(file)
-  }, [file])
+    console.log(file);
+  }, [file]);
+
   const handleImportFile = async () => {
     if (file) {
       try {
-        const formData = new FormData()
-        formData.append('file', file)
+        const formData = new FormData();
+        formData.append('file', file);
 
-        const url = `${APP_BASE_URL}configuration/modeler/rest/import-process-model`
+        const url = `${APP_BASE_URL}configuration/modeler/rest/import-process-model`;
         const headers = {
-          'Content-Type': 'application/octet-stream',
-        }
-        const result = await axios.post(url, formData, { headers })
+          'Content-Type': 'multipart/form-data',
+        };
 
-        console.log(result)
+        const result = await axios.post(url, formData, { headers });
+
+        // Extraction de l'ID du processus de la réponse
+        const processId = result.data.id;
+        console.log('Imported Process ID:', processId);
+
+        // Redirection vers la page de processus avec l'ID
+        navigate(`/blocks/modeler/processes/${processId}`);
+        
       } catch (err) {
-        console.log(err)
+        console.error('An error occurred:', err);
+        if (axios.isAxiosError(err)) {
+          console.error('Response:', err.response);
+          console.error('Data:', err.response?.data);
+          console.error('Status:', err.response?.status);
+          console.error('Headers:', err.response?.headers);
+        }
       }
+    } else {
+      console.log('No file selected');
     }
-  }
+  };
 
   return (
     <div>
@@ -86,7 +104,7 @@ const ImportModal = ({ open, handleClose, modelType }: Props) => {
         </Box>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default ImportModal
+export default ImportModal;

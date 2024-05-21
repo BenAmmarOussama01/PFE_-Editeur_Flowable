@@ -7,3 +7,6 @@ body {
   width: 100%;
   margin: 0;
 }
+.icon-container:hover .icon {
+  transform: scale(1.5) translateX(-3px);
+}

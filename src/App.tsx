@@ -19,6 +19,8 @@ import Apps from './modules/Apps/Apps'
 import DecisionTable from './modules/DecisionTable/DecisionTable'
 import Blocks from './modules/Blocks/Blocks'
 import Fm from './components/forms_model/form_builder/Form'
+import AppDetails from './components/apps/AppDetail'
+
 function App() {
   const location = useLocation()
 
@@ -53,6 +55,7 @@ function App() {
           <Route path="form/:id" element={<Fm />} />
 
           <Route path="Apps" element={<Apps />} />
+          <Route path="Apps/:id" element={<AppDetails/>} />
           {/*</Routes>Route path="Apps/:id" element={<Fm />} />*/}
 
           <Route path="caseModels" element={<CaseModels />} />
