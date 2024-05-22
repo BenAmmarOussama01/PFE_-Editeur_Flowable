@@ -1,16 +1,16 @@
 import { useRef, useState, useEffect } from 'react'
 import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
+import './bpmn.css'
 import { useParams } from 'react-router-dom'
-import useFetchXml from '../../hooks/useFetchXml'
 import Box from '@mui/material/Box'
-import TokenSimulationModule from 'bpmn-js-token-simulation'
 
 import ZoomInIcon from '@mui/icons-material/ZoomIn'
 import ZoomOutIcon from '@mui/icons-material/ZoomOut'
 import UndoIcon from '@mui/icons-material/Undo'
 import RedoIcon from '@mui/icons-material/Redo'
 import SaveIcon from '@mui/icons-material/Save'
+import useFetchXml from '../../../hooks/useFetchXml'
 
 const buttonStyle = {
   backgroundColor: 'white',
@@ -24,13 +24,17 @@ const Bp = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
-  const escapeQuotes = (xmlString: string): string => {
-    return xmlString.replace(/"/g, '\\"') // Remplace les guillemets doubles par \"
-  }
+const escapeQuotes = (jsonString:string):string => {
+  return jsonString
+    .replace(/"/g, '\\"')   // Remplace les guillemets doubles par \"
+    .replace(/\$/g, '\\$')  // Remplace les signes dollar par \$ (échappe le signe dollar)
+    .replace(/'/g, "\\'");  // Remplace les guillemets simples par \'
+};
   let modelerInstance: any = null
 
   let { id } = useParams()
   const { xml } = useFetchXml(id!)
+
 
   useEffect(() => {
     if (modelerInstance) return
@@ -42,7 +46,6 @@ const Bp = () => {
           propertiesPanel: {
             parent: propertiesPanelRef.current,
           },
-          additionalModules: [TokenSimulationModule],
         })
 
         modelerInstance.importXML(xml).then((err: any) => {
@@ -65,8 +68,8 @@ const Bp = () => {
           console.error(res.error)
           return
         }
-        const escapedXml = escapeQuotes(res.xml)
-        //console.log(escapedXml)
+        const escapedXml = escapeQuotes(res.xml);
+        console.log(escapedXml);
       })
     }
   }
@@ -88,7 +91,6 @@ const Bp = () => {
   const handleRedo = () => {
     modeler.get('commandStack').redo()
   }
-
   return (
     <>
       <Box

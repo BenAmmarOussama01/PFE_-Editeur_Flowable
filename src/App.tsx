@@ -8,7 +8,6 @@ import Idm from './components/blocks/Idm'
 import Test from './components/blocks/Test'
 import BnaRetail from './components/blocks/BnaRetail'
 import Processes from './modules/Processes/Processes'
-import Bp from './components/diagram_editor/Bp'
 import Login from './modules/Login/Login'
 import Dmn from './components/decision_model/decision_editor/Dmn'
 import { useEffect } from 'react'
@@ -19,11 +18,13 @@ import Apps from './modules/Apps/Apps'
 import DecisionTable from './modules/DecisionTable/DecisionTable'
 import Blocks from './modules/Blocks/Blocks'
 import Fm from './components/forms_model/form_builder/Form'
-import AppDetails from './components/apps/AppDetail'
+
 import Viewer from './components/diagram_viewer/Viewer'
+import Bp from './components/diagram_editor/Bp'
+import AppList from './components/apps/AppList'
+import Ap from './components/apps/Ap'
 
 function App() {
-  const location = useLocation()
 
   useEffect(() => {
     if (
@@ -57,7 +58,7 @@ function App() {
           <Route path="form/:id" element={<Fm />} />
 
           <Route path="Apps" element={<Apps />} />
-          <Route path="Apps/:id" element={<AppDetails />} />
+          <Route path="Apps/:id" element={<Ap />} />
           {/*</Routes>Route path="Apps/:id" element={<Fm />} />*/}
 
           <Route path="caseModels" element={<CaseModels />} />

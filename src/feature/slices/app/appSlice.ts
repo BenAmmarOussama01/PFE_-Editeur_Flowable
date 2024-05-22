@@ -43,6 +43,19 @@ const appSlice = createSlice({
     getAppFailure: (state) => {
       state.loading = false
     },
+    createProcess: (state, action) => {
+      state.loading = true
+    },
+
+    createProcessSuccess: (state, action) => {
+      console.log('slice: ', action)
+      state.loading = false
+      //state.processes = action.payload.data
+    },
+    createProcessFailure: (state, action) => {
+      state.loading = false
+      console.log('slice err : ', action)
+    },
   },
 })
 export const { getAppFetch, getAppFailure, getAppSuccess } =

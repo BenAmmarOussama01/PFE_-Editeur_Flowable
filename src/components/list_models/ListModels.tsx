@@ -34,7 +34,7 @@ const ListModels = ({ isLoading, items, modelType }: IListModelsProps) => {
                 },
               }}
             >
-              <ListItem {...item} />
+              <ListItem {...item}  />
             </Box>
           </Grid>
         ))}

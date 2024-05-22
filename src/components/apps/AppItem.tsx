@@ -1,49 +1,65 @@
-import PersonIcon from '@mui/icons-material/Person'
-import CreateIcon from '@mui/icons-material/Create'
-import { Link } from 'react-router-dom'
-import { formatDate } from '../../config/utils/formatDate'
-import { FaStarOfLife } from 'react-icons/fa'
-export interface AppProps {
-  id: string
-  name: string
-  createdBy: string
-  lastUpdated: number
- 
-}
+import { Link } from 'react-router-dom';
 
+import { FaStarOfLife } from 'react-icons/fa';
+export interface AppProps {
+  id:String,
+  name:string,
+  version:number
+}
 const AppItem = ({
   id,
   name,
-  createdBy,
-  lastUpdated,
+  version
 }: AppProps) => {
-  return (
-    <>
-        <div className="border-2 h-80 border-slate-200 hover:cursor-pointer relative w-[268px]">
-          <Link to={`${id}`} >
+     
+      return (
+            <>
+               { /*  {loading ? (
+                        <Loader />
+                  ) : item ? (*/}
+                        <div className="border-2 h-80 border-slate-200 hover:cursor-pointer relative w-[268px]">
+                        
+          <div
+            style={{
+              height: '200px',
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#2A9EC0',
+              position: 'relative',
+            }}
+            className="icon-container"
+          >
             <div
               style={{
-                height: '200px',
-                width: '100%',
-              
+                position: 'absolute',
+                top: '10px',
+                left: '10px',
+                backgroundColor: '#999999',
+                padding: '0.2rem 0.5rem',
+                borderRadius: '8px',
+                color: 'white',
+                fontWeight: 'bold',
               }}
             >
-               <FaStarOfLife />
+              V{version}
             </div>
-            <div className="bg-slate-100 p-3 hover:pb-10 absolute bottom-0 right-0 left-0 transition duration-300 ease-in-out">
-              <div>{name}</div>
-              <div className="flex items-center gap-2 mt-3">
-                <PersonIcon /> {createdBy}
-              </div>
-              <div className="flex items-center gap-2 mt-3 ">
-                <CreateIcon /> {formatDate(lastUpdated)}
-              </div>
+            <div className="p-3 hover:pb-10 absolute bottom-0 right-0 left-0 transition duration-300 ease-in-out text-white">
+              <div className="text-xl font-bold">{name}</div>
             </div>
-          </Link>
+            <FaStarOfLife
+              className="icon"
+              style={{
+                color: '#168AAC',
+                fontSize: '6rem',
+                transition: 'transform 0.3s ease',
+              }}
+            />
+          </div>
         </div>
-   
-    </>
-  )
-}
+            </>
+      );
+};
 
-export default AppItem
+export default AppItem;
