@@ -8,6 +8,7 @@ import Modals from '../../components/modals/Modals'
 import ListModels from '../../components/list_models/ListModels'
 import SearchInput from '../../components/search/SearchInput'
 
+import fakeData from '../../fakeData.json'
 const Processes = () => {
   const dispatch = useAppDispatch()
   const { isLoading, processes } = useAppSelector((state) => state.process)
@@ -23,7 +24,7 @@ const Processes = () => {
   }, [searchText])
 
   return (
-    <div>
+    <>
       <Modals modelType={ModelType.process} />
       <Box
         sx={{
@@ -40,7 +41,7 @@ const Processes = () => {
           modelType={ModelType.process}
         />
       </Box>
-    </div>
+    </>
   )
 }
 

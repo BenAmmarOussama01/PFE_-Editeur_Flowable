@@ -1,12 +1,11 @@
 import { useRef, useState, useEffect } from 'react'
-import BpmnModeler from 'camunda-bpmn-js/lib/camunda-platform/Modeler'
+import BpmnViewer from 'camunda-bpmn-js/lib/camunda-platform/Viewer'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
 import './bpmn.css'
 import { useParams } from 'react-router-dom'
 import useFetchXml from '../../hooks/useFetchXml'
 import { DEFAULT_BPMN_XML } from './default_xml'
 import Box from '@mui/material/Box'
-import TokenSimulationModule from 'bpmn-js-token-simulation'
 
 import ZoomInIcon from '@mui/icons-material/ZoomIn'
 import ZoomOutIcon from '@mui/icons-material/ZoomOut'
@@ -22,7 +21,7 @@ const buttonStyle = {
   padding: '0 10px',
 }
 
-const Bp = () => {
+const Viewer = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
@@ -36,28 +35,22 @@ const Bp = () => {
 
   useEffect(() => {
     if (modelerInstance) return
-    if (xml) {
-      console.log(xml)
-      if (bpmnRef.current) {
-        modelerInstance = new BpmnModeler({
-          container: bpmnRef.current,
-          propertiesPanel: {
-            parent: propertiesPanelRef.current,
-          },
-          additionalModules: [TokenSimulationModule],
-        })
 
-        modelerInstance.importXML(xml).then((err: any) => {
-          if (err.warnings.length) {
-            console.warn(err.warnings)
-          }
-          modelerInstance.get('canvas').zoom('fit-viewport', 'auto')
-        })
+    if (bpmnRef.current) {
+      modelerInstance = new BpmnViewer({
+        container: bpmnRef.current,
+      })
 
-        setModeler(modelerInstance)
-      }
+      modelerInstance.importXML(DEFAULT_BPMN_XML).then((err: any) => {
+        if (err.warnings.length) {
+          console.warn(err.warnings)
+        }
+        modelerInstance.get('canvas').zoom('fit-viewport', 'auto')
+      })
+
+      setModeler(modelerInstance)
     }
-  }, [xml])
+  }, [])
 
   const handleExport = () => {
     if (modeler) {
@@ -130,12 +123,8 @@ const Bp = () => {
         </Box>
       </Box>
 
-      <div className="flex h-full w-full relative">
-        <div ref={bpmnRef} className="w-full h-screen" />
-        <div
-          ref={propertiesPanelRef}
-          style={{ width: '25rem', borderLeft: '1px #ccc solid' }}
-        />
+      <div className=" h-full w-full relative">
+        <div ref={bpmnRef} className="w-full h-[80vh]" />
       </div>
 
       <button onClick={handleExport} className="fixed left-0  bottom-28 ">
@@ -145,4 +134,4 @@ const Bp = () => {
   )
 }
 
-export default Bp
+export default Viewer

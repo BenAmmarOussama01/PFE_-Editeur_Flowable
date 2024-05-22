@@ -3,11 +3,11 @@ import NavbarWrapper from './NavbarWrapper'
 import Button from '@mui/material/Button'
 
 const navItems = [
-  { id: 1, text: 'Processes', link: '/blocks/modeler/processes' },
+  { id: 1, text: 'Processes', link: '/modeler/processes' },
   { id: 2, text: 'Case models', link: 'caseModels' },
-  { id: 3, text: 'Forms', link: '/blocks/modeler/form' },
-  { id: 4, text: 'Decisions', link: '/blocks/modeler/decisions' },
-  { id: 5, text: 'Apps', link: '/blocks/modeler/apps' },
+  { id: 3, text: 'Forms', link: '/modeler/form' },
+  { id: 4, text: 'Decisions', link: '/modeler/decisions' },
+  { id: 5, text: 'Apps', link: '/modeler/apps' },
 ]
 
 const ProcessesNavbar = () => {

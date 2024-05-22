@@ -1,0 +1,13 @@
+.list-item-wrapper .list-item-icons {
+  display: flex;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.list-item-wrapper:hover .list-item-icons {
+  opacity: 1;
+  transform: translateY(0);
+}

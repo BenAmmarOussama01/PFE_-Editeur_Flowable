@@ -1,4 +1,3 @@
-
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
@@ -54,7 +53,7 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
         createProcess({
           ...values,
           onComplit: (res: any) => {
-            navigate(`${res.id}`)
+            navigate(`editor/${res.id}`)
           },
           modelType,
         }),

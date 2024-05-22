@@ -20,6 +20,7 @@ import DecisionTable from './modules/DecisionTable/DecisionTable'
 import Blocks from './modules/Blocks/Blocks'
 import Fm from './components/forms_model/form_builder/Form'
 import AppDetails from './components/apps/AppDetail'
+import Viewer from './components/diagram_viewer/Viewer'
 
 function App() {
   const location = useLocation()
@@ -41,12 +42,13 @@ function App() {
 
         <Route path="/signin" element={<Login />} />
         <Route path="/blocks" element={<Blocks />} />
-        <Route path="/blocks/modeler" element={<Modeler />}>
+        <Route path="/modeler" element={<Modeler />}>
           {/*<Route path="/blocks/modeler/processes" element={<Bp/>} />*/}
           {/*<Route path="/blocks/modeler/processes" element={<Bp/>} />*/}
           <Route index element={<Processes />} />
           <Route path="processes" element={<Processes />} />
-          <Route path="processes/:id" element={<Bp />} />
+          <Route path="processes/editor/:id" element={<Bp />} />
+          <Route path="processes/viewer/:id" element={<Viewer />} />
           {/*<Route path="/blocks/modeler/decisions" element={<Dmn />} />*/}
           <Route path="decisions" element={<DecisionTable />} />
           <Route path="decisions/:id" element={<Dmn />} />
@@ -55,7 +57,7 @@ function App() {
           <Route path="form/:id" element={<Fm />} />
 
           <Route path="Apps" element={<Apps />} />
-          <Route path="Apps/:id" element={<AppDetails/>} />
+          <Route path="Apps/:id" element={<AppDetails />} />
           {/*</Routes>Route path="Apps/:id" element={<Fm />} />*/}
 
           <Route path="caseModels" element={<CaseModels />} />

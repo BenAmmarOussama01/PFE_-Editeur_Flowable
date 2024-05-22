@@ -25,6 +25,7 @@ function* fetchProcessHandlerSaga(action: any): Generator<any, void, any> {
 }
 
 function* createProcessSaga(action: any): Generator<any, void, any> {
+  console.log('test create')
   const processData = action.payload
   const { onComplit } = processData
   delete processData.onComplit

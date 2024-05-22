@@ -19,12 +19,12 @@ const StyledIcon = styled(({ icon: Icon, ...props }: StyledIconProps) => (
   opacity: 0.5,
 }))
 const items = [
-  { name: 'Task App', link: 'tasks' },
-  { name: 'Modeler App', link: 'modeler/processes' },
-  { name: 'Admin App', link: 'admin' },
-  { name: 'IDM App', link: 'idm' },
-  { name: 'Test App', link: 'test' },
-  { name: 'BNA-RETAIL', link: 'bna-retail' },
+  { name: 'Task App', link: '/tasks' },
+  { name: 'Modeler App', link: '/modeler/processes' },
+  { name: 'Admin App', link: '/admin' },
+  { name: 'IDM App', link: '/idm' },
+  { name: 'Test App', link: '/test' },
+  { name: 'BNA-RETAIL', link: '/bna-retail' },
 ]
 
 const cardIcons = [
@@ -51,16 +51,18 @@ const Blocks: React.FC = () => {
       boxShadow: '0 0 10px rgba(0, 0, 0, 2)',
     },
   })
-  const CardContentWrapper = styled(CardContent)(({ theme, bg }: { theme: any, bg: string }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    height: '100%',
-    backgroundColor: bg,
-    '&:hover': {
-      backgroundColor: 'lightgray',
-    },
-  }))
+  const CardContentWrapper = styled(CardContent)(
+    ({ theme, bg }: { theme: any; bg: string }) => ({
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      height: '100%',
+      backgroundColor: bg,
+      '&:hover': {
+        backgroundColor: 'lightgray',
+      },
+    }),
+  )
   return (
     <>
       <NavbarWrapper />
@@ -69,7 +71,10 @@ const Blocks: React.FC = () => {
           <Grid item xs={6} sm={3} key={index}>
             <Link style={{ textDecoration: 'none' }} to={link}>
               <StyledCard>
-                <CardContentWrapper bg={backgroundcolors[index]} theme={undefined}>
+                <CardContentWrapper
+                  bg={backgroundcolors[index]}
+                  theme={undefined}
+                >
                   <Typography variant="h5">{name}</Typography>
                   <StyledIcon icon={cardIcons[index]} />
                 </CardContentWrapper>

@@ -6,6 +6,10 @@ interface Mapper {
 const camundaToFlowableMapper: Mapper[] = [
   { find: 'camunda:formRef', replace: 'flowable:formKey' },
   { find: 'camunda:executionListener', replace: 'flowable:executionListener' },
+  {
+    find: 'camunda:delegateExpression',
+    replace: 'flowable:delegateExpression',
+  },
 ]
 
 export function replaceCamundaToFlowable(input: string): string {
