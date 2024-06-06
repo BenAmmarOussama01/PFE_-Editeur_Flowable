@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import useFetchProcessDetails from '../../hooks/useFetchProcessDetails'
+import useFetchProcessDetails from '../../hooks/useFetchDetails'
 import { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Loader from '../loader/Loader'
@@ -12,9 +12,8 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit'
 import DownloadIcon from '@mui/icons-material/Download'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { MethodHttp, invokeWS } from '../../setup/api-service'
-import { APP_BASE_URL } from '../../config/app.constant'
 import DeleteModal from '../modals/DeleteModal'
+import useFetchDetails from '../../hooks/useFetchDetails'
 
 interface ToolBarProps {
   id: string
@@ -22,18 +21,13 @@ interface ToolBarProps {
 
 const ViewerToolBar = ({ id }: ToolBarProps) => {
   const [openModal, setOpenModal] = useState(false)
-  const { details } = useFetchProcessDetails(id)
+  const { details } = useFetchDetails(id)
 
-  const handleDeleteProcess = async () => {
-    try {
-      const result: any = await invokeWS({
-        url: `${APP_BASE_URL}configuration/modeler/rest/models/${id}`,
-        method: MethodHttp.delete,
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const handleEditClick = () => {
+    const currentUrl = window.location.href;
+    const newUrl = currentUrl.replace('viewer', 'editor');
+    window.location.href = newUrl;
+  };
 
   return (
     <Box
@@ -64,7 +58,7 @@ const ViewerToolBar = ({ id }: ToolBarProps) => {
               <Button variant="contained" onClick={() => setOpenModal(true)}>
                 <DeleteIcon />
               </Button>
-              <Button variant="contained">
+              <Button onClick={handleEditClick}  variant="contained">
                 <BorderColorIcon />
                 Visual Editor
               </Button>

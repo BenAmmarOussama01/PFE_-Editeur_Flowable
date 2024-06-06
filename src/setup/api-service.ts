@@ -52,6 +52,7 @@ const callWS = (
   invokeOptions?: InvokeOptions,
 ) => {
   return new Promise((resolve, reject) => {
+    console.log(endpoint?.loading)
     if (endpoint?.loading) {
       document.body.classList.add('loading-indicator')
     }
@@ -65,10 +66,12 @@ const callWS = (
     if (invokeOptions?.textPlain) {
       axios.defaults.headers.post = { 'Content-Type': 'text/plain' }
     }
+    console.log(invokeParams)
 
     axios.request(invokeParams).then(
       (response: any) => {
         document.body.classList.remove('loading-indicator')
+
         showNotification(true, response)
         resolve(response)
       },
@@ -78,7 +81,7 @@ const callWS = (
         showNotification(false, error)
         reject(error)
       },
-    )
+    ).catch(err => console.log(err))
   })
 }
 

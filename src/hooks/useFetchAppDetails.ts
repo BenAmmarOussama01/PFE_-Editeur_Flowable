@@ -2,30 +2,17 @@ import { useState, useEffect } from 'react'
 import { MethodHttp, invokeWS } from '../setup/api-service'
 import { APP_BASE_URL } from '../config/app.constant'
 
-interface IDetails {
-  createdBy: string
-  description: string
-  id: string
-  key: string
-  lastUpdated: number
-  lastUpdatedBy: string
-  latestVersion: boolean
-  modelType: number
-  name: string
-  tenantId: string
-  version: number
-}
-
-const useFetchProcessDetails = (id: string) => {
+const useFetchAppDetails = (id: string) => {
   const [details, setDetails] = useState<any | null>(null)
   useEffect(() => {
     const fetch = async () => {
       try {
         const result: any = await invokeWS({
-          url: `${APP_BASE_URL}configuration/modeler/rest/models/${id}`,
+          url: `${APP_BASE_URL}configuration/modeler/rest/app-definitions/${id}`,
           method: MethodHttp.get,
         })
         setDetails(result.data)
+        console.log('use fetch app detail',details)
       } catch (error) {
         console.log(error)
       }
@@ -35,5 +22,4 @@ const useFetchProcessDetails = (id: string) => {
   }, [])
   return { details }
 }
-
-export default useFetchProcessDetails
+export default useFetchAppDetails 

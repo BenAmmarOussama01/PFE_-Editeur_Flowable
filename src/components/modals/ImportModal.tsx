@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import FilePicker from '../modals/FilePicker';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Importer useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import { APP_BASE_URL } from '../../config/app.constant';
 import { getModalDescription } from '../../config/modelType';
 

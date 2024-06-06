@@ -60,7 +60,7 @@ const ListItem = ({ id, name, createdBy, lastUpdated }: ProcessProps) => {
             </Box>
           </Box>
         </div>
-      )}
+ )}
     </>
   )
 }

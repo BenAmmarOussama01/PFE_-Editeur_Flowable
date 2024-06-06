@@ -10,7 +10,7 @@ import SearchInput from '../../components/search/SearchInput'
 const Processes = () => {
   const dispatch = useAppDispatch()
   const { isLoading, processes } = useAppSelector((state) => state.process)
-
+console.log('process page props for listModels',processes)
   const [searchText, setSearchText] = useState('')
 
   const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {

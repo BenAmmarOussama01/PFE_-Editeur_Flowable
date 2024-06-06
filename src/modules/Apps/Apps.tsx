@@ -21,8 +21,8 @@ const Apps: FC<AppProps> = () => {
   }
   useEffect(() => {
     //dispatch(getApps())
-    dispatch(getAppFetch({searchText}))
-  }, [searchText])
+    dispatch(getAppFetch({ searchText }));
+  }, [searchText]);
   return (
     <div>
       <Modals modelType={ModelType.app} />

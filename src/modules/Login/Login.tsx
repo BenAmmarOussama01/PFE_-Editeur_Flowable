@@ -14,24 +14,21 @@ interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
   const login = () => {
+    console.log("err")
     invokeWS({
       url: `${APP_BASE_URL}authorization/`,
       method: MethodHttp.get,
-    })
-      .then((response: any) => {
-        console.log('response ', response)
-
-        if (response.redirectUrl) {
-          document.location.href = response.redirectUrl
-        }
-      })
-      .catch((err) => {})
+    }).then((response: any) => {
+      console.log('response ', response)
+      if (response.redirectUrl) {
+        document.location.href = response.redirectUrl
+      }
+    }).catch(err => console.log(err))
   }
-
   useEffect(() => {
     invokeWS({
-      //url: `http://localhost:8070/configuration/users/me`,
-      url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc`,
+     //url: `http://localhost:8070/configuration/users/me`,
+      url: `http://localhost:8070/configuration/modeler/rest/models?sort=modifiedDesc`,
       method: MethodHttp.get,
     }).then((response: any) => {
       console.log('response ', response)
@@ -53,18 +50,16 @@ const Login: FC<LoginProps> = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+         Login
         </Typography>
-
         <Button
           type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
-          //href="http://localhost:8070/authorization/"
           onClick={login}
         >
-          Login
+         Login
         </Button>
       </Box>
     </Container>

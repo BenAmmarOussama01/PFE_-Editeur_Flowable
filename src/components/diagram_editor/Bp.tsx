@@ -11,6 +11,8 @@ import ZoomOutIcon from '@mui/icons-material/ZoomOut'
 import UndoIcon from '@mui/icons-material/Undo'
 import RedoIcon from '@mui/icons-material/Redo'
 import SaveIcon from '@mui/icons-material/Save'
+import axios from 'axios'
+import { APP_BASE_URL } from '../../config/app.constant'
 
 const buttonStyle = {
   backgroundColor: 'white',
@@ -24,18 +26,70 @@ const Bp = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
-  const escapeQuotes = (xmlString: string): string => {
-    return xmlString.replace(/"/g, '\\"') // Remplace les guillemets doubles par \"
-  }
-  let modelerInstance: any = null
 
   let { id } = useParams()
   const { xml } = useFetchXml(id!)
 
+  const handleExport = () => {
+    if (modeler) {
+      modeler.saveXML({ format: true }).then((res: any) => {
+        console.log("reponce hamza", res.xml);
+
+        axios.post(`${APP_BASE_URL}configuration/modeler/rest/converter/convert-to-json`, {
+          value: res.xml,
+        })
+          .then(response => {
+            console.log('Response ouss  :', response);
+
+            const jsonXml = response.data;
+
+            
+            // Créer une instance FormData 
+            const formData = new URLSearchParams();
+            formData.append('modeltype', 'model');
+            formData.append('json_xml', jsonXml);
+            formData.append('name', 'modifyCardLimitsCSATicket');
+            formData.append('key', 'MODIFY-CARD-LIMITS-REQUEST');
+            formData.append('description', '');
+            formData.append('newversion', 'false');
+            formData.append('comment', '');
+            let now = new Date();
+
+            // Get the timestamp in seconds
+            let timestampInSeconds = Math.floor(now.getTime() / 1000);
+            formData.append('lastUpdated', `${timestampInSeconds}`);
+            axios.post(`${APP_BASE_URL}configuration/modeler/rest/models/d60b52e8-1691-11ef-a536-eaf78a1c2578/editor/json`, formData)
+              .then(finalResponse => {
+                console.log('Final Response:', finalResponse);
+              })
+              .catch(error => {
+                console.error('Error in final post:', error);
+              });
+
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+
+        if (res.error) {
+          console.error(res.error);
+          return;
+        }
+      });
+    }
+  };
+
+
+
+  let modelerInstance: any = null
+
+
+
   useEffect(() => {
     if (modelerInstance) return
     if (xml) {
-      console.log(xml)
+      console.log("result of useFetch", xml)
+      // Append the hidden input to the DOM
       if (bpmnRef.current) {
         modelerInstance = new BpmnModeler({
           container: bpmnRef.current,
@@ -56,20 +110,6 @@ const Bp = () => {
       }
     }
   }, [xml])
-
-  const handleExport = () => {
-    if (modeler) {
-      modeler.saveXML({ format: true }).then((res: any) => {
-        console.log(res.xml)
-        if (res.error) {
-          console.error(res.error)
-          return
-        }
-        const escapedXml = escapeQuotes(res.xml)
-        //console.log(escapedXml)
-      })
-    }
-  }
 
   const handleZoomIn = () => {
     modeler.get('zoomScroll').stepZoom(1)
@@ -136,11 +176,13 @@ const Bp = () => {
         />
       </div>
 
-      <button onClick={handleExport} className="fixed left-0  bottom-28 ">
+      { /* <button onClick={handleExport} className="fixed left-0  bottom-28 ">
         Save
-      </button>
+      </button>*/}
     </>
   )
 }
 
 export default Bp
+
+

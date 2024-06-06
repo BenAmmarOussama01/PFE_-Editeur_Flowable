@@ -1,9 +1,13 @@
 import { createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { string } from 'yup'
 interface Returned {
   data: App[]
   size: number
   start: number
   total: number
+}
+interface input{
+  searchText:string
 }
 //App typ
 interface App {
@@ -33,8 +37,8 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    getAppFetch: (state, action) => {
-      state.loading = true
+    getAppFetch: (state) => {
+      state.loading = false
     },
     getAppSuccess: (state, action: PayloadAction<Returned>) => {
       state.loading = false
@@ -43,7 +47,7 @@ const appSlice = createSlice({
     getAppFailure: (state) => {
       state.loading = false
     },
-    createProcess: (state, action) => {
+    createProcess: (state) => {
       state.loading = true
     },
 

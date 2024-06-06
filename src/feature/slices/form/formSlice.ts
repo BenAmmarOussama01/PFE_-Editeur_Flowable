@@ -33,7 +33,7 @@ const formSlice = createSlice({
   name: 'form',
   initialState,
   reducers: {
-    getFormFetch: (state, action) => {
+    getFormFetch: (state, _action) => {
       state.isLoading = true
     },
     getFormSuccess: (state, action: PayloadAction<Returned>) => {
