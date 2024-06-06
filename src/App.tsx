@@ -1,7 +1,7 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import Footer from './layout/footer/Footer'
-
 import Modeler from './layout/modeler/Modeler'
 import Admin from './components/blocks/Admin'
 import Idm from './components/blocks/Idm'
@@ -11,8 +11,6 @@ import Processes from './modules/Processes/Processes'
 import Bp from './components/diagram_editor/Bp'
 import Login from './modules/Login/Login'
 import Dmn from './components/decision_model/decision_editor/Dmn'
-import { useEffect } from 'react'
-
 import Form from './modules/Form/Form'
 import CaseModels from './modules/CaseModels/CaseModels'
 import Apps from './modules/Apps/Apps'
@@ -21,19 +19,49 @@ import Blocks from './modules/Blocks/Blocks'
 import Fm from './components/forms_model/form_builder/Form'
 import AppDetails from './components/apps/AppDetail'
 import Viewer from './components/diagram_viewer/Viewer'
+import axiosInstance from './setup/axiosConfig'
+import Loader from './components/loader/Loader'
+import axios from 'axios'
 
 function App() {
   const location = useLocation()
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true) // State for loading
 
   useEffect(() => {
     if (
       location &&
-      location?.pathname === '/front' &&
-      location?.search === '?login_success'
+      location.pathname === '/front' &&
+      location.search === '?login_success'
     ) {
       window.location.href = '/blocks'
+    } else if (location && location.pathname === '/') {
+      setIsLoading(false)
+    } else {
+      if (location && location.pathname !== '/') {
+        setIsLoading(true) // Start loading
+        axios
+          .get(`http://localhost:8070/configuration/users/me`)
+          .then((response: any) => {
+            setIsLoading(false) // Stop loading
+            //document.location.href = '/'
+            console.log('headers:', response.headers)
+          })
+          .catch((error: any) => {
+            // Stop loading in case of error
+            console.error('Error fetching data:', error)
+            //document.location.href = '/'
+            navigate('/')
+            setIsLoading(false)
+          })
+      }
     }
   }, [location])
+
+  // Conditionally render the loader when isLoading is true
+  if (isLoading) {
+    return <Loader />
+  }
 
   return (
     <>
@@ -53,8 +81,8 @@ function App() {
           <Route path="decisions" element={<DecisionTable />} />
           <Route path="decisions/:id" element={<Dmn />} />
           {/*<Route path="/blocks/modeler/form" element={<Form />} />*/}
-          <Route path="form" element={<Form />} />
-          <Route path="form/:id" element={<Fm />} />
+          <Route path="form/" element={<Form />} />
+          <Route path="form/editor/:id" element={<Fm />} />
 
           <Route path="Apps" element={<Apps />} />
           <Route path="Apps/:id" element={<AppDetails />} />
@@ -67,8 +95,8 @@ function App() {
         <Route path="/blocks/test" element={<Test />} />
         <Route path="/blocks/bna-retail" element={<BnaRetail />} />
       </Routes>
-      <Footer />
     </>
   )
 }
+
 export default App

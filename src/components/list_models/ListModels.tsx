@@ -16,7 +16,7 @@ const ListModels = ({ isLoading, items, modelType }: IListModelsProps) => {
   ) : (
     <div>
       {items.length > 0 && (
-        <p style={{ marginTop: '2rem' }}>
+        <p style={{ marginTop: '1rem' }}>
           There are {items.length} {modalDescriptionByModelType(modelType)}
         </p>
       )}

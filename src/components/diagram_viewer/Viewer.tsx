@@ -25,7 +25,16 @@ const Viewer = () => {
           if (err.warnings.length) {
             console.warn(err.warnings)
           }
-          modelerInstance.get('canvas').zoom('fit-viewport', 'auto')
+          const canvas = modelerInstance.get('canvas')
+
+          const { inner } = canvas.viewbox()
+
+          const center = {
+            x: inner.x + inner.width / 2,
+            y: inner.y + inner.height / 2,
+          }
+
+          canvas.zoom('fit-viewport', center)
         })
 
         setModeler(modelerInstance)
@@ -34,9 +43,10 @@ const Viewer = () => {
   }, [xml])
   return (
     <div>
-      <div className=" h-full w-full relative">
+      <div className=" h-full w-full relative ">
         <ViewerToolBar id={id!} />
-        <div ref={bpmnRef} className="w-full h-[80vh]" />
+
+        <div ref={bpmnRef} className=" h-[80vh] w-full " />
       </div>
     </div>
   )

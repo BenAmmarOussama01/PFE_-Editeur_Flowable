@@ -1,9 +1,9 @@
-import React from 'react'
 import { useRef, useState, useEffect } from 'react'
-import * as convert from 'xml-js'
 //import { useLocation } from 'react-router-dom'
 import { CamundaPlatformModeler as DmnModeler } from 'camunda-dmn-js'
 import 'camunda-dmn-js/dist/assets/camunda-platform-modeler.css'
+import useFetchXml from '../../../hooks/useFetchXml'
+import { useParams } from 'react-router-dom'
 /*interface Props {
       diagramXml?: string
     }*/
@@ -261,15 +261,12 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   </dmndi:DMNDI>
 </definitions>`
 const Dmn = () => {
-  //const Bp = ({ diagramXml }: Props) => {
-  //url location
-  //const location = useLocation()
-  //const { xml } = location.state
-  //console.log(xml)
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
   let modelerInstance: any = null
+  let { id } = useParams()
+  //let { xml } = useFetchXml(id!)
   useEffect(() => {
     if (modelerInstance) return // Ensure we don't reinitialize if already set
 
@@ -298,7 +295,7 @@ const Dmn = () => {
     }
 
     setModeler(modelerInstance)
-  }, [])
+  }, [xml])
   const handleExport = () => {
     if (modeler) {
       modeler.saveXML({ format: true }).then((res: any) => {
@@ -306,9 +303,9 @@ const Dmn = () => {
           console.error(res.error)
           return
         }
-
-        const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
-        console.log('APDATE THE JSON TO XML', j2X)
+        console.log(res.xml)
+        // const j2X = convert.json2xml(res.xml, { compact: true, spaces: 4 })
+        // console.log('APDATE THE JSON TO XML', j2X)
       })
     }
   }

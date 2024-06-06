@@ -9,33 +9,42 @@ import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import { invokeWS, MethodHttp } from '../../setup/api-service'
 import { APP_BASE_URL } from '../../config/app.constant'
+import axios from 'axios'
+import proxymLogo from '../../assets/proxymDark.png'
 
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
   const login = () => {
     invokeWS({
-      url: `${APP_BASE_URL}authorization/`,
+      url: `/authorization/`,
       method: MethodHttp.get,
     })
       .then((response: any) => {
-        console.log('response ', response)
+        console.log('login res:', response.headers)
 
-        if (response.redirectUrl) {
-          document.location.href = response.redirectUrl
+        if (response.data.redirectUrl) {
+          document.location.href = response.data.redirectUrl
         }
       })
-      .catch((err) => {})
+      .catch((err: any) => {
+        console.log('login err:', err)
+      })
   }
 
   useEffect(() => {
-    invokeWS({
+    /*invokeWS({
       //url: `http://localhost:8070/configuration/users/me`,
       url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=processes&modelType=0&sort=modifiedDesc`,
       method: MethodHttp.get,
     }).then((response: any) => {
       console.log('response ', response)
-    })
+    })*/
+    axios
+      .get(`http://localhost:8070/configuration/users/me`)
+      .then((response: any) => {
+        document.location.href = 'blocks'
+      })
   }, [])
 
   return (
@@ -49,23 +58,27 @@ const Login: FC<LoginProps> = () => {
           alignItems: 'center',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Login
-        </Typography>
-
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-          //href="http://localhost:8070/authorization/"
-          onClick={login}
+        <Box sx={{ mt: 20 }}>
+          <img
+            src={proxymLogo}
+            alt="logo flowable"
+            style={{ height: ' 3rem', objectFit: 'contain' }}
+          />
+        </Box>
+        <form
+          method="GET"
+          action="http://localhost:8070/authorization/"
+          style={{ width: '60%' }}
         >
-          Login
-        </Button>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Login
+          </Button>
+        </form>
       </Box>
     </Container>
   )

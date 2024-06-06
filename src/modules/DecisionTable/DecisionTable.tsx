@@ -28,7 +28,14 @@ const DecisionTable: FC<DecisionTableProps> = () => {
   return (
     <div>
       <Modals modelType={ModelType.decisionTable} />
-      <Box sx={{ display: 'flex', gap: 5 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 5,
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+        }}
+      >
         <SearchInput handleSearchText={handleSearchText} />
         <ListModels
           isLoading={isLoading}

@@ -22,25 +22,45 @@ const ListItem = ({ id, name, createdBy, lastUpdated }: ProcessProps) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="border-2 h-80 border-slate-200 hover:cursor-pointer relative w-[268px] list-item-wrapper">
+        <Box
+          className="list-item-wrapper"
+          sx={{
+            border: '1px  rgba(226,232,240,1)',
+            height: '20rem',
+            width: '268px',
+            position: 'relative',
+            ':hover': { cursor: 'pointer' },
+          }}
+        >
           <Link to={`viewer/${id}`}>
             <div
               style={{
-                height: '200px',
+                objectFit: 'contain',
                 width: '100%',
-                background: `url(${imageSrc}) no-repeat center center `,
+                height: '100%',
+                background: `url(${imageSrc}) no-repeat  `,
                 border: '1px solid #E2E8F0',
               }}
             />
-            <div className="bg-slate-100 p-3 hover:pb-10 absolute bottom-0 right-0 left-0 transition duration-300 ease-in-out">
-              <div>{name}</div>
-              <div className="flex items-center gap-2 mt-3">
+            <Box
+              sx={{
+                bgcolor: 'rgba(241,245,249,1)',
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                py: 3,
+                pl: 3,
+              }}
+            >
+              <Box>{name}</Box>
+              <Box sx={{ mt: 2 }}>
                 <PersonIcon /> {createdBy}
-              </div>
-              <div className="flex items-center gap-2 mt-3 ">
+              </Box>
+              <Box sx={{ mt: 2 }}>
                 <CreateIcon /> {formatDate(lastUpdated)}
-              </div>
-            </div>
+              </Box>
+            </Box>
           </Link>
           <Box
             className="list-item-icons"
@@ -52,14 +72,31 @@ const ListItem = ({ id, name, createdBy, lastUpdated }: ProcessProps) => {
               right: 10,
             }}
           >
-            <Box sx={{ bgcolor: 'primary.main', p: '3px' }}>
-              <SearchIcon sx={{ color: 'white' }} />
+            <Box
+              sx={{
+                bgcolor: 'primary.main',
+                p: '3px',
+                ':hover': { bgcolor: '#304087' },
+              }}
+              onClick={() => console.log('test')}
+            >
+              <Link to={`viewer/${id}`}>
+                <SearchIcon sx={{ color: 'white' }} />
+              </Link>
             </Box>
-            <Box sx={{ bgcolor: 'primary.main', p: '3px' }}>
-              <EditIcon sx={{ color: 'white' }} />
+            <Box
+              sx={{
+                bgcolor: 'primary.main',
+                p: '3px',
+                ':hover': { bgcolor: '#304087' },
+              }}
+            >
+              <Link to={`editor/${id}`}>
+                <EditIcon sx={{ color: 'white' }} />
+              </Link>
             </Box>
           </Box>
-        </div>
+        </Box>
       )}
     </>
   )

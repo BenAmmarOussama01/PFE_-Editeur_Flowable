@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 import useFetchProcessDetails from '../../hooks/useFetchProcessDetails'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Loader from '../loader/Loader'
 import { formatDate } from '../../config/utils/formatDate'
@@ -15,6 +15,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import { MethodHttp, invokeWS } from '../../setup/api-service'
 import { APP_BASE_URL } from '../../config/app.constant'
 import DeleteModal from '../modals/DeleteModal'
+import { Link } from 'react-router-dom'
 
 interface ToolBarProps {
   id: string
@@ -23,6 +24,10 @@ interface ToolBarProps {
 const ViewerToolBar = ({ id }: ToolBarProps) => {
   const [openModal, setOpenModal] = useState(false)
   const { details } = useFetchProcessDetails(id)
+
+  useEffect(() => {
+    console.log(details?.lastUpdated)
+  }, [details])
 
   const handleDeleteProcess = async () => {
     try {
@@ -64,10 +69,12 @@ const ViewerToolBar = ({ id }: ToolBarProps) => {
               <Button variant="contained" onClick={() => setOpenModal(true)}>
                 <DeleteIcon />
               </Button>
-              <Button variant="contained">
-                <BorderColorIcon />
-                Visual Editor
-              </Button>
+              <Link to={`/modeler/processes/editor/${id}`}>
+                <Button variant="contained">
+                  <BorderColorIcon />
+                  Visual Editor
+                </Button>
+              </Link>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', gap: 20, mt: 1 }}>

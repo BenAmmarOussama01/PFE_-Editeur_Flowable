@@ -23,9 +23,11 @@ const Modals = ({ modelType }: ModalsProps) => {
           display: 'flex',
           justifyContent: 'space-between',
           justifyItems: 'center',
-          p: 5,
+          px: 4,
+          py: 2,
           bgcolor: '#E2E8F0',
           borderColor: '#E2E8F0',
+          mb: 3,
         }}
       >
         <Typography fontSize={25}>

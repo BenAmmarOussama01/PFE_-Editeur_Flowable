@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import FlowableLogo from '../../assets/flowable-logo.png'
+import proxymLogo from '../../assets/proxymlogo.png'
 import * as React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -7,21 +8,22 @@ import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
 import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
-import AdbIcon from '@mui/icons-material/Adb'
 
-const pages = ['Products', 'Pricing', 'Blog']
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
+import { useNavigate } from 'react-router-dom'
+import axiosInstance from '../../setup/axiosConfig'
+import Button from '@mui/material/Button'
+
+const settings = ['Profile', 'Logout']
 interface childrenProps {
   children?: React.ReactNode
 }
 
 const NavbarWrapper = ({ children }: childrenProps) => {
+  const navigate = useNavigate()
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null,
   )
@@ -33,17 +35,28 @@ const NavbarWrapper = ({ children }: childrenProps) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
+
+  const handleLogout = () => {
+    axiosInstance
+      .post('gw/logout')
+      .then((res) => {
+        console.log(res)
+        handleCloseUserMenu()
+        navigate('/')
+      })
+      .catch((err) => console.log(err))
+  }
   return (
     <>
       <AppBar
         position="static"
-        sx={{ backgroundColor: '#1F3245', boxShadow: 'none' }}
+        sx={{ backgroundColor: '#16176F', boxShadow: 'none' }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Link to="/blocks">
               <img
-                src={FlowableLogo}
+                src={proxymLogo}
                 alt="logo flowable"
                 style={{ height: ' 3rem', objectFit: 'contain' }}
               />
@@ -82,11 +95,18 @@ const NavbarWrapper = ({ children }: childrenProps) => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                <MenuItem>
+                  <Button type="submit">
+                    <Typography textAlign="center">Profile</Typography>
+                  </Button>
+                </MenuItem>
+                <form method="POST" action="http://localhost:8070/gw/logout">
+                  <MenuItem>
+                    <Button type="submit" sx={{ color: 'black' }}>
+                      <Typography textAlign="center">Logout</Typography>
+                    </Button>
                   </MenuItem>
-                ))}
+                </form>
               </Menu>
             </Box>
           </Toolbar>

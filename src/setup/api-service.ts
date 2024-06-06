@@ -1,4 +1,5 @@
 import axios from 'axios'
+import axiosInstance from './axiosConfig'
 
 export enum MethodHttp {
   post = 'POST',
@@ -66,7 +67,7 @@ const callWS = (
       axios.defaults.headers.post = { 'Content-Type': 'text/plain' }
     }
 
-    axios.request(invokeParams).then(
+    axiosInstance.request(invokeParams).then(
       (response: any) => {
         document.body.classList.remove('loading-indicator')
         showNotification(true, response)

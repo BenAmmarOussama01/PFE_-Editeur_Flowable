@@ -1,0 +1,1303 @@
+{
+  "modelId": "92586848-168a-11ef-a536-eaf78a1c2578",
+  "bounds": {
+    "lowerRight": { "x": 2518.7999477626363, "y": 1078.234255128335 },
+    "upperLeft": { "x": 0, "y": 0 }
+  },
+  "properties": {
+    "process_id": "DIGITAL-ONBOARDING",
+    "name": "DIGITAL-ONBOARDING",
+    "documentation": "",
+    "process_author": "",
+    "process_version": "",
+    "process_namespace": "http://flowable.org/test",
+    "process_historylevel": "",
+    "isexecutable": true,
+    "dataproperties": "",
+    "executionlisteners": "{\"executionListeners\":[]}",
+    "eventlisteners": "{\"eventListeners\":[]}",
+    "signaldefinitions": "[]",
+    "messagedefinitions": "[]",
+    "escalationdefinitions": "[]",
+    "process_potentialstarteruser": "",
+    "process_potentialstartergroup": "",
+    "iseagerexecutionfetch": "false",
+    "messages": []
+  },
+  "childShapes": [
+    {
+      "resourceId": "sid-EDC880BA-8C80-4DF4-8A43-AA0B2C00169C",
+      "properties": {
+        "overrideid": "sid-EDC880BA-8C80-4DF4-8A43-AA0B2C00169C",
+        "name": "DIGITAL-ONBOARDING",
+        "documentation": "",
+        "process_id": "DIGITAL-ONBOARDING",
+        "isexecutable": "true"
+      },
+      "stencil": { "id": "Pool" },
+      "childShapes": [
+        {
+          "resourceId": "sid-751278AF-885C-4738-BB0F-1C9422861C3F",
+          "properties": {
+            "overrideid": "sid-751278AF-885C-4738-BB0F-1C9422861C3F",
+            "name": "BANKERISE",
+            "documentation": "",
+            "showcaption": true
+          },
+          "stencil": { "id": "Lane" },
+          "childShapes": [
+            {
+              "resourceId": "startEvent1",
+              "properties": {
+                "overrideid": "startEvent1",
+                "name": "First Form",
+                "documentation": "",
+                "executionlisteners": {
+                  "executionListeners": [
+                    {
+                      "event": "start",
+                      "expression": "${applicationReferenceListener.onStart(execution)}"
+                    },
+                    {
+                      "event": "start",
+                      "expression": "${execution.setVariable(\"previous\", false)}"
+                    },
+                    {
+                      "event": "start",
+                      "expression": "${execution.setVariable(\"previousTask\", \"\")}"
+                    },
+                    {
+                      "event": "start",
+                      "expression": "${execution.setVariable(\"isProspect\", true)}"
+                    },
+                    {
+                      "event": "start",
+                      "expression": "${execution.setVariable(\"docUpload\", false)}"
+                    }
+                  ]
+                },
+                "initiator": "",
+                "formkeydefinition": "",
+                "formreference": "",
+                "formfieldvalidation": true,
+                "formproperties": "",
+                "interrupting": true
+              },
+              "stencil": { "id": "StartNoneEvent" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-8BCDA330-C501-4011-9115-B9CA7A3DB45E" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 86.46992945745585,
+                  "y": 116.49999862814485
+                },
+                "upperLeft": { "x": 56.46992945745585, "y": 86.49999862814485 }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-0926FD99-23E8-4134-AFBA-4E2866AF8F8D",
+              "properties": {
+                "overrideid": "sid-0926FD99-23E8-4134-AFBA-4E2866AF8F8D",
+                "name": "OnBoarding   Upload Form",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "executionlisteners": {
+                  "executionListeners": [
+                    {
+                      "event": "start",
+                      "expression": "${execution.setVariable(\"afterSaveData\", true)}"
+                    }
+                  ]
+                },
+                "multiinstance_type": "None",
+                "multiinstance_variableaggregations": "",
+                "multiinstance_cardinality": "",
+                "multiinstance_collection": "",
+                "multiinstance_variable": "",
+                "multiinstance_condition": "",
+                "isforcompensation": false,
+                "usertaskassignment": {
+                  "assignment": { "type": "static", "assignee": "$INITIATOR" }
+                },
+                "formkeydefinition": "",
+                "formreference": "",
+                "formfieldvalidation": true,
+                "duedatedefinition": "",
+                "prioritydefinition": "",
+                "formproperties": "",
+                "tasklisteners": {
+                  "taskListeners": [
+                    {
+                      "event": "create",
+                      "expression": "${addProspect.notify(task)}"
+                    }
+                  ]
+                },
+                "skipexpression": "",
+                "categorydefinition": "",
+                "taskidvariablename": ""
+              },
+              "stencil": { "id": "UserTask" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-3703471B-859B-46E4-A743-7532C91683E9" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 426.46992945745586,
+                  "y": 342.49997468157386
+                },
+                "upperLeft": { "x": 290.46992945745586, "y": 241.4999746815738 }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-E55091A7-2690-4802-8E8F-E7FB168964B4",
+              "properties": {
+                "overrideid": "sid-E55091A7-2690-4802-8E8F-E7FB168964B4",
+                "name": "Create digital Account",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "servicetasktriggerable": "false",
+                "executionlisteners": { "executionListeners": [] },
+                "multiinstance_type": "None",
+                "multiinstance_variableaggregations": "",
+                "multiinstance_cardinality": "",
+                "multiinstance_collection": "",
+                "multiinstance_variable": "",
+                "multiinstance_condition": "",
+                "isforcompensation": false,
+                "servicetaskclass": "",
+                "servicetaskexpression": "",
+                "servicetaskdelegateexpression": "${createAccountKeycloak}",
+                "servicetaskfields": { "fields": [] },
+                "servicetaskexceptions": { "exceptions": [] },
+                "servicetaskresultvariable": "",
+                "servicetaskuselocalscopeforresultvariable": "false",
+                "skipexpression": "",
+                "servicetaskfailedjobretrytimecycle": "",
+                "servicetaskstoreresultvariabletransient": "false"
+              },
+              "stencil": { "id": "ServiceTask" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-02E6E5C2-DA06-4B40-9F31-EAFEF38AC521" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 576.469905297709,
+                  "y": 247.69191665510323
+                },
+                "upperLeft": {
+                  "x": 476.46990529770886,
+                  "y": 167.69191665510323
+                }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-AE48F376-6414-43C2-AA28-7A3B163010E0",
+              "properties": {
+                "overrideid": "sid-AE48F376-6414-43C2-AA28-7A3B163010E0",
+                "name": "",
+                "documentation": "",
+                "executionlisteners": { "executionListeners": [] }
+              },
+              "stencil": { "id": "EndNoneEvent" },
+              "childShapes": [],
+              "outgoing": [],
+              "bounds": {
+                "lowerRight": {
+                  "x": 2067.580925647454,
+                  "y": 221.69192694172716
+                },
+                "upperLeft": {
+                  "x": 2039.5809256474543,
+                  "y": 193.69192694172716
+                }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-39BF20E9-9007-4D69-B60A-5866BD861025",
+              "properties": {
+                "overrideid": "sid-39BF20E9-9007-4D69-B60A-5866BD861025",
+                "name": "Mail Utilisateur + numero de referance",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "servicetasktriggerable": "false",
+                "executionlisteners": { "executionListeners": [] },
+                "multiinstance_type": "None",
+                "multiinstance_variableaggregations": "",
+                "multiinstance_cardinality": "",
+                "multiinstance_collection": "",
+                "multiinstance_variable": "",
+                "multiinstance_condition": "",
+                "isforcompensation": false,
+                "servicetaskclass": "",
+                "servicetaskexpression": "",
+                "servicetaskdelegateexpression": "${mailProspect}",
+                "servicetaskfields": { "fields": [] },
+                "servicetaskexceptions": { "exceptions": [] },
+                "servicetaskresultvariable": "",
+                "servicetaskuselocalscopeforresultvariable": "false",
+                "skipexpression": "",
+                "servicetaskfailedjobretrytimecycle": "",
+                "servicetaskstoreresultvariabletransient": "false"
+              },
+              "stencil": { "id": "ServiceTask" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-398BC13C-C945-48A7-8CCA-4CE7455F6721" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 756.4699135628852,
+                  "y": 247.69192179841525
+                },
+                "upperLeft": { "x": 656.4699135628852, "y": 167.69192179841525 }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-F6167D38-92D2-4D78-B612-A12599978A8A",
+              "properties": {
+                "overrideid": "sid-F6167D38-92D2-4D78-B612-A12599978A8A",
+                "name": "Close digital Account",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "servicetasktriggerable": "false",
+                "executionlisteners": { "executionListeners": [] },
+                "multiinstance_type": "None",
+                "multiinstance_variableaggregations": "",
+                "multiinstance_cardinality": "",
+                "multiinstance_collection": "",
+                "multiinstance_variable": "",
+                "multiinstance_condition": "",
+                "isforcompensation": false,
+                "servicetaskclass": "",
+                "servicetaskexpression": "",
+                "servicetaskdelegateexpression": "${closeAccount}",
+                "servicetaskfields": { "fields": [] },
+                "servicetaskexceptions": { "exceptions": [] },
+                "servicetaskresultvariable": "",
+                "servicetaskuselocalscopeforresultvariable": "false",
+                "skipexpression": "",
+                "servicetaskfailedjobretrytimecycle": "",
+                "servicetaskstoreresultvariabletransient": "false"
+              },
+              "stencil": { "id": "ServiceTask" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-FE8069BC-A3D6-4765-BD99-F9203E3B9760" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 1791.4698363624561,
+                  "y": 394.99998077750314
+                },
+                "upperLeft": {
+                  "x": 1691.4698363624561,
+                  "y": 314.99998077750314
+                }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-09B801D5-7AFA-4935-8CBA-F970B088B71E",
+              "properties": {
+                "overrideid": "sid-09B801D5-7AFA-4935-8CBA-F970B088B71E",
+                "name": "Activate Account",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "servicetasktriggerable": "false",
+                "executionlisteners": { "executionListeners": [] },
+                "multiinstance_type": "None",
+                "multiinstance_variableaggregations": "",
+                "multiinstance_cardinality": "",
+                "multiinstance_collection": "",
+                "multiinstance_variable": "",
+                "multiinstance_condition": "",
+                "isforcompensation": false,
+                "servicetaskclass": "",
+                "servicetaskexpression": "",
+                "servicetaskdelegateexpression": "${activateAccount}",
+                "servicetaskfields": { "fields": [] },
+                "servicetaskexceptions": { "exceptions": [] },
+                "servicetaskresultvariable": "",
+                "servicetaskuselocalscopeforresultvariable": "false",
+                "skipexpression": "",
+                "servicetaskfailedjobretrytimecycle": "",
+                "servicetaskstoreresultvariabletransient": "false"
+              },
+              "stencil": { "id": "ServiceTask" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-ACEFA2C7-344C-4F8F-AF7F-AEA1F9CAA3B3" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 1071.4699064441959,
+                  "y": 244.999990945062
+                },
+                "upperLeft": { "x": 971.4699064441955, "y": 164.999990945062 }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-27245010-753D-4E16-AAE9-82AF328D064C",
+              "properties": {
+                "overrideid": "",
+                "name": "",
+                "documentation": "",
+                "errorref": "",
+                "errorvariablename": "",
+                "errorvariabletransient": true,
+                "errorvariablelocalscope": true
+              },
+              "stencil": { "id": "BoundaryErrorEvent" },
+              "childShapes": [],
+              "outgoing": [],
+              "bounds": {
+                "lowerRight": {
+                  "x": 221.46992945745586,
+                  "y": 242.23802971161962
+                },
+                "upperLeft": {
+                  "x": 191.46992945745586,
+                  "y": 212.23802971161962
+                }
+              },
+              "dockers": [{ "x": 206.46992945745586, "y": 227.23802971161962 }]
+            }
+          ],
+          "outgoing": [],
+          "bounds": {
+            "lowerRight": { "x": 2355.269877220092, "y": 454.47605942323924 },
+            "upperLeft": { "x": 30, "y": 0 }
+          },
+          "dockers": []
+        },
+        {
+          "resourceId": "sid-0C3960D3-8BE5-49F7-99B8-5F5BF4BAA75B",
+          "properties": {
+            "overrideid": "sid-0C3960D3-8BE5-49F7-99B8-5F5BF4BAA75B",
+            "name": "BNA",
+            "documentation": "",
+            "showcaption": true
+          },
+          "stencil": { "id": "Lane" },
+          "childShapes": [
+            {
+              "resourceId": "sid-42A1E09C-3442-4C2A-BE7B-4075F880FA14",
+              "properties": {
+                "overrideid": "sid-42A1E09C-3442-4C2A-BE7B-4075F880FA14",
+                "name": "Smile API PreValidation",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "executionlisteners": { "executionListeners": [] },
+                "multiinstance_type": "None",
+                "multiinstance_variableaggregations": "",
+                "multiinstance_cardinality": "",
+                "multiinstance_collection": "",
+                "multiinstance_variable": "",
+                "multiinstance_condition": "",
+                "isforcompensation": false,
+                "usertaskassignment": "",
+                "formkeydefinition": "",
+                "formreference": "",
+                "formfieldvalidation": "true",
+                "duedatedefinition": "",
+                "prioritydefinition": "",
+                "formproperties": "",
+                "tasklisteners": {
+                  "taskListeners": [
+                    {
+                      "event": "create",
+                      "expression": "${bnaSendRequestToValidate.notify(task)}"
+                    }
+                  ]
+                },
+                "skipexpression": "",
+                "categorydefinition": "",
+                "taskidvariablename": ""
+              },
+              "stencil": { "id": "UserTask" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-DE9FD691-A78E-4A47-B5A5-200CA2350280" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 876.4699164934458,
+                  "y": 210.52393185958164
+                },
+                "upperLeft": { "x": 776.4699164934458, "y": 130.5239318595817 }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-042445D9-20C3-4537-9269-0E4A6AFEDD62",
+              "properties": {
+                "overrideid": "sid-042445D9-20C3-4537-9269-0E4A6AFEDD62",
+                "name": "Smile API Validation",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "executionlisteners": { "executionListeners": [] },
+                "multiinstance_type": "None",
+                "multiinstance_variableaggregations": "",
+                "multiinstance_cardinality": "",
+                "multiinstance_collection": "",
+                "multiinstance_variable": "",
+                "multiinstance_condition": "",
+                "isforcompensation": false,
+                "usertaskassignment": "",
+                "formkeydefinition": "",
+                "formreference": "",
+                "formfieldvalidation": "true",
+                "duedatedefinition": "",
+                "prioritydefinition": "",
+                "formproperties": "",
+                "tasklisteners": { "taskListeners": [] },
+                "skipexpression": "",
+                "categorydefinition": "",
+                "taskidvariablename": ""
+              },
+              "stencil": { "id": "UserTask" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-15E3ECFC-B1AF-4F8F-86FD-5CCE3431565D" },
+                { "resourceId": "sid-39E754F3-ACAF-4D4C-9596-8A5B5EB9F0FC" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 1536.4699066586795,
+                  "y": 225.5239316360641
+                },
+                "upperLeft": {
+                  "x": 1436.4699066586795,
+                  "y": 145.52393163606405
+                }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-39E754F3-ACAF-4D4C-9596-8A5B5EB9F0FC",
+              "properties": {
+                "overrideid": "sid-39E754F3-ACAF-4D4C-9596-8A5B5EB9F0FC",
+                "name": "",
+                "documentation": "",
+                "executionlisteners": { "executionListeners": [] },
+                "timercycledefinition": "",
+                "timerdatedefinition": "",
+                "timerdurationdefinition": "P1Y",
+                "timerenddatedefinition": "",
+                "cancelactivity": true
+              },
+              "stencil": { "id": "BoundaryTimerEvent" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-0627C903-077E-424E-B299-322812D30737" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 1552.9697067186596,
+                  "y": 202.04392763726366
+                },
+                "upperLeft": {
+                  "x": 1521.9697067186596,
+                  "y": 171.04392763726366
+                }
+              },
+              "dockers": [{ "x": 100, "y": 41 }]
+            },
+            {
+              "resourceId": "sid-3054F143-E42D-4B6B-8C65-6533DFA2B72A",
+              "properties": {
+                "overrideid": "sid-3054F143-E42D-4B6B-8C65-6533DFA2B72A",
+                "name": "Assign pack and role",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "servicetasktriggerable": "false",
+                "executionlisteners": { "executionListeners": [] },
+                "multiinstance_type": "None",
+                "multiinstance_variableaggregations": "",
+                "multiinstance_cardinality": "",
+                "multiinstance_collection": "",
+                "multiinstance_variable": "",
+                "multiinstance_condition": "",
+                "isforcompensation": false,
+                "servicetaskclass": "",
+                "servicetaskexpression": "",
+                "servicetaskdelegateexpression": "${assignPackAndRole}",
+                "servicetaskfields": { "fields": [] },
+                "servicetaskexceptions": { "exceptions": [] },
+                "servicetaskresultvariable": "",
+                "servicetaskuselocalscopeforresultvariable": "false",
+                "skipexpression": "",
+                "servicetaskfailedjobretrytimecycle": "",
+                "servicetaskstoreresultvariabletransient": "false"
+              },
+              "stencil": { "id": "ServiceTask" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-F463A6AF-2EB3-4880-B1CC-691EF3D957FE" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 1946.4327808135026,
+                  "y": -206.7841369767965
+                },
+                "upperLeft": {
+                  "x": 1846.4327808135026,
+                  "y": -286.7841369767965
+                }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-C2186BA5-A6FB-44CA-922D-2DEF33649123",
+              "properties": {
+                "overrideid": "sid-C2186BA5-A6FB-44CA-922D-2DEF33649123",
+                "name": "",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "sequencefloworder": "",
+                "executionlisteners": { "executionListeners": [] }
+              },
+              "stencil": { "id": "ExclusiveGateway" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-9A8BFF0D-68DA-4E3F-9184-7D426AD21696" },
+                { "resourceId": "sid-90CA4DE4-BE39-4A80-BD72-7BC2E9DABC67" },
+                { "resourceId": "sid-9002FA92-B5D3-4ED7-8017-38AF6745E3F7" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 1768.2846348619637,
+                  "y": -226.78413485727447
+                },
+                "upperLeft": {
+                  "x": 1728.2846348619637,
+                  "y": -266.78413485727447
+                }
+              },
+              "dockers": []
+            },
+            {
+              "resourceId": "sid-624760E9-8D58-4C36-B8E5-140C29F4FCD4",
+              "properties": {
+                "overrideid": "sid-624760E9-8D58-4C36-B8E5-140C29F4FCD4",
+                "name": "",
+                "documentation": "",
+                "asynchronousdefinition": false,
+                "exclusivedefinition": true,
+                "sequencefloworder": "",
+                "executionlisteners": { "executionListeners": [] }
+              },
+              "stencil": { "id": "ExclusiveGateway" },
+              "childShapes": [],
+              "outgoing": [
+                { "resourceId": "sid-5731849D-41B3-4B15-A63D-1F4EB3A6BC61" },
+                { "resourceId": "sid-BE809FC8-CE78-4552-BAE4-5A4A35D530A5" }
+              ],
+              "bounds": {
+                "lowerRight": {
+                  "x": 1041.4699290144858,
+                  "y": 211.47151614727773
+                },
+                "upperLeft": { "x": 1001.469929014486, "y": 171.47151614727773 }
+              },
+              "dockers": []
+            }
+          ],
+          "outgoing": [],
+          "bounds": {
+            "lowerRight": { "x": 2355.269877220092, "y": 903.2342562459221 },
+            "upperLeft": { "x": 30, "y": 454.47605942323924 }
+          },
+          "dockers": []
+        }
+      ],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 2418.7999477626363, "y": 978.234255128335 },
+        "upperLeft": { "x": 63.53007054254415, "y": 74.99999888241292 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-3703471B-859B-46E4-A743-7532C91683E9",
+      "properties": {
+        "overrideid": "sid-3703471B-859B-46E4-A743-7532C91683E9",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-E55091A7-2690-4802-8E8F-E7FB168964B4" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 576.6101727176431, "y": 366.99997356398677 },
+        "upperLeft": { "x": 520.375, "y": 322.89093763220126 }
+      },
+      "dockers": [
+        { "x": 68.00000000000001, "y": 50.500000000000036 },
+        { "x": 529, "y": 366.99997356398677 },
+        { "x": 50.00000000000009, "y": 40.00000000000001 }
+      ],
+      "target": { "resourceId": "sid-E55091A7-2690-4802-8E8F-E7FB168964B4" }
+    },
+    {
+      "resourceId": "sid-FE8069BC-A3D6-4765-BD99-F9203E3B9760",
+      "properties": {
+        "overrideid": "sid-FE8069BC-A3D6-4765-BD99-F9203E3B9760",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-AE48F376-6414-43C2-AA28-7A3B163010E0" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 2147.099831650346, "y": 429.83662162191314 },
+        "upperLeft": { "x": 1885.9686666785744, "y": 297.40830749035445 }
+      },
+      "dockers": [
+        { "x": 50.000000000000036, "y": 40.00000000000001 },
+        { "x": 2147, "y": 429 },
+        { "x": 13.999999999999922, "y": 14.000000000000007 }
+      ],
+      "target": { "resourceId": "sid-AE48F376-6414-43C2-AA28-7A3B163010E0" }
+    },
+    {
+      "resourceId": "sid-ACEFA2C7-344C-4F8F-AF7F-AEA1F9CAA3B3",
+      "properties": {
+        "overrideid": "sid-ACEFA2C7-344C-4F8F-AF7F-AEA1F9CAA3B3",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-042445D9-20C3-4537-9269-0E4A6AFEDD62" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1529.9531333154562, "y": 714.6572067340761 },
+        "upperLeft": { "x": 1165.843725669225, "y": 279 }
+      },
+      "dockers": [
+        { "x": 50.00000000000015, "y": 40.00000000000001 },
+        { "x": 1434, "y": 279 },
+        { "x": 1434, "y": 714 },
+        { "x": 50.000000000000036, "y": 40.00000000000003 }
+      ],
+      "target": { "resourceId": "sid-042445D9-20C3-4537-9269-0E4A6AFEDD62" }
+    },
+    {
+      "resourceId": "sid-02E6E5C2-DA06-4B40-9F31-EAFEF38AC521",
+      "properties": {
+        "overrideid": "sid-02E6E5C2-DA06-4B40-9F31-EAFEF38AC521",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-39BF20E9-9007-4D69-B60A-5866BD861025" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 749.7812318454202, "y": 282.6919192458798 },
+        "upperLeft": { "x": 670.2187281002623, "y": 282.6919169724645 }
+      },
+      "dockers": [
+        { "x": 50.00000000000009, "y": 40.00000000000001 },
+        { "x": 49.99999999999998, "y": 40.00000000000001 }
+      ],
+      "target": { "resourceId": "sid-39BF20E9-9007-4D69-B60A-5866BD861025" }
+    },
+    {
+      "resourceId": "sid-398BC13C-C945-48A7-8CCA-4CE7455F6721",
+      "properties": {
+        "overrideid": "sid-398BC13C-C945-48A7-8CCA-4CE7455F6721",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-42A1E09C-3442-4C2A-BE7B-4075F880FA14" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 869.8437764508783, "y": 699.5854800604056 },
+        "upperLeft": { "x": 799, "y": 322.7208002321412 }
+      },
+      "dockers": [
+        { "x": 49.99999999999998, "y": 40.00000000000001 },
+        { "x": 799, "y": 699 },
+        { "x": 49.99999999999998, "y": 39.99999999999997 }
+      ],
+      "target": { "resourceId": "sid-42A1E09C-3442-4C2A-BE7B-4075F880FA14" }
+    },
+    {
+      "resourceId": "sid-0627C903-077E-424E-B299-322812D30737",
+      "properties": {
+        "overrideid": "sid-0627C903-077E-424E-B299-322812D30737",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-F6167D38-92D2-4D78-B612-A12599978A8A" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1834.859776564432, "y": 722 },
+        "upperLeft": { "x": 1647.065766433045, "y": 470.9218515777914 }
+      },
+      "dockers": [
+        { "x": 15.500000000000036, "y": 15.5 },
+        { "x": 1834, "y": 722 },
+        { "x": 50.000000000000036, "y": 40.00000000000001 }
+      ],
+      "target": { "resourceId": "sid-F6167D38-92D2-4D78-B612-A12599978A8A" }
+    },
+    {
+      "resourceId": "sid-F463A6AF-2EB3-4880-B1CC-691EF3D957FE",
+      "properties": {
+        "overrideid": "sid-F463A6AF-2EB3-4880-B1CC-691EF3D957FE",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-AE48F376-6414-43C2-AA28-7A3B163010E0" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 2132.606077493331, "y": 282.6919254092212 },
+        "upperLeft": { "x": 2040.0716466166566, "y": 282.6919227622374 }
+      },
+      "dockers": [
+        { "x": 50.000000000000036, "y": 40 },
+        { "x": 13.999999999999922, "y": 14.000000000000007 }
+      ],
+      "target": { "resourceId": "sid-AE48F376-6414-43C2-AA28-7A3B163010E0" }
+    },
+    {
+      "resourceId": "sid-9A8BFF0D-68DA-4E3F-9184-7D426AD21696",
+      "properties": {
+        "overrideid": "sid-9A8BFF0D-68DA-4E3F-9184-7D426AD21696",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": true,
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-3054F143-E42D-4B6B-8C65-6533DFA2B72A" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1939.1943335754515, "y": 282.6919231608513 },
+        "upperLeft": { "x": 1861.9119273435736, "y": 282.6919220551893 }
+      },
+      "dockers": [
+        { "x": 20.000000000000036, "y": 20 },
+        { "x": 50.000000000000036, "y": 40 }
+      ],
+      "target": { "resourceId": "sid-3054F143-E42D-4B6B-8C65-6533DFA2B72A" }
+    },
+    {
+      "resourceId": "sid-DE9FD691-A78E-4A47-B5A5-200CA2350280",
+      "properties": {
+        "overrideid": "sid-DE9FD691-A78E-4A47-B5A5-200CA2350280",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-624760E9-8D58-4C36-B8E5-140C29F4FCD4" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1094.5468748603314, "y": 721 },
+        "upperLeft": { "x": 970.8749529525081, "y": 699 }
+      },
+      "dockers": [
+        { "x": 49.99999999999998, "y": 39.99999999999997 },
+        { "x": 1032, "y": 699 },
+        { "x": 1032, "y": 721 },
+        { "x": 19.999999999999922, "y": 20 }
+      ],
+      "target": { "resourceId": "sid-624760E9-8D58-4C36-B8E5-140C29F4FCD4" }
+    },
+    {
+      "resourceId": "sid-15E3ECFC-B1AF-4F8F-86FD-5CCE3431565D",
+      "properties": {
+        "overrideid": "sid-15E3ECFC-B1AF-4F8F-86FD-5CCE3431565D",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-C2186BA5-A6FB-44CA-922D-2DEF33649123" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1822.3355988827375, "y": 674.9179622376163 },
+        "upperLeft": { "x": 1579, "y": 280 }
+      },
+      "dockers": [
+        { "x": 50.000000000000036, "y": 40.00000000000003 },
+        { "x": 1579, "y": 280 },
+        { "x": 20.000000000000036, "y": 20 }
+      ],
+      "target": { "resourceId": "sid-C2186BA5-A6FB-44CA-922D-2DEF33649123" }
+    },
+    {
+      "resourceId": "sid-5731849D-41B3-4B15-A63D-1F4EB3A6BC61",
+      "properties": {
+        "overrideid": "sid-5731849D-41B3-4B15-A63D-1F4EB3A6BC61",
+        "name": "Pre validation ",
+        "documentation": "",
+        "conditionsequenceflow": "${execution.getVariable(\"validationStatus\")==\"PRE_VALIDATED\"}",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-09B801D5-7AFA-4935-8CBA-F970B088B71E" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1114.999998536027, "y": 701.000607926055 },
+        "upperLeft": { "x": 1114.9999790657253, "y": 320.61637438366813 }
+      },
+      "dockers": [
+        { "x": 19.999999999999922, "y": 20 },
+        { "x": 50.00000000000015, "y": 40.00000000000001 }
+      ],
+      "target": { "resourceId": "sid-09B801D5-7AFA-4935-8CBA-F970B088B71E" }
+    },
+    {
+      "resourceId": "sid-BE809FC8-CE78-4552-BAE4-5A4A35D530A5",
+      "properties": {
+        "overrideid": "sid-BE809FC8-CE78-4552-BAE4-5A4A35D530A5",
+        "name": "Refused",
+        "documentation": "",
+        "conditionsequenceflow": "${execution.getVariable(\"validationStatus\")==\"REFUSED_PRE_VALIDATED\"}",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-F6167D38-92D2-4D78-B612-A12599978A8A" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1834.9037792269064, "y": 849 },
+        "upperLeft": { "x": 1114.9999996262427, "y": 470.2812287193287 }
+      },
+      "dockers": [
+        { "x": 19.999999999999922, "y": 20 },
+        { "x": 1115, "y": 849 },
+        { "x": 1834, "y": 849 },
+        { "x": 50.000000000000036, "y": 40.00000000000001 }
+      ],
+      "target": { "resourceId": "sid-F6167D38-92D2-4D78-B612-A12599978A8A" }
+    },
+    {
+      "resourceId": "sid-90CA4DE4-BE39-4A80-BD72-7BC2E9DABC67",
+      "properties": {
+        "overrideid": "sid-90CA4DE4-BE39-4A80-BD72-7BC2E9DABC67",
+        "name": "Validated",
+        "documentation": "",
+        "conditionsequenceflow": "${execution.getVariable(\"validationStatus\")==\"FINAL_VALIDATED\"}",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-3054F143-E42D-4B6B-8C65-6533DFA2B72A" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1939.1943335754515, "y": 282.6919231608513 },
+        "upperLeft": { "x": 1861.9119273435736, "y": 282.6919220551893 }
+      },
+      "dockers": [
+        { "x": 20.000000000000036, "y": 20 },
+        { "x": 50.000000000000036, "y": 40 }
+      ],
+      "target": { "resourceId": "sid-3054F143-E42D-4B6B-8C65-6533DFA2B72A" }
+    },
+    {
+      "resourceId": "sid-9002FA92-B5D3-4ED7-8017-38AF6745E3F7",
+      "properties": {
+        "overrideid": "sid-9002FA92-B5D3-4ED7-8017-38AF6745E3F7",
+        "name": "Non validated",
+        "documentation": "",
+        "conditionsequenceflow": "${execution.getVariable(\"validationStatus\")==\"FINAL_REFUSED\"}",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": ""
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [
+        { "resourceId": "sid-F6167D38-92D2-4D78-B612-A12599978A8A" }
+      ],
+      "bounds": {
+        "lowerRight": { "x": 1842, "y": 389.6284435291527 },
+        "upperLeft": { "x": 1838.3642471399342, "y": 302.4865043913802 }
+      },
+      "dockers": [
+        { "x": 20.000000000000036, "y": 20 },
+        { "x": 1842, "y": 346 },
+        { "x": 50.000000000000036, "y": 40.00000000000001 }
+      ],
+      "target": { "resourceId": "sid-F6167D38-92D2-4D78-B612-A12599978A8A" }
+    },
+    {
+      "resourceId": "sid-DDAF1D6C-111B-4B45-9A9C-C04778614711",
+      "properties": {
+        "overrideid": "sid-DDAF1D6C-111B-4B45-9A9C-C04778614711",
+        "name": "",
+        "documentation": "",
+        "text": "Get pack api BNA DONE\n\nGet bundles api"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 442.00000484639963, "y": 214.50000937581143 },
+        "upperLeft": { "x": 285.0000040151859, "y": 168.50000944625336 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-B204F5AB-D4E9-4526-AF47-3A4473674590",
+      "properties": {
+        "overrideid": "sid-B204F5AB-D4E9-4526-AF47-3A4473674590",
+        "name": "",
+        "documentation": "",
+        "text": "Upload file API"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 378.9999936710706, "y": 448.4999934711244 },
+        "upperLeft": { "x": 284.99999374151247, "y": 405.499993569743 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-6ADC54D9-4599-4721-A8BC-93333E6E5699",
+      "properties": {
+        "overrideid": "sid-6ADC54D9-4599-4721-A8BC-93333E6E5699",
+        "name": "",
+        "documentation": "",
+        "text": "Depuis Message center"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 987.9999769590122, "y": 378.99999463368545 },
+        "upperLeft": { "x": 809.9999758601194, "y": 344.99999485909944 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-3C0FB75D-FB6D-402D-B5AF-8CD8F9534E5A",
+      "properties": {
+        "overrideid": "sid-3C0FB75D-FB6D-402D-B5AF-8CD8F9534E5A",
+        "name": "",
+        "documentation": "",
+        "text": "Change status to resigned"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 1735, "y": 455.00000000000006 },
+        "upperLeft": { "x": 1635, "y": 405 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-5E9E76B2-1F15-4598-88F3-DD613C8B5049",
+      "properties": {
+        "overrideid": "sid-5E9E76B2-1F15-4598-88F3-DD613C8B5049",
+        "name": "",
+        "documentation": "",
+        "text": "Asign pack intermediere \n\nAssign role intermediere "
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 1944.0000259648689, "y": 219.00000470551618 },
+        "upperLeft": { "x": 1800.0000253590688, "y": 165.00000464916266 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-08F14AE2-39DC-4218-BEA9-621EE993F8E2",
+      "properties": {
+        "overrideid": "sid-08F14AE2-39DC-4218-BEA9-621EE993F8E2",
+        "name": "",
+        "documentation": "",
+        "text": "Asign selected pack \n\nAssign selected role "
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 2124.0000285007754, "y": 215.50000703009755 },
+        "upperLeft": { "x": 1965.0000276836502, "y": 168.50000707236265 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-E5887151-EB14-4987-9C75-3AE141C0D229",
+      "properties": {
+        "overrideid": "sid-E5887151-EB14-4987-9C75-3AE141C0D229",
+        "name": "",
+        "documentation": "",
+        "text": "Notify BNA avec cloture"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 1790.4999755629092, "y": 511.9999999718233 },
+        "upperLeft": { "x": 1639.499974816225, "y": 465 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-B5B99FB1-F2B3-453F-8197-2860F459E903",
+      "properties": {
+        "overrideid": "sid-B5B99FB1-F2B3-453F-8197-2860F459E903",
+        "name": "",
+        "documentation": "",
+        "text": "Keycloak force new password"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 2349.0000008171255, "y": 306.1919258030075 },
+        "upperLeft": { "x": 2190, "y": 259.19192584527264 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-E8ABA4E6-D545-4428-BAB5-D028B7690D88",
+      "properties": {
+        "overrideid": "sid-E8ABA4E6-D545-4428-BAB5-D028B7690D88",
+        "name": "",
+        "documentation": "",
+        "text": "PAck API that includes catalogues"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 312.9999970755795, "y": 394.4999734512797 },
+        "upperLeft": { "x": 134.9999959766866, "y": 360.4999736766937 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-051E6AD9-A47E-4F30-B05E-7CDB62A592BC",
+      "properties": {
+        "overrideid": "sid-051E6AD9-A47E-4F30-B05E-7CDB62A592BC",
+        "name": "",
+        "documentation": "",
+        "text": "Done"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 333.9999989369617, "y": 462.49999311430935 },
+        "upperLeft": { "x": 155.9999978380688, "y": 428.49999333972335 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-35A61403-E0EE-47E6-820C-FE1AEA965EE2",
+      "properties": {
+        "overrideid": "sid-35A61403-E0EE-47E6-820C-FE1AEA965EE2",
+        "name": "",
+        "documentation": "",
+        "text": "Generated Username and Password, and Created a User on Keycloak (Not Activated)."
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 740.9999927393415, "y": 220.9999952893366 },
+        "upperLeft": { "x": 539.9999919533731, "y": 119.99999640882027 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-BD4C98D6-19DF-4711-AD2F-7608E14C02E9",
+      "properties": {
+        "overrideid": "sid-BD4C98D6-19DF-4711-AD2F-7608E14C02E9",
+        "name": "",
+        "documentation": "",
+        "text": "Activate an Account on Keycloak and Create a Digital Account with Only Consultation Permissions."
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 1282.9999846629123, "y": 217.99999703277228 },
+        "upperLeft": { "x": 1049.999984353781, "y": 134.99999798834327 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-E1B58A5B-95B3-4046-8CF3-5211B6DBF9C2",
+      "properties": {
+        "overrideid": "sid-E1B58A5B-95B3-4046-8CF3-5211B6DBF9C2",
+        "name": "",
+        "documentation": "",
+        "text": "Expose API for complete task DONE\n\nCreate Smile ticket - with reference number - Not Done\n\nI GET COMPTE BANCAIRE CODE CLIENT Variable\n@Authorize"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 992.9999867528677, "y": 876.9999637522501 },
+        "upperLeft": { "x": 659.9999901652337, "y": 779.9999644973082 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-F7CB0285-5074-47D1-BFE7-54E7B9ABE7E3",
+      "properties": {
+        "overrideid": "sid-F7CB0285-5074-47D1-BFE7-54E7B9ABE7E3",
+        "name": "",
+        "documentation": "",
+        "text": "1 year in pre validation"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 1820.0000474778121, "y": 769.8551669783317 },
+        "upperLeft": { "x": 1650.0000464916263, "y": 737.8551672460108 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-27E9E4F2-C021-4F73-94DF-17D689A0BF6E",
+      "properties": {
+        "overrideid": "sid-27E9E4F2-C021-4F73-94DF-17D689A0BF6E",
+        "name": "",
+        "documentation": "",
+        "text": "Get Code client Variable"
+      },
+      "stencil": { "id": "TextAnnotation" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 1620.9999591498727, "y": 811.9999837593613 },
+        "upperLeft": { "x": 1469.9999584031889, "y": 764.999983787538 }
+      },
+      "dockers": []
+    },
+    {
+      "resourceId": "sid-8BCDA330-C501-4011-9115-B9CA7A3DB45E",
+      "properties": {
+        "overrideid": "sid-8BCDA330-C501-4011-9115-B9CA7A3DB45E",
+        "name": "",
+        "documentation": "",
+        "conditionsequenceflow": "",
+        "executionlisteners": "",
+        "defaultflow": "false",
+        "skipexpression": "",
+        "showdiamondmarker": false
+      },
+      "stencil": { "id": "SequenceFlow" },
+      "childShapes": [],
+      "outgoing": [],
+      "bounds": {
+        "lowerRight": { "x": 385.44209981628643, "y": 369.028824009592 },
+        "upperLeft": { "x": 180.55078125, "y": 176.49999751055776 }
+      },
+      "dockers": [
+        { "x": 15, "y": 15.000000000000007 },
+        { "x": 314, "y": 176.49999751055776 },
+        { "x": 385.44209981628643, "y": 369.028824009592 }
+      ]
+    }
+  ],
+  "stencil": { "id": "BPMNDiagram" },
+  "stencilset": {
+    "namespace": "http://b3mn.org/stencilset/bpmn2.0#",
+    "url": "../editor/stencilsets/bpmn2.0/bpmn2.0.json"
+  }
+}
