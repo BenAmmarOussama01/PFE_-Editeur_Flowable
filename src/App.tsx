@@ -5,10 +5,9 @@ import Footer from './layout/footer/Footer'
 import Modeler from './layout/modeler/Modeler'
 import Admin from './components/blocks/Admin'
 import Idm from './components/blocks/Idm'
-import Test from './components/blocks/Test'
+import Test from './test'
 import BnaRetail from './components/blocks/BnaRetail'
 import Processes from './modules/Processes/Processes'
-import Bp from './components/diagram_editor/Bp'
 import Login from './modules/Login/Login'
 import Dmn from './components/decision_model/decision_editor/Dmn'
 import Form from './modules/Form/Form'
@@ -17,8 +16,11 @@ import Apps from './modules/Apps/Apps'
 import DecisionTable from './modules/DecisionTable/DecisionTable'
 import Blocks from './modules/Blocks/Blocks'
 import Fm from './components/forms_model/form_builder/Form'
-import AppDetails from './components/apps/AppDetail'
+
 import Viewer from './components/diagram_viewer/Viewer'
+import Bp from './components/diagram_editor/Bp'
+import AppList from './components/apps/AppList'
+import Ap from './components/apps/Ap'
 import axiosInstance from './setup/axiosConfig'
 import Loader from './components/loader/Loader'
 import axios from 'axios'
@@ -67,7 +69,6 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Login />} />
-
         <Route path="/signin" element={<Login />} />
         <Route path="/blocks" element={<Blocks />} />
         <Route path="/modeler" element={<Modeler />}>
@@ -85,7 +86,7 @@ function App() {
           <Route path="form/editor/:id" element={<Fm />} />
 
           <Route path="Apps" element={<Apps />} />
-          <Route path="Apps/:id" element={<AppDetails />} />
+          <Route path="Apps/:id" element={<Ap />} />
           {/*</Routes>Route path="Apps/:id" element={<Fm />} />*/}
 
           <Route path="caseModels" element={<CaseModels />} />

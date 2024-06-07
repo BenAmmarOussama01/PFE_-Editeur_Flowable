@@ -1,24 +1,21 @@
+import React from 'react'
 import Loader from '../loader/Loader'
 import { Grid, Box } from '@mui/material'
-import ListItem from './ListItem'
 import { modalDescriptionByModelType } from '../../config/modelType'
+import AppProcessItem from './AppProcessItem'
 
-interface IListModelsProps {
-  isLoading: boolean
+interface IListAppProcessProps {
   items: any[]
-  modelType: number
 }
 
-const ListModels = ({ isLoading, items, modelType }: IListModelsProps) => {
-  return isLoading ? (
-    <Loader />
-  ) : (
+const AppProcessList = ({ items }: IListAppProcessProps) => {
+  return (
     <Box>
       {items ? (
         <Box>
           {items.length > 0 && (
             <p style={{ marginTop: '1rem' }}>
-              There are {items.length} {modalDescriptionByModelType(modelType)}
+              There are {items.length} {modalDescriptionByModelType(0)}
             </p>
           )}
 
@@ -36,7 +33,7 @@ const ListModels = ({ isLoading, items, modelType }: IListModelsProps) => {
                     },
                   }}
                 >
-                  <ListItem {...item} />
+                  <AppProcessItem {...item} />
                 </Box>
               </Grid>
             ))}
@@ -49,4 +46,4 @@ const ListModels = ({ isLoading, items, modelType }: IListModelsProps) => {
   )
 }
 
-export default ListModels
+export default AppProcessList

@@ -1,9 +1,13 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { string } from 'yup'
 interface Returned {
   data: App[]
   size: number
   start: number
   total: number
+}
+interface input {
+  searchText: string
 }
 //App typ
 interface App {
@@ -34,7 +38,7 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     getAppFetch: (state, action) => {
-      state.loading = true
+      state.loading = false
     },
     getAppSuccess: (state, action: PayloadAction<Returned>) => {
       state.loading = false
@@ -43,9 +47,20 @@ const appSlice = createSlice({
     getAppFailure: (state) => {
       state.loading = false
     },
+    createProcess: (state) => {
+      state.loading = true
+    },
+
+    createProcessSuccess: (state, action) => {
+      console.log('slice: ', action)
+      state.loading = false
+      //state.processes = action.payload.data
+    },
+    createProcessFailure: (state, action) => {
+      state.loading = false
+      console.log('slice err : ', action)
+    },
   },
 })
-export const { getAppFetch, getAppFailure, getAppSuccess } =
-  appSlice.actions
+export const { getAppFetch, getAppFailure, getAppSuccess } = appSlice.actions
 export default appSlice.reducer
- 

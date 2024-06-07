@@ -34,6 +34,9 @@ export const saveBpmnProcess = async (
   id: string,
   value: string,
   lastUpdated: number,
+  name: string,
+  key: string,
+  description: string,
 ) => {
   const formData = new URLSearchParams()
   try {
@@ -41,9 +44,9 @@ export const saveBpmnProcess = async (
 
     formData.append('modeltype', 'model')
     formData.append('json_xml', JSON.stringify({ modelId: id, ...response }))
-    formData.append('name', 'DIGITAL-ONBOARDING')
-    formData.append('key', 'DIGITAL-ONBOARDING')
-    formData.append('description', '')
+    formData.append('name', name)
+    formData.append('key', key)
+    formData.append('description', description)
     formData.append('newversion', 'false')
     formData.append('comment', '')
 
@@ -54,6 +57,7 @@ export const saveBpmnProcess = async (
       formData,
     )
     console.log('Success saveBpmn:', res.data)
+    return res
   } catch (err) {
     console.log('test:', err)
     throw err

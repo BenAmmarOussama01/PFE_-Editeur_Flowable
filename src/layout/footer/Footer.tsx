@@ -1,3 +1,4 @@
+import { strict } from 'assert'
 import { useEffect, useState } from 'react'
 
 const Footer = () => {
@@ -11,16 +12,13 @@ const Footer = () => {
   return (
     <footer
       style={{
-        position: 'fixed',
+
         bottom: 0,
-        left: 0,
         width: '100%',
         textAlign: 'center',
-        padding: '20px',
-        marginTop: 'auto',
-        marginBottom: 'auto',
+        marginBottom: '200px'!,
+        padding: '15px',
         backgroundColor: '#f2f2f2',
-        zIndex: 999,
       }}
     >
       Copyright {currentDay} | ©PFE

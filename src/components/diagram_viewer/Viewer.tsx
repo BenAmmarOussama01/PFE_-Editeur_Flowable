@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import useFetchXml from '../../hooks/useFetchXml'
 
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
-import '../diagram_editor/bpmn.css'
+
 import ViewerToolBar from '../DiagramToolBar/ViewerToolBar'
 const Viewer = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)

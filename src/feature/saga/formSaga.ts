@@ -24,5 +24,4 @@ function* fetchFormHandlerSaga(action: any): Generator<any, void, any> {
 function* watchFormSaga() {
   yield all([takeEvery(getFormFetch, fetchFormHandlerSaga)])
 }
-
 export default watchFormSaga

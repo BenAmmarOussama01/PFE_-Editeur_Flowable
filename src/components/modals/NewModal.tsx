@@ -61,9 +61,6 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
     },
   })
 
-  useEffect(() => {
-    console.log('modelType modal : ', modelType)
-  }, [])
   return (
     <Modal
       open={open}

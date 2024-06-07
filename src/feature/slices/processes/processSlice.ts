@@ -1,74 +1,66 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Returned {
-  data: IProcess[]
-  size: number
-  start: number
-  total: number
+  data: IProcess[];
+  size: number;
+  start: number;
+  total: number;
 }
-
-//Process type
 
 export interface IProcess {
-  id: string
-  name: string
-  key: string
-  description: string
-  createdBy: string
-  lastUpdatedBy: string
-  lastUpdated: number
-  latestVersion: boolean
-  version: number
-  comment: string
-  modelType: number
-  tenantId: string
-  appDefinition?: any
-}
-export interface ProcessState {
-  processes: IProcess[]
-  isLoading: boolean
+  id: string;
+  name: string;
+  key: string;
+  description: string;
+  createdBy: string;
+  lastUpdatedBy: string;
+  lastUpdated: number;
+  latestVersion: boolean;
+  version: number;
+  comment: string;
+  modelType: number;
+  tenantId: string;
+  appDefinition?: any;
 }
 
+export interface ProcessState {
+  processes: IProcess[];
+  isLoading: boolean;
+}
 const initialState: ProcessState = {
   processes: [],
   isLoading: false,
-}
+};
 
 const processSlice = createSlice({
   name: 'process',
   initialState,
   reducers: {
-    /* fetch processes reducers */
-
-    getProcess: (state, action) => {
-      state.isLoading = true
+    //get process reducer
+    getProcess: (state,_action) => {
+      state.isLoading = true;
     },
-
     getProcessSuccess: (state, action: PayloadAction<Returned>) => {
-      state.isLoading = false
-      state.processes = action.payload.data
+      state.isLoading = false;
+      state.processes = action.payload.data;
     },
     getProcessFailure: (state) => {
-      state.isLoading = false
+      state.isLoading = false;
     },
-
-    /* create new process reducers */
-
-    createProcess: (state, action) => {
-      state.isLoading = true
+    //create new process reducer 
+    createProcess: (state) => {
+      state.isLoading = true;
     },
-
-    createProcessSuccess: (state, action) => {
-      console.log('slice: ', action)
-      state.isLoading = false
-      //state.processes = action.payload.data
+    createProcessSuccess: (state, action: PayloadAction<Returned>) => {
+      state.isLoading = false;
+      state.processes = action.payload.data;
     },
-    createProcessFailure: (state, action) => {
-      state.isLoading = false
-      console.log('slice err : ', action)
+    createProcessFailure: (state) => {
+      state.isLoading = false;
     },
+   
   },
-})
+});
 
 export const {
   getProcess,
@@ -77,5 +69,7 @@ export const {
   createProcess,
   createProcessSuccess,
   createProcessFailure,
-} = processSlice.actions
-export default processSlice.reducer
+ 
+} = processSlice.actions;
+
+export default processSlice.reducer;

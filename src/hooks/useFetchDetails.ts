@@ -2,22 +2,8 @@ import { useState, useEffect } from 'react'
 import { MethodHttp, invokeWS } from '../setup/api-service'
 import { APP_BASE_URL } from '../config/app.constant'
 
-interface IDetails {
-  createdBy: string
-  description: string
-  id: string
-  key: string
-  lastUpdated: number
-  lastUpdatedBy: string
-  latestVersion: boolean
-  modelType: number
-  name: string
-  tenantId: string
-  version: number
-}
-
 const useFetchProcessDetails = (id: string) => {
-  const [details, setDetails] = useState<IDetails | null>(null)
+  const [details, setDetails] = useState<any | null>(null)
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -33,7 +19,7 @@ const useFetchProcessDetails = (id: string) => {
     console.log('fetching')
     fetch()
   }, [])
-  return { details }
+  return { details, setDetails }
 }
 
 export default useFetchProcessDetails

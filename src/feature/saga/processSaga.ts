@@ -41,7 +41,7 @@ function* createProcessSaga(action: any): Generator<any, void, any> {
     onComplit(result?.data)
     yield put(createProcessSuccess(result?.data)) // Dispatch success action
   } catch (error) {
-    yield put(createProcessFailure(error)) // Dispatch failure action
+    yield put(createProcessFailure())
   }
 }
 

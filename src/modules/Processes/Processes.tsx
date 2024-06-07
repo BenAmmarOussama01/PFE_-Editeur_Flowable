@@ -7,18 +7,15 @@ import { ModelType } from '../../config/modelType'
 import Modals from '../../components/modals/Modals'
 import ListModels from '../../components/list_models/ListModels'
 import SearchInput from '../../components/search/SearchInput'
-
-import fakeData from '../../fakeData.json'
 const Processes = () => {
   const dispatch = useAppDispatch()
   const { isLoading, processes } = useAppSelector((state) => state.process)
-
+console.log('process page props for listModels',processes)
   const [searchText, setSearchText] = useState('')
 
   const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value)
   }
-
   useEffect(() => {
     dispatch(getProcess({ searchText }))
   }, [searchText])
@@ -34,7 +31,9 @@ const Processes = () => {
           alignItems: 'flex-start',
         }}
       >
-        <SearchInput handleSearchText={handleSearchText} />
+        <SearchInput 
+        handleSearchText={handleSearchText}
+        />
         <ListModels
           isLoading={isLoading}
           items={processes}

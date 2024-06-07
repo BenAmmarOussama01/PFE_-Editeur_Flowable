@@ -13,7 +13,7 @@ interface ISearchInputProps {
 
 const SearchInput = ({ handleSearchText }: ISearchInputProps) => {
   return (
-    <Box sx={{ ml: 3, mt: 2 }}>
+    <Box sx={{ ml: 3 }}>
       <OutlinedInput
         sx={{ width: 250, height: 40 }}
         onChange={handleSearchText}

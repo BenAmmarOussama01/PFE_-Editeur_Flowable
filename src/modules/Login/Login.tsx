@@ -16,6 +16,7 @@ interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
   const login = () => {
+    console.log('err')
     invokeWS({
       url: `/authorization/`,
       method: MethodHttp.get,
@@ -31,7 +32,6 @@ const Login: FC<LoginProps> = () => {
         console.log('login err:', err)
       })
   }
-
   useEffect(() => {
     /*invokeWS({
       //url: `http://localhost:8070/configuration/users/me`,

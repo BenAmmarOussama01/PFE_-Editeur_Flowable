@@ -1,48 +1,61 @@
-import PersonIcon from '@mui/icons-material/Person'
-import CreateIcon from '@mui/icons-material/Create'
-import { Link } from 'react-router-dom'
-import { formatDate } from '../../config/utils/formatDate'
+import { Typography } from '@mui/material'
+import Box from '@mui/material/Box'
 import { FaStarOfLife } from 'react-icons/fa'
 export interface AppProps {
-  id: string
+  id: String
   name: string
-  createdBy: string
-  lastUpdated: number
- 
+  version: number
 }
-
-const AppItem = ({
-  id,
-  name,
-  createdBy,
-  lastUpdated,
-}: AppProps) => {
+const AppItem = ({ id, name, version }: AppProps) => {
   return (
-    <>
-        <div className="border-2 h-80 border-slate-200 hover:cursor-pointer relative w-[268px]">
-          <Link to={`${id}`} >
-            <div
-              style={{
-                height: '200px',
-                width: '100%',
-              
-              }}
-            >
-               <FaStarOfLife />
-            </div>
-            <div className="bg-slate-100 p-3 hover:pb-10 absolute bottom-0 right-0 left-0 transition duration-300 ease-in-out">
-              <div>{name}</div>
-              <div className="flex items-center gap-2 mt-3">
-                <PersonIcon /> {createdBy}
-              </div>
-              <div className="flex items-center gap-2 mt-3 ">
-                <CreateIcon /> {formatDate(lastUpdated)}
-              </div>
-            </div>
-          </Link>
-        </div>
-   
-    </>
+    <div
+      style={{
+        height: '200px',
+        width: '268px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#2A9EC0',
+        position: 'relative',
+        marginBottom: '50px',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          backgroundColor: '#999999',
+          padding: '0.2rem 0.5rem',
+          borderRadius: '8px',
+          color: 'white',
+          fontWeight: 'bold',
+        }}
+      >
+        V{version}
+      </div>
+      <Box
+        sx={{
+          p: 2,
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          left: 0,
+          color: 'white',
+        }}
+      >
+        <Typography sx={{ fontWeight: 'bold', fontSize: 20 }}>
+          {name}
+        </Typography>
+      </Box>
+      <FaStarOfLife
+        className="icon"
+        style={{
+          color: '#168AAC',
+          fontSize: '6rem',
+        }}
+      />
+    </div>
   )
 }
 
