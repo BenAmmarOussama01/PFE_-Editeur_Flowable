@@ -1,4 +1,3 @@
-import { strict } from 'assert'
 import { useEffect, useState } from 'react'
 
 const Footer = () => {
@@ -11,18 +10,17 @@ const Footer = () => {
 
   return (
     <footer
-      style={{
-
-        bottom: 0,
-        width: '100%',
-        textAlign: 'center',
-        marginBottom: '200px'!,
-        padding: '15px',
-        backgroundColor: '#f2f2f2',
-      }}
-    >
-      Copyright {currentDay} | ©PFE
-    </footer>
+    style={{
+      position: 'sticky',
+      bottom: 0,
+      width: '100%',
+      textAlign: 'center',
+      padding: '20px',
+      backgroundColor: '#f2f2f2',
+    }}
+  >
+    Copyright {2024} | ©PFE
+  </footer>
   )
 }
 

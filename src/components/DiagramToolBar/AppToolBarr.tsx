@@ -19,11 +19,24 @@ import { Link } from 'react-router-dom'
 import axiosInstance from '../../setup/axiosConfig'
 import { ISnackBarState } from '../../types/types'
 import SnackBar from '../feedback/SnackBar'
+import ModifyAppModal from '../modals/ModifyAppModal'
 interface AppToolBarrProps {
   id: string
 }
 
 const AppToolBarr = ({ id }: AppToolBarrProps) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const handleOpenEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+  };
+
+
+
+
   const [openModal, setOpenModal] = useState(false)
   const [snackBarOpen, setSnackBarOpen] = useState<ISnackBarState>({
     open: false,
@@ -145,7 +158,7 @@ const AppToolBarr = ({ id }: AppToolBarrProps) => {
               </Link>
             </Box>
             <Tooltip title="Modify app definition properites">
-              <IconButton color="primary">
+              <IconButton color="primary" onClick={handleOpenEditModal}>
                 <EditIcon />
               </IconButton>
             </Tooltip>
@@ -186,7 +199,16 @@ const AppToolBarr = ({ id }: AppToolBarrProps) => {
               App Editor
             </Button>
           </Box>
-
+          {isEditModalOpen && (
+            <ModifyAppModal
+              modelId={id}
+              initialModelName={details.name}
+              initialModelKey={details.key}
+              initialDescription={details.description}
+              isOpen={isEditModalOpen}
+              onClose={handleCloseEditModal}
+            />
+          )}
           {openModal && (
             <DeleteModal
               open={openModal}
