@@ -15,6 +15,12 @@ function* fetchFormHandlerSaga(action: any): Generator<any, void, any> {
       url: `${APP_BASE_URL}configuration/modeler/rest/models?filter=forms&filterText=${searchText}&modelType=2&sort=modifiedDesc`,
       method: MethodHttp.get,
     })
+
+    // const result = yield invokeWS({
+    //   url: `http://localhost:4000/`,
+    //   method: MethodHttp.get,
+    // })
+
     yield put(getFormSuccess(result?.data)) // Dispatch success action
   } catch (error) {
     yield put(getFormFailure()) // Dispatch failure action

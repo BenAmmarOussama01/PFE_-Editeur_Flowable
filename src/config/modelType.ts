@@ -59,3 +59,18 @@ export const getModalDescription = (modelType: number) => {
       return ''
   }
 }
+
+export const getModelNameToPathUse = (modelType: number) => {
+  switch (modelType) {
+    case 0:
+      return 'processes'
+    case 2:
+      return 'forms'
+    case 3:
+      return 'apps'
+    case 4:
+      return 'decisions'
+    default:
+      return ''
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "components": [
+    {
+      "label": "name",
+      "applyMaskOn": "change",
+      "tableView": true,
+      "validateWhenHidden": false,
+      "key": "name",
+      "type": "textfield",
+      "input": true
+    },
+    {
+      "label": "email",
+      "applyMaskOn": "change",
+      "tableView": true,
+      "validateWhenHidden": false,
+      "key": "email",
+      "type": "textfield",
+      "input": true
+    },
+    {
+      "label": "age",
+      "applyMaskOn": "change",
+      "tableView": true,
+      "validateWhenHidden": false,
+      "key": "age",
+      "type": "textfield",
+      "input": true
+    },
+    {
+      "label": "gender",
+      "optionsLabelPosition": "right",
+      "inline": false,
+      "tableView": false,
+      "values": [
+        {
+          "label": "Male",
+          "value": "male",
+          "shortcut": ""
+        },
+        {
+          "label": "Female",
+          "value": "female",
+          "shortcut": ""
+        }
+      ],
+      "validateWhenHidden": false,
+      "key": "gender",
+      "type": "radio",
+      "input": true
+    },
+    {
+      "type": "button",
+      "label": "Submit",
+      "key": "submit",
+      "disableOnInvalid": true,
+      "input": true,
+      "tableView": false
+    }
+  ]
+}

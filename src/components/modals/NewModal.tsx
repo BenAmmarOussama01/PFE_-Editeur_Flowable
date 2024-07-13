@@ -10,8 +10,8 @@ import { useAppDispatch, useAppSelector } from '../../feature/hooks'
 import { createProcess } from '../../feature/slices/processes/processSlice'
 import { Typography } from '@mui/material'
 import { getModalDescription } from '../../config/modelType'
-import { useEffect } from 'react'
-
+import { useEffect, useState } from 'react'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -38,6 +38,7 @@ interface NewModalProps {
 }
 
 const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
+  const [error, setError] = useState(false)
   const dispatch = useAppDispatch()
   const { isLoading } = useAppSelector((state) => state.process)
   const navigate = useNavigate()
@@ -69,17 +70,50 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <div className="w-full bg-slate-100 py-5 mb-6">
-          <p className="text-2xl ml-10">
+        <Box
+          className="w-full bg-slate-100 py-5 mb-6"
+          sx={{
+            width: '100%',
+            bgcolor: 'rgb( 241 245 249 / 1) ',
+            py: '20px',
+            mb: '24px',
+          }}
+        >
+          <Typography
+            sx={{ fontSize: '1.5rem', lineHeight: '2rem', ml: '40px' }}
+          >
             Create a new {getModalDescription(modelType)}
-          </p>
-        </div>
-        <form action="" className="mx-10" onSubmit={formik.handleSubmit}>
-          <div>
+          </Typography>
+        </Box>
+        <form
+          action=""
+          style={{ margin: '0 40px' }}
+          onSubmit={formik.handleSubmit}
+        >
+          {error && (
+            <Box
+              sx={{
+                backgroundColor: '#EC8A77 !important',
+                width: '100%',
+                py: 1,
+                textAlign: 'center',
+                display: 'flex',
+                justifyContent: 'center',
+                gap: 2,
+                alignItems: 'center',
+                mb: 2,
+              }}
+            >
+              <ErrorOutlineIcon sx={{ color: '#E4593D' }} />
+              <Typography>Provided model key already exists</Typography>
+            </Box>
+          )}
+
+          <Box>
             <Typography> {getModalDescription(modelType)} name*</Typography>
             <TextField
               variant="outlined"
-              className="w-full"
+              sx={{ width: '100%' }}
               id="name"
               name="name"
               autoComplete="name"
@@ -89,13 +123,13 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
             />
-          </div>
+          </Box>
 
-          <div className="mt-3">
+          <Box sx={{ mt: '12px' }}>
             <Typography> {getModalDescription(modelType)} Key*</Typography>
             <TextField
               variant="outlined"
-              className="w-full"
+              sx={{ width: '100%' }}
               id="key"
               name="key"
               autoComplete="key"
@@ -105,13 +139,13 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
               error={formik.touched.key && Boolean(formik.errors.key)}
               helperText={formik.touched.key && formik.errors.key}
             />
-          </div>
+          </Box>
 
-          <div className="mt-3">
+          <Box sx={{ mt: '12px' }}>
             <Typography>Description</Typography>
             <TextField
               variant="outlined"
-              className="w-full"
+              sx={{ width: '100%' }}
               multiline
               rows={3}
               id="description"
@@ -127,20 +161,33 @@ const NewModal = ({ open, handleClose, modelType }: NewModalProps) => {
                 formik.touched.description && formik.errors.description
               }
             />
-          </div>
-          <div className="mt-10 flex gap-4 float-end">
+          </Box>
+          <Box
+            className="mt-10 flex gap-4 float-end"
+            sx={{
+              mt: '40px',
+              display: 'flex',
+              gap: '1rem',
+              float: 'inline-end',
+            }}
+          >
             <Button variant="outlined" onClick={handleClose}>
               Cancel
             </Button>
             <Button variant="contained" type="submit">
               Save
             </Button>
-          </div>
+          </Box>
         </form>
         <CloseIcon
           color="disabled"
-          sx={{ fontSize: 30 }}
-          className="absolute top-6 right-3 hover:cursor-pointer"
+          sx={{
+            fontSize: 30,
+            position: 'absolute',
+            top: '24px',
+            right: '12px',
+            ':hover': { cursor: 'pointer' },
+          }}
           onClick={handleClose}
         />
       </Box>

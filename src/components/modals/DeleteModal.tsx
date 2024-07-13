@@ -46,6 +46,7 @@ const DeleteModal = ({
       console.log(error)
     }
   }
+
   return (
     <Modal
       open={open}

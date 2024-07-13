@@ -10,8 +10,8 @@ interface IListAppProcessProps {
 
 const AppProcessList = ({ items }: IListAppProcessProps) => {
   return (
-    <Box>
-      {items ? (
+    <Box sx={{ mb: 10 }}>
+      {items && (
         <Box>
           {items.length > 0 && (
             <p style={{ marginTop: '1rem' }}>
@@ -39,8 +39,6 @@ const AppProcessList = ({ items }: IListAppProcessProps) => {
             ))}
           </Grid>
         </Box>
-      ) : (
-        <div>no items</div>
       )}
     </Box>
   )

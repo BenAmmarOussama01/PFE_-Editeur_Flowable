@@ -36,7 +36,7 @@ const AppList = () => {
                     },
                   }}
                 >
-                  <Link to={`/modeler/apps/${item.id}`}>
+                  <Link to={`/modeler/apps/editor/${item.id}`}>
                     <AppItem
                       id={item.id}
                       name={item.name}

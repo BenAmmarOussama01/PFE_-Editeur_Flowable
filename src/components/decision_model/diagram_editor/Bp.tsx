@@ -4,6 +4,7 @@ import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
 import './bpmn.css'
 import { useParams } from 'react-router-dom'
 import Box from '@mui/material/Box'
+import { text_xml } from '../../diagram_editor/test_xml'
 
 import ZoomInIcon from '@mui/icons-material/ZoomIn'
 import ZoomOutIcon from '@mui/icons-material/ZoomOut'
@@ -20,45 +21,42 @@ const buttonStyle = {
   padding: '0 10px',
 }
 
-const Bp = () => {
+const BpTest = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const propertiesPanelRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
-const escapeQuotes = (jsonString:string):string => {
-  return jsonString
-    .replace(/"/g, '\\"')   // Remplace les guillemets doubles par \"
-    .replace(/\$/g, '\\$')  // Remplace les signes dollar par \$ (échappe le signe dollar)
-    .replace(/'/g, "\\'");  // Remplace les guillemets simples par \'
-};
+  const escapeQuotes = (jsonString: string): string => {
+    return jsonString
+      .replace(/"/g, '\\"') // Remplace les guillemets doubles par \"
+      .replace(/\$/g, '\\$') // Remplace les signes dollar par \$ (échappe le signe dollar)
+      .replace(/'/g, "\\'") // Remplace les guillemets simples par \'
+  }
   let modelerInstance: any = null
 
   let { id } = useParams()
   const { xml } = useFetchXml(id!)
 
-
   useEffect(() => {
     if (modelerInstance) return
-    if (xml) {
-      console.log(xml)
-      if (bpmnRef.current) {
-        modelerInstance = new BpmnModeler({
-          container: bpmnRef.current,
-          propertiesPanel: {
-            parent: propertiesPanelRef.current,
-          },
-        })
 
-        modelerInstance.importXML(xml).then((err: any) => {
-          if (err.warnings.length) {
-            console.warn(err.warnings)
-          }
-          modelerInstance.get('canvas').zoom('fit-viewport', 'auto')
-        })
+    if (bpmnRef.current) {
+      modelerInstance = new BpmnModeler({
+        container: bpmnRef.current,
+        propertiesPanel: {
+          parent: propertiesPanelRef.current,
+        },
+      })
 
-        setModeler(modelerInstance)
-      }
+      modelerInstance.importXML(text_xml).then((err: any) => {
+        if (err.warnings.length) {
+          console.warn(err.warnings)
+        }
+        modelerInstance.get('canvas').zoom('fit-viewport', 'auto')
+      })
+
+      setModeler(modelerInstance)
     }
-  }, [xml])
+  }, [])
 
   const handleExport = () => {
     if (modeler) {
@@ -68,8 +66,8 @@ const escapeQuotes = (jsonString:string):string => {
           console.error(res.error)
           return
         }
-        const escapedXml = escapeQuotes(res.xml);
-        console.log(escapedXml);
+        const escapedXml = escapeQuotes(res.xml)
+        console.log(escapedXml)
       })
     }
   }
@@ -145,4 +143,4 @@ const escapeQuotes = (jsonString:string):string => {
   )
 }
 
-export default Bp
+export default BpTest

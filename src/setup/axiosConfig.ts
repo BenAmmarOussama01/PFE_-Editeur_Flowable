@@ -11,10 +11,10 @@ const configureAxiosInterceptors = (instance: AxiosInstance) => {
       return response
     },
     (error) => {
-      if (error.response && error.response.status === 401) {
+      /*if (error.response && error.response.status === 401) {
         // Redirect to login page if unauthorized
         document.location.href = '/'
-      }
+      }*/
 
       return Promise.reject(error)
     },

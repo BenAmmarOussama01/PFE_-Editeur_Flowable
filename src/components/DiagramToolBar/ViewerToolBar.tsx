@@ -20,9 +20,19 @@ interface ToolBarProps {
   id: string
 }
 
+const details = {
+  key: 'age_validation',
+  createdBy: 'bkdev bkdev',
+  lastUpdated: 1719856957715,
+  lastUpdatedBy: 'bkdev bkdev',
+  version: 1,
+  name: 'age_validation_decision',
+  description: '',
+}
+
 const ViewerToolBar = ({ id }: ToolBarProps) => {
   const [openModal, setOpenModal] = useState(false)
-  const { details } = useFetchDetails(id)
+  //const { details } = useFetchDetails(id)
 
   const handleEditClick = () => {
     const currentUrl = window.location.href
@@ -36,7 +46,7 @@ const ViewerToolBar = ({ id }: ToolBarProps) => {
         bgcolor: '#E8EDF1',
         height: 150,
         borderBottom: '1px solid #ABB3BF ',
-        px: 40,
+        px: 20,
       }}
     >
       {!details ? (
@@ -59,12 +69,11 @@ const ViewerToolBar = ({ id }: ToolBarProps) => {
               <Button variant="contained" onClick={() => setOpenModal(true)}>
                 <DeleteIcon />
               </Button>
-              <Link to={`/modeler/processes/editor/${id}`}>
-                <Button variant="contained">
-                  <BorderColorIcon />
-                  Visual Editor
-                </Button>
-              </Link>
+
+              <Button variant="contained" onClick={handleEditClick}>
+                <BorderColorIcon />
+                Visual Editor
+              </Button>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', gap: 20, mt: 1 }}>

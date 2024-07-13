@@ -19,12 +19,14 @@ import { Link } from 'react-router-dom'
 import axiosInstance from '../../setup/axiosConfig'
 import { ISnackBarState } from '../../types/types'
 import SnackBar from '../feedback/SnackBar'
+import PublishModal from './PublishModal'
 interface AppToolBarrProps {
   id: string
 }
 
 const AppToolBarr = ({ id }: AppToolBarrProps) => {
   const [openModal, setOpenModal] = useState(false)
+  const [openPublishModal, setOpenPublishModal] = useState(false)
   const [snackBarOpen, setSnackBarOpen] = useState<ISnackBarState>({
     open: false,
     message: '',
@@ -38,7 +40,7 @@ const AppToolBarr = ({ id }: AppToolBarrProps) => {
 
   const publishApp = async () => {
     try {
-      const response = axiosInstance.post(
+      const response = await axiosInstance.post(
         `/configuration/modeler/rest/app-definitions/${id}/publish`,
         { comment: '' },
       )
@@ -48,12 +50,14 @@ const AppToolBarr = ({ id }: AppToolBarrProps) => {
         feedBackType: 'success',
         message: 'Application published successfully!',
       })
+      setOpenPublishModal(false)
     } catch (err) {
       setSnackBarOpen({
         open: true,
         feedBackType: 'error',
-        message: 'Fail to publish Application!',
+        message: 'Failed to publish Application!',
       })
+
       throw err
     }
   }
@@ -175,7 +179,11 @@ const AppToolBarr = ({ id }: AppToolBarrProps) => {
             <Button variant="contained" color="primary">
               Import App
             </Button>
-            <Button variant="contained" color="primary" onClick={publishApp}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setOpenPublishModal(true)}
+            >
               Publish
             </Button>
             <Button
@@ -193,6 +201,15 @@ const AppToolBarr = ({ id }: AppToolBarrProps) => {
               handleClose={() => setOpenModal(false)}
               modelId={id}
               modelName={details.name}
+            />
+          )}
+
+          {openPublishModal && (
+            <PublishModal
+              open={openPublishModal}
+              handleClose={() => setOpenPublishModal(false)}
+              appName={details.name}
+              publish={publishApp}
             />
           )}
         </>

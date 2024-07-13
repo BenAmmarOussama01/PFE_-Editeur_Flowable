@@ -5,7 +5,6 @@ import Footer from './layout/footer/Footer'
 import Modeler from './layout/modeler/Modeler'
 import Admin from './components/blocks/Admin'
 import Idm from './components/blocks/Idm'
-import Test from './test'
 import BnaRetail from './components/blocks/BnaRetail'
 import Processes from './modules/Processes/Processes'
 import Login from './modules/Login/Login'
@@ -24,6 +23,10 @@ import Ap from './components/apps/Ap'
 import axiosInstance from './setup/axiosConfig'
 import Loader from './components/loader/Loader'
 import axios from 'axios'
+import { APP_BASE_URL } from './config/app.constant'
+import DecisionViewer from './components/decision_model/decisionViewer/DecisionViewer'
+import FormViewer from './components/forms_model/form_viewer/FormViewer'
+import BpTest from './components/decision_model/diagram_editor/Bp'
 
 function App() {
   const location = useLocation()
@@ -36,14 +39,14 @@ function App() {
       location.pathname === '/front' &&
       location.search === '?login_success'
     ) {
-      window.location.href = '/blocks'
+      window.location.href = '/modeler'
     } else if (location && location.pathname === '/') {
       setIsLoading(false)
     } else {
       if (location && location.pathname !== '/') {
         setIsLoading(true) // Start loading
         axios
-          .get(`http://localhost:8070/configuration/users/me`)
+          .get(`${APP_BASE_URL}configuration/users/me`)
           .then((response: any) => {
             setIsLoading(false) // Stop loading
             //document.location.href = '/'
@@ -53,7 +56,7 @@ function App() {
             // Stop loading in case of error
             console.error('Error fetching data:', error)
             //document.location.href = '/'
-            navigate('/')
+            //navigate('/')
             setIsLoading(false)
           })
       }
@@ -80,21 +83,23 @@ function App() {
           <Route path="processes/viewer/:id" element={<Viewer />} />
           {/*<Route path="/blocks/modeler/decisions" element={<Dmn />} />*/}
           <Route path="decisions" element={<DecisionTable />} />
-          <Route path="decisions/:id" element={<Dmn />} />
+          <Route path="decisions/viewer/:id" element={<DecisionViewer />} />
+          <Route path="decisions/editor/:id" element={<Dmn />} />
           {/*<Route path="/blocks/modeler/form" element={<Form />} />*/}
           <Route path="form/" element={<Form />} />
           <Route path="form/editor/:id" element={<Fm />} />
+          <Route path="form/viewer/:id" element={<FormViewer />} />
 
           <Route path="Apps" element={<Apps />} />
-          <Route path="Apps/:id" element={<Ap />} />
+          <Route path="Apps/editor/:id" element={<Ap />} />
           {/*</Routes>Route path="Apps/:id" element={<Fm />} />*/}
 
           <Route path="caseModels" element={<CaseModels />} />
         </Route>
         <Route path="/blocks/admin" element={<Admin />} />
         <Route path="/blocks/idm" element={<Idm />} />
-        <Route path="/blocks/test" element={<Test />} />
         <Route path="/blocks/bna-retail" element={<BnaRetail />} />
+        <Route path="/test" element={<BpTest />} />
       </Routes>
     </>
   )

@@ -6,6 +6,7 @@ import useFetchXml from '../../hooks/useFetchXml'
 import 'camunda-bpmn-js/dist/assets/camunda-platform-modeler.css'
 
 import ViewerToolBar from '../DiagramToolBar/ViewerToolBar'
+import Box from '@mui/material/Box'
 const Viewer = () => {
   const bpmnRef = useRef<HTMLDivElement>(null)
   const [modeler, setModeler] = useState<any>(null)
@@ -43,11 +44,11 @@ const Viewer = () => {
   }, [xml])
   return (
     <div>
-      <div className=" h-full w-full relative ">
+      <Box sx={{ height: '100%', width: '100%', position: 'relative' }}>
         <ViewerToolBar id={id!} />
 
-        <div ref={bpmnRef} className=" h-[80vh] w-full " />
-      </div>
+        <Box ref={bpmnRef} sx={{ height: '80vh', width: '100%' }} />
+      </Box>
     </div>
   )
 }

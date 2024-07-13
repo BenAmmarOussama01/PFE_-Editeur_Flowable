@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom' // Importer useNavigate
 import { APP_BASE_URL } from '../../config/app.constant'
 import { getModalDescription } from '../../config/modelType'
+import Typography from '@mui/material/Typography'
 
 const style = {
   position: 'absolute',
@@ -69,7 +70,7 @@ const ImportModal = ({ open, handleClose, modelType }: Props) => {
   }
 
   return (
-    <div>
+    <Box>
       <Modal
         open={open}
         onClose={handleClose}
@@ -77,12 +78,23 @@ const ImportModal = ({ open, handleClose, modelType }: Props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div className="w-full bg-slate-100 py-5 mb-6">
-            <p className="text-2xl ml-10">
+          <Box
+            sx={{
+              width: '100%',
+              bgcolor: 'rgb(241 245 249 /1)',
+              py: '20px',
+              mb: '24px',
+            }}
+          >
+            <Typography
+              sx={{ fontSize: '1.5rem', lineHeight: '2rem', ml: '40px' }}
+            >
               Import {getModalDescription(modelType)}
-            </p>
-          </div>
-          <FilePicker file={file} setFile={setFile} />
+            </Typography>
+          </Box>
+          <Box sx={{}}>
+            <FilePicker file={file} setFile={setFile} />
+          </Box>
 
           <Box sx={{ float: 'right', mr: 6, mt: 4 }}>
             <Button
@@ -96,13 +108,18 @@ const ImportModal = ({ open, handleClose, modelType }: Props) => {
 
           <CloseIcon
             color="disabled"
-            sx={{ fontSize: 30 }}
-            className="absolute top-6 right-3 hover:cursor-pointer"
+            sx={{
+              fontSize: 30,
+              position: 'absolute',
+              top: '24px',
+              right: '12px',
+              ':hover': { cursor: 'pointer' },
+            }}
             onClick={handleClose}
           />
         </Box>
       </Modal>
-    </div>
+    </Box>
   )
 }
 

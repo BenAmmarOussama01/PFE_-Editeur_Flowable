@@ -8,14 +8,22 @@ import Box from '@mui/material/Box'
 import EditIcon from '@mui/icons-material/Edit'
 import SearchIcon from '@mui/icons-material/Search'
 import './listItem.css'
+import { ModelType } from '../../config/modelType'
 
 export interface ProcessProps {
   name: string
   createdBy: string
   lastUpdated: number
   id: string
+  modelType: number
 }
-const ListItem = ({ id, name, createdBy, lastUpdated }: ProcessProps) => {
+const ListItem = ({
+  id,
+  name,
+  createdBy,
+  lastUpdated,
+  modelType,
+}: ProcessProps) => {
   const { imageSrc, isLoading } = useFetchThumbnail(id)
   return (
     <>
@@ -38,7 +46,8 @@ const ListItem = ({ id, name, createdBy, lastUpdated }: ProcessProps) => {
                 objectFit: 'contain',
                 width: '100%',
                 height: '100%',
-                background: `url(${imageSrc}) no-repeat  `,
+                background: `url(${imageSrc}) center top  no-repeat `,
+                backgroundSize: `${modelType === ModelType.form ? '90% 90%' : 'auto'}`,
                 border: '1px solid #E2E8F0',
               }}
             />
@@ -49,15 +58,15 @@ const ListItem = ({ id, name, createdBy, lastUpdated }: ProcessProps) => {
                 bottom: 0,
                 left: 0,
                 right: 0,
-                py: 3,
+                py: 1,
                 pl: 3,
               }}
             >
               <Box>{name}</Box>
-              <Box sx={{ mt: 2 }}>
+              <Box sx={{ mt: 1 }}>
                 <PersonIcon /> {createdBy}
               </Box>
-              <Box sx={{ mt: 2 }}>
+              <Box sx={{ mt: 1 }}>
                 <CreateIcon /> {formatDate(lastUpdated)}
               </Box>
             </Box>

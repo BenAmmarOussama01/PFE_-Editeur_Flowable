@@ -4,11 +4,15 @@ interface Mapper {
 }
 
 const camundaToFlowableMapper: Mapper[] = [
-  { find: 'camunda:formRef', replace: 'flowable:formReference' },
+  // { find: 'camunda:formRef', replace: 'flowable:formKey' },
   { find: 'camunda:executionListener', replace: 'flowable:executionListener' },
   {
     find: 'camunda:delegateExpression',
     replace: 'flowable:delegateExpression',
+  },
+  {
+    find: 'camunda:assignee',
+    replace: 'flowable:assignee',
   },
 ]
 
